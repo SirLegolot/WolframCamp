@@ -1,0 +1,167 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5723,        157]
+NotebookOptionsPosition[      5292,        138]
+NotebookOutlinePosition[      5635,        153]
+CellTagsIndexPosition[      5592,        150]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"palindrome8", "[", 
+   RowBox[{"x_Integer", ",", "y_Integer", ",", "z_Integer"}], "]"}], ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{
+    RowBox[{"PadLeft", "[", 
+     RowBox[{"IntegerDigits", "[", 
+      RowBox[{
+       RowBox[{"NestWhileList", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], 
+          "&"}], ",", "x", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Reverse", "@", 
+            RowBox[{"IntegerDigits", "[", "#", "]"}]}], "=!=", 
+           RowBox[{"IntegerDigits", "[", "#", "]"}]}], "&"}], ",", "1", ",", 
+         "y"}], "]"}], ",", "z"}], "]"}], "]"}], ",", 
+    RowBox[{"ColorFunction", "\[Rule]", "\"\<DarkBands\>\""}], ",", 
+    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.676321211027673*^9, 3.6763212231934547`*^9}, {
+  3.67632157667703*^9, 3.6763216029728513`*^9}, {3.6763216785527544`*^9, 
+  3.6763217127541213`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"palindrome8", "[", 
+  RowBox[{"196", ",", "50", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.676321225924158*^9, 3.6763212730339565`*^9}, {
+  3.6763215954503117`*^9, 3.676321626703773*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[RasterBox[CompressedData["
+1:eJztnCFulVEQRl+CwLEHFAvA9wWBJ5VUkDSpZgEoJBJTgUQgURiCZg8sAAxp
+WUJDWQDiJf17z5l3RJPm5OX+c2fmzjdz/9c+Pn99evFgt9s9vf15cfvz7/eH
+Tz6+Ottf7U+/vnv54ez3/uLTl5vL3Y/9//j3z9fXlz9/7U+enX97s7va3zx6
+/vbk/Z8744fac1f8UHu23u+qz6+yf9W+aPlG26/db1vbb3kuzc5V+Wapq6vq
+gEVHaHWJpoOW+KY7a/drqQ80/1vstPQ5NL2z6xct32jxpfnZEl9LP2D5vCWf
+7fXBUs8t8w6tr6Pde1jquWXOteus3f+0eNHqrV2/LPXfkie0eNHiaD8v9uda
+5heLHyznkTYnTq3/NDvt59pyfxuf3V/R8pw2X9P2S7OT9lzLeaT1Ofb7H8u+
+aH6wc1r+23WQ5gdLHbDol/29D22/ND/Q6iHtHKWbTL2257ldd+zzLM1++70o
+TRem6q8l38rz2Zzmf9pcQNMX2vq0ukqLu31fNDtpdY/Wh1jqcHyGLk/tJ2n5
+T9MvS19Eyx9LvOxxsZzH+AxOqxuWfsPiN1odttRzux7R8pZ2n2Oxk1b34rP7
+NNp5z28z+nNLnaflG63O0+JC+3x8Nqeddxq3nGta/0DLE0sfZdHT+j1X3xJ3
+cZr+ts6MfoOmd7TvJ0y1k9YPWPptWn2Ip8vH0IdbzjstH1blib1u0+JIW4fW
+38bjhPy310/LObXUh+J4P8+l3auv6m9pfRftPMaZnPb+y3KOaH6j6Zc9jqvu
+cyznqPg2L8c5nJbntLmbxml9HW0epOWP5Txa9MhiZzyeLnPqj33eoe1rVX2m
+6TKtz0kf4/F0maZTq/y5qj7T9IWm17T+x3KO0vd4nNOf0+oA7d7Ysl/7OnYd
+tJ8vWl8djxM47b6RVg9p/b+ljtntpK1j0Tva/UY8PonT6hVtfUu/QfObJS6W
+fVn0lNaPxeNGTrtHpc1Tljo5VadW+Y3Wr1r8k/7G43y9tnNaXZ16j5qfmevH
+43EO71zfjy7T/Eybiy3zIO3+IR6Pxy31apU+2udKWj9g+X4g7dzZ9xuPx9Nl
+mo5sbQ8tT6b6jTa/x+PxeXyqLlu+p027Nzi2uFvyPx6Px2n9P60+0/ywSn8t
+fcuqddLxeDxurw80fV81R9P6hKnPbV6Ox+N2PrXu0b6PRHtvTrsfoNmfLsfj
+8eZo1/tTi97R/GDX63g8Hqfp5tQ50a4X9s/b+8x4PB5Pl5lzK80Pln6DFq94
+PB6ncdr7Wfs8tcoemp9pcYnH43ELt+jyVL2jxeuuntv8G4/H4zPqvN3+Y7s3
+oPkhHo/H7Zz2vWLL97toukmzP/2Nx+PxGfPU1rpA6wdo+piexuPx+Axdtuss
+zf+0+/D0Oh6Px5m6QOsHttadqXpKi0s8Ho/HZ+jpqv7Ecj9giW88Ho/H1+om
+bT61PDcej8fj8Um6TNPxrfdFy5N4PB6Pr9Vl+98pb73OqvXj8Xg8fpycNp9O
+tScej8fj8S102fJ+Nj2Nx+Px+CRu0WXL30nF4/F4PE7WZcv68Xg8Ho+TOe3/
+chy6zl/TJ/q8
+   "], {{0, 0}, {80, 51}}, {0, 1}],
+  Background->GrayLevel[1],
+  Frame->Automatic,
+  FrameLabel->{None, None},
+  FrameTicks->{{None, None}, {None, None}},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> 
+    Automatic}]], "Output",
+ CellChangeTimes->{{3.6763212483377504`*^9, 3.676321273964937*^9}, {
+  3.6763215857947645`*^9, 3.676321627814508*^9}, {3.676321686270601*^9, 
+  3.6763217158907127`*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rep", "[", 
+   RowBox[{"x_Integer", ",", "y_Integer", ",", "z_Integer"}], "]"}], ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{
+    RowBox[{"PadLeft", "[", 
+     RowBox[{"IntegerDigits", "[", 
+      RowBox[{
+       RowBox[{"NestList", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"FromDigits", "[", 
+            RowBox[{"Sort", "[", 
+             RowBox[{"IntegerDigits", "[", 
+              RowBox[{
+               RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], "]"}], 
+             "]"}], "]"}], ")"}], "&"}], ",", "x", ",", "y"}], "]"}], ",", 
+       "z"}], "]"}], "]"}], ",", "Color"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.676321394257479*^9, 3.676321397413246*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"repgraph", "[", 
+   RowBox[{"x_Integer", ",", "y_Integer"}], "]"}], ":=", 
+  RowBox[{"NestGraph", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"FromDigits", "[", 
+       RowBox[{"Sort", "[", 
+        RowBox[{"IntegerDigits", "[", 
+         RowBox[{
+          RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], "]"}], "]"}],
+        "]"}], ")"}], "&"}], ",", "x", ",", "y", ",", 
+    RowBox[{"VertexLabels", "\[Rule]", "\"\<Name\>\""}]}], "]"}]}]], "Input"]
+},
+WindowSize->{759, 601},
+WindowMargins->{{Automatic, 295}, {24, Automatic}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (June 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1055, 26, 107, "Input"],
+Cell[CellGroupData[{
+Cell[1638, 50, 219, 4, 30, "Input"],
+Cell[1860, 56, 2138, 41, 250, "Output"]
+}, Open  ]],
+Cell[4013, 100, 758, 20, 107, "Input"],
+Cell[4774, 122, 514, 14, 69, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

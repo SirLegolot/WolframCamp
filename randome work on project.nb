@@ -1,0 +1,303 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9897,        293]
+NotebookOptionsPosition[      9173,        263]
+NotebookOutlinePosition[      9516,        278]
+CellTagsIndexPosition[      9473,        275]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"func", "[", "x_Integer", "]"}], ":=", 
+  RowBox[{"Sin", "[", 
+   RowBox[{"x", "^", "2"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6765802940698657`*^9, 3.676580334985525*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CloudDeploy", "[", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"func", "[", "x", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "1", ",", "10"}], "}"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.676580094094348*^9, 3.676580165745301*^9}, {
+  3.676580226060191*^9, 3.676580262809684*^9}, {3.6765803146106634`*^9, 
+  3.6765803167324886`*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TagBox[
+    ButtonBox[
+     PaneSelectorBox[{
+      False->"\<\"https://www.wolframcloud.com/objects/f5373e0a-6277-4b99-\
+9e28-46fd52b4649c\"\>", True->
+      StyleBox["\<\"https://www.wolframcloud.com/objects/f5373e0a-6277-4b99-\
+9e28-46fd52b4649c\"\>", "HyperlinkActive"]}, Dynamic[
+       CurrentValue["MouseOver"]],
+      BaseStyle->{"Hyperlink"},
+      FrameMargins->0,
+      ImageSize->Automatic],
+     BaseStyle->"Hyperlink",
+     ButtonData->{
+       URL[
+       "https://www.wolframcloud.com/objects/f5373e0a-6277-4b99-9e28-\
+46fd52b4649c"], None},
+     ButtonNote->
+      "https://www.wolframcloud.com/objects/f5373e0a-6277-4b99-9e28-\
+46fd52b4649c"],
+    Annotation[#, 
+     "https://www.wolframcloud.com/objects/f5373e0a-6277-4b99-9e28-\
+46fd52b4649c", "Hyperlink"]& ], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/objects/f5373e0a-6277-4b99-9e28-46fd52b4649c"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{
+  3.676580168003218*^9, {3.676580228711291*^9, 3.6765802650184703`*^9}, {
+   3.67658031876095*^9, 3.676580339662377*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CloudDeploy", "[", 
+  RowBox[{"FormPage", "[", 
+   RowBox[{
+    RowBox[{"SetterBar", "[", 
+     RowBox[{
+      RowBox[{"Dynamic", "[", "x", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "2", ",", "3", ",", "4", ",", "5"}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"Power", "[", 
+     RowBox[{
+      RowBox[{"Dynamic", "[", "x", "]"}], ",", "2"}], "]"}]}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.676580566610224*^9, 3.6765806921181297`*^9}, {
+  3.676580745993844*^9, 3.6765808287349234`*^9}, {3.6765808858975716`*^9, 
+  3.6765809009250164`*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TagBox[
+    ButtonBox[
+     PaneSelectorBox[{
+      False->"\<\"https://www.wolframcloud.com/objects/31442324-6cf4-4c94-\
+b937-48a6945c836b\"\>", True->
+      StyleBox["\<\"https://www.wolframcloud.com/objects/31442324-6cf4-4c94-\
+b937-48a6945c836b\"\>", "HyperlinkActive"]}, Dynamic[
+       CurrentValue["MouseOver"]],
+      BaseStyle->{"Hyperlink"},
+      FrameMargins->0,
+      ImageSize->Automatic],
+     BaseStyle->"Hyperlink",
+     ButtonData->{
+       URL[
+       "https://www.wolframcloud.com/objects/31442324-6cf4-4c94-b937-\
+48a6945c836b"], None},
+     ButtonNote->
+      "https://www.wolframcloud.com/objects/31442324-6cf4-4c94-b937-\
+48a6945c836b"],
+    Annotation[#, 
+     "https://www.wolframcloud.com/objects/31442324-6cf4-4c94-b937-\
+48a6945c836b", "Hyperlink"]& ], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/objects/31442324-6cf4-4c94-b937-48a6945c836b"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{
+  3.676580693100645*^9, {3.6765807540147595`*^9, 3.6765808296817255`*^9}, 
+   3.6765809030336323`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"form", "=", 
+  RowBox[{"FormFunction", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<first\>\"", "\[Rule]", "\"\<String\>\""}], ",", 
+      RowBox[{"\"\<second\>\"", "\[Rule]", "\"\<Number\>\""}]}], "}"}], ",", 
+    "f"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6765813086761723`*^9, 3.6765813086781745`*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["FormFunction",
+    "SummaryHead"], "[", 
+   PanelBox[
+    DynamicModuleBox[{Forms`Format`PackagePrivate`values$$ = Association[
+     "first" -> "hello", "second" -> 3]}, 
+     DynamicBox[ToBoxes[
+       If[
+        ValueQ[Forms`Format`PackagePrivate`values$$], 
+        Column[{
+          Panel[
+           Style[
+            $CellContext`f[Forms`Format`PackagePrivate`values$$], "Output", 
+            "StandardForm"], Background -> White], 
+          Item[
+           Row[{
+             Spacer[0], 
+             Button["Back", 
+              Clear[Forms`Format`PackagePrivate`values$$]]}], Alignment -> 
+           Right]}, Alignment -> Right], Forms`Format`PackagePrivate`values$$; 
+        Forms`PackageScope`bindForm[
+          Forms`PackageScope`changeAppearanceRule[
+           FormObject[
+            Association[
+            "first" -> Association["Interpreter" -> "String"], "second" -> 
+             Association["Interpreter" -> "Number"]]], "CancelLabel" -> None],
+           Forms`Format`PackagePrivate`values$$]], StandardForm],
+      ImageSizeCache->{231., {31.5, 36.5}},
+      TrackedSymbols:>{Forms`Format`PackagePrivate`values$$}],
+     DynamicModuleValues:>{}]], "]"}],
+  FormFunction[
+   FormObject[
+    Association[
+    "first" -> Association["Interpreter" -> "String"], "second" -> 
+     Association["Interpreter" -> "Number"]]], $CellContext`f],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.6765813105674906`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"opTable", "[", 
+   RowBox[{"o_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{"TableForm", "[", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"o", "[", 
+       RowBox[{"n1", ",", "n2"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"n1", ",", "1", ",", "n"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"n2", ",", "1", ",", "n"}], "}"}]}], "]"}], ",", 
+    RowBox[{"TableHeadings", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Range", "[", "n", "]"}], ",", 
+       RowBox[{"Range", "[", "n", "]"}]}], "}"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6765826327227125`*^9, 3.676582632724715*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"opTable", "[", 
+    RowBox[{"o", ",", "n"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"n", ",", "1", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"o", ",", 
+     RowBox[{"{", 
+      RowBox[{"Plus", ",", "Times", ",", "Subtract", ",", "Divide"}], "}"}]}],
+     "}"}], ",", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6765825923321033`*^9, 3.6765825923341036`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 1., $CellContext`o$$ = Plus, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`n$$], 1, 10}, {
+      Hold[$CellContext`o$$], {Plus, Times, Subtract, Divide}}}, 
+    Typeset`size$$ = {42., {11.5, 18.5}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`n$11609$$ = 0, $CellContext`o$11610$$ = 0}, 
+    DynamicBox[ToBoxes[
+      RawBoxes[
+       Manipulate`ManipulateBoxes[
+       1, StandardForm, 
+        "Variables" :> {$CellContext`n$$ = 1, $CellContext`o$$ = Plus}, 
+        "ControllerVariables" :> {
+          Hold[$CellContext`n$$, $CellContext`n$11609$$, 0], 
+          Hold[$CellContext`o$$, $CellContext`o$11610$$, 0]}, 
+        "OtherVariables" :> {
+         Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+          Typeset`initDone$$, Typeset`skipInitDone$$}, 
+        "Body" :> $CellContext`opTable[$CellContext`o$$, $CellContext`n$$], 
+        "Specifications" :> {{$CellContext`n$$, 1, 10}, {$CellContext`o$$, {
+           Plus, Times, Subtract, Divide}}}, "Options" :> {}, 
+        "DefaultOptions" :> {}]], StandardForm],
+     ImageSizeCache->{258., {71., 78.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.6765825935631723`*^9}]
+}, Open  ]]
+},
+WindowSize->{759, 601},
+WindowMargins->{{Automatic, 295}, {24, Automatic}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (June 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 211, 5, 30, "Input"],
+Cell[CellGroupData[{
+Cell[794, 29, 388, 9, 30, "Input"],
+Cell[1185, 40, 1133, 30, 33, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2355, 75, 588, 16, 30, "Input"],
+Cell[2946, 93, 1114, 30, 33, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4097, 128, 358, 9, 30, "Input"],
+Cell[4458, 139, 1548, 40, 109, "Output"]
+}, Open  ]],
+Cell[6021, 182, 672, 19, 83, "Input"],
+Cell[CellGroupData[{
+Cell[6718, 205, 489, 13, 50, "Input"],
+Cell[7210, 220, 1947, 40, 166, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
