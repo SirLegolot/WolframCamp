@@ -1,0 +1,894 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     34065,        884]
+NotebookOptionsPosition[     33703,        867]
+NotebookOutlinePosition[     34046,        882]
+CellTagsIndexPosition[     34003,        879]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"repeat", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"IntegerReverse", "[", 
+            RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", 
+        "i", ",", "m"}], "]"}], ",", "v"}], "]"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listRepeat", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"NestList", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"IntegerReverse", "[", 
+           RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", "i",
+        ",", "m"}], "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", "True"}], "}"}]}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listRepeat2", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"FromDigits", " ", "/@", " ", 
+      RowBox[{"IntegerDigits", "[", 
+       RowBox[{
+        RowBox[{"NestList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"IntegerReverse", "[", 
+              RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", 
+          "i", ",", "m"}], "]"}], ",", "b"}], "]"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", " ", "True"}], "}"}]}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"countRepeat", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"NestList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"IntegerReverse", "[", 
+          RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", "i", 
+      ",", "m"}], "]"}], "]"}], "-", "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{"finalRepeat", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"repeat", "[", 
+     RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}], ",", 
+    RowBox[{"listRepeat", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"listRepeat2", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"countRepeat", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}]}], "}"}]}], "\n", 
+ RowBox[{
+  RowBox[{"countPalindrome", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"NestWhileList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"IntegerReverse", "[", 
+          RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", "i", 
+      ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"IntegerDigits", "[", 
+         RowBox[{
+          RowBox[{"IntegerReverse", "[", 
+           RowBox[{"#", ",", "b"}], "]"}], ",", "b"}], "]"}], "=!=", 
+        RowBox[{"IntegerDigits", "[", 
+         RowBox[{"#", ",", "b"}], "]"}]}], "&"}], ",", "1", ",", "m"}], "]"}],
+     "]"}], "-", "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listPalindrome", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"NestWhileList", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"IntegerReverse", "[", 
+           RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", "i",
+        ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"IntegerDigits", "[", 
+          RowBox[{
+           RowBox[{"IntegerReverse", "[", 
+            RowBox[{"#", ",", "b"}], "]"}], ",", "b"}], "]"}], "=!=", 
+         RowBox[{"IntegerDigits", "[", 
+          RowBox[{"#", ",", "b"}], "]"}]}], "&"}], ",", "1", ",", "m"}], 
+      "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", " ", "True"}], "}"}]}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listPalindrome2", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"FromDigits", " ", "/@", " ", 
+      RowBox[{"IntegerDigits", "[", 
+       RowBox[{
+        RowBox[{"NestWhileList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"IntegerReverse", "[", 
+              RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", 
+          "i", ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"IntegerDigits", "[", 
+             RowBox[{
+              RowBox[{"IntegerReverse", "[", 
+               RowBox[{"#", ",", "b"}], "]"}], ",", "b"}], "]"}], "=!=", 
+            RowBox[{"IntegerDigits", "[", 
+             RowBox[{"#", ",", "b"}], "]"}]}], "&"}], ",", "1", ",", "m"}], 
+         "]"}], ",", "b"}], "]"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", " ", "True"}], "}"}]}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"palindrome", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestWhileList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"IntegerReverse", "[", 
+            RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", 
+        "i", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"IntegerDigits", "[", 
+           RowBox[{
+            RowBox[{"IntegerReverse", "[", 
+             RowBox[{"#", ",", "b"}], "]"}], ",", "b"}], "]"}], "=!=", 
+          RowBox[{"IntegerDigits", "[", 
+           RowBox[{"#", ",", "b"}], "]"}]}], "&"}], ",", "1", ",", "m"}], 
+       "]"}], ",", "v"}], "]"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"finalPalindrome", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"palindrome", "[", 
+     RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}], ",", 
+    RowBox[{"listPalindrome", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"listPalindrome2", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"countPalindrome", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}]}], "}"}]}], "\n", 
+ RowBox[{
+  RowBox[{"rat", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"FromDigits", "[", 
+           RowBox[{"Sort", "[", 
+            RowBox[{"IntegerDigits", "[", 
+             RowBox[{
+              RowBox[{"IntegerReverse", "[", 
+               RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], 
+           "]"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "v"}], 
+     "]"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"countRat", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"NestList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"FromDigits", "[", 
+         RowBox[{"Sort", "[", 
+          RowBox[{"IntegerDigits", "[", 
+           RowBox[{
+            RowBox[{"IntegerReverse", "[", 
+             RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], "]"}], 
+        ")"}], "&"}], ",", "i", ",", "m"}], "]"}], "]"}], "-", "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listRat", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"NestList", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"FromDigits", "[", 
+          RowBox[{"Sort", "[", 
+           RowBox[{"IntegerDigits", "[", 
+            RowBox[{
+             RowBox[{"IntegerReverse", "[", 
+              RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], "]"}],
+          ")"}], "&"}], ",", "i", ",", "m"}], "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", " ", "True"}], "}"}]}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listRat2", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"FromDigits", " ", "/@", " ", 
+      RowBox[{"IntegerDigits", "[", 
+       RowBox[{
+        RowBox[{"NestList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"FromDigits", "[", 
+             RowBox[{"Sort", "[", 
+              RowBox[{"IntegerDigits", "[", 
+               RowBox[{
+                RowBox[{"IntegerReverse", "[", 
+                 RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], 
+             "]"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "b"}], 
+       "]"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", " ", "True"}], "}"}]}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"finalRat", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"rat", "[", 
+     RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}], ",", 
+    RowBox[{"listRat", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"listRat2", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"countRat", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"ftrRat", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}]}], "}"}]}], "\n", 
+ RowBox[{
+  RowBox[{"ftrRat", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"FindTransientRepeat", "[", 
+       RowBox[{
+        RowBox[{"NestList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"FromDigits", "[", 
+             RowBox[{"Sort", "[", 
+              RowBox[{"IntegerDigits", "[", 
+               RowBox[{
+                RowBox[{"IntegerReverse", "[", 
+                 RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], 
+             "]"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "2"}], 
+       "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "=!=", 
+     RowBox[{"{", "}"}]}], ",", 
+    RowBox[{"NestGraph", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"FromDigits", "[", 
+         RowBox[{"Sort", "[", 
+          RowBox[{"IntegerDigits", "[", 
+           RowBox[{
+            RowBox[{"IntegerReverse", "[", 
+             RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], "]"}], 
+        ")"}], "&"}], ",", "i", ",", "m", ",", 
+      RowBox[{"VertexLabels", "->", "\"\<Name\>\""}]}], "]"}], ",", 
+    "\"\<No repeating patten detected\>\""}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"reorder", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer", ",", 
+    "v_Integer"}], "]"}], ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"FromDigits", "[", 
+            RowBox[{
+             RowBox[{"Flatten", "[", 
+              RowBox[{"Delete", "[", 
+               RowBox[{
+                RowBox[{"Prepend", "[", 
+                 RowBox[{
+                  RowBox[{"IntegerDigits", "[", 
+                   RowBox[{"#", ",", "b"}], "]"}], ",", 
+                  RowBox[{"Take", "[", 
+                   RowBox[{
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{"#", ",", "b"}], "]"}], ",", 
+                    RowBox[{"-", "r"}]}], "]"}]}], "]"}], ",", 
+                RowBox[{"-", "r"}]}], "]"}], "]"}], ",", "b"}], "]"}], "+", 
+           "#"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "v"}], 
+     "]"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listReorder", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"NestList", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"FromDigits", "[", 
+           RowBox[{
+            RowBox[{"Flatten", "[", 
+             RowBox[{"Delete", "[", 
+              RowBox[{
+               RowBox[{"Prepend", "[", 
+                RowBox[{
+                 RowBox[{"IntegerDigits", "[", 
+                  RowBox[{"#", ",", "b"}], "]"}], ",", 
+                 RowBox[{"Take", "[", 
+                  RowBox[{
+                   RowBox[{"IntegerDigits", "[", 
+                    RowBox[{"#", ",", "b"}], "]"}], ",", 
+                   RowBox[{"-", "r"}]}], "]"}]}], "]"}], ",", 
+               RowBox[{"-", "r"}]}], "]"}], "]"}], ",", "b"}], "]"}], "+", 
+          "#"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", " ", "True"}], "}"}]}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listReorder2", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"FromDigits", "/@", 
+      RowBox[{"IntegerDigits", "[", 
+       RowBox[{
+        RowBox[{"NestList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"FromDigits", "[", 
+              RowBox[{
+               RowBox[{"Flatten", "[", 
+                RowBox[{"Delete", "[", 
+                 RowBox[{
+                  RowBox[{"Prepend", "[", 
+                   RowBox[{
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{"#", ",", "b"}], "]"}], ",", 
+                    RowBox[{"Take", "[", 
+                    RowBox[{
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{"#", ",", "b"}], "]"}], ",", 
+                    RowBox[{"-", "r"}]}], "]"}]}], "]"}], ",", 
+                  RowBox[{"-", "r"}]}], "]"}], "]"}], ",", "b"}], "]"}], "+", 
+             "#"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "b"}], 
+       "]"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"False", ",", " ", "True"}], "}"}]}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"countReorder", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer"}], "]"}],
+   ":=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"NestList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"FromDigits", "[", 
+          RowBox[{
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Delete", "[", 
+             RowBox[{
+              RowBox[{"Prepend", "[", 
+               RowBox[{
+                RowBox[{"IntegerDigits", "[", 
+                 RowBox[{"#", ",", "b"}], "]"}], ",", 
+                RowBox[{"Take", "[", 
+                 RowBox[{
+                  RowBox[{"IntegerDigits", "[", 
+                   RowBox[{"#", ",", "b"}], "]"}], ",", 
+                  RowBox[{"-", "r"}]}], "]"}]}], "]"}], ",", 
+              RowBox[{"-", "r"}]}], "]"}], "]"}], ",", "b"}], "]"}], "+", 
+         "#"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], "]"}], "-", 
+   "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{"finalReorder", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer", ",", 
+    "v_Integer"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"reorder", "[", 
+     RowBox[{"i", ",", "m", ",", "r", ",", "b", ",", "v"}], "]"}], ",", 
+    RowBox[{"listReorder", "[", 
+     RowBox[{"i", ",", "m", ",", "r", ",", "b"}], "]"}], ",", 
+    RowBox[{"listReorder2", "[", 
+     RowBox[{"i", ",", "m", ",", "r", ",", "b"}], "]"}], ",", 
+    RowBox[{"countReorder", "[", 
+     RowBox[{"i", ",", "m", ",", "r", ",", "b"}], "]"}]}], "}"}]}]}], "Input",
+ CellChangeTimes->{
+  3.6765756333670015`*^9, {3.676577349849058*^9, 3.6765774895805254`*^9}, {
+   3.676621032188266*^9, 3.6766210626221337`*^9}, 3.676621241264082*^9, {
+   3.6766273199963856`*^9, 3.6766273346871324`*^9}, {3.6766273783693304`*^9, 
+   3.6766274310145426`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CloudDeploy", "[", 
+  RowBox[{
+   RowBox[{"Manipulate", "[", 
+    RowBox[{"ChooseAlgorithm", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"ChooseAlgorithm", ",", 
+         RowBox[{"Manipulate", "[", 
+          RowBox[{
+           RowBox[{"Grid", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"\"\<visual representation in base \>\"", "<>", 
+                  RowBox[{"ToString", "[", "v", "]"}]}], ",", 
+                 "\"\<numbers after each iteration in base 10\>\"", ",", 
+                 RowBox[{"\"\<numbers after each iteration in base \>\"", "<>", 
+                  RowBox[{"ToString", "[", "b", "]"}]}], ",", 
+                 "\"\<number of iterations\>\""}], "}"}], ",", 
+               RowBox[{"finalPalindrome", "[", 
+                RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}]}], "}"}], 
+             ",", 
+             RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+             RowBox[{"ItemSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+              "i", ",", "10", ",", 
+               "\"\<initial value in base 10 (click enter after input)\>\""}],
+               "}"}], ",", "10", ",", "100000", ",", "1", ",", " ", 
+             RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+              "m", ",", "1", ",", "\"\<max number of iterations\>\""}], "}"}],
+              ",", "1", ",", "200", ",", "1", ",", 
+             RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+            "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+              "b", ",", "10", ",", "\"\<base to compute 196-algorithm\>\""}], 
+              "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+             RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+              "v", ",", "2", ",", "\"\<base to represent iterations\>\""}], 
+              "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+             RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}], 
+          "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Manipulate", "[", 
+           RowBox[{
+            RowBox[{"Grid", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"\"\<visual representation in base \>\"", "<>", 
+                   RowBox[{"ToString", "[", "v", "]"}]}], ",", 
+                  "\"\<numbers after each iteration in base 10\>\"", ",", 
+                  RowBox[{"\"\<numbers after each iteration in base \>\"", "<>", 
+                   RowBox[{"ToString", "[", "b", "]"}]}], ",", 
+                  "\"\<number of iterations\>\""}], "}"}], ",", 
+                RowBox[{"finalPalindrome", "[", 
+                 RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}]}], "}"}], 
+              ",", 
+              RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+              RowBox[{"ItemSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "i", ",", "10", ",", 
+                "\"\<initial value in base 10 (click enter after \
+input)\>\""}], "}"}], ",", "10", ",", "100000", ",", "1", ",", " ", 
+              RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "m", ",", "1", ",", "\"\<max number of iterations\>\""}], 
+               "}"}], ",", "1", ",", "200", ",", "1", ",", 
+              RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "b", ",", "10", ",", "\"\<base to compute 196-algorithm\>\""}],
+                "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+              RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], 
+            ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "v", ",", "2", ",", "\"\<base to represent iterations\>\""}], 
+               "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+              RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}],
+            "]"}], "\[Rule]", "\"\<196-Algorithm Palindrome checker\>\""}], 
+         ",", 
+         RowBox[{
+          RowBox[{"Manipulate", "[", 
+           RowBox[{
+            RowBox[{"Grid", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"\"\<visual representation in base \>\"", "<>", 
+                   RowBox[{"ToString", "[", "v", "]"}]}], ",", 
+                  "\"\<numbers after each iteration in base 10\>\"", ",", 
+                  RowBox[{"\"\<numbers after each iteration in base \>\"", "<>", 
+                   RowBox[{"ToString", "[", "b", "]"}]}], ",", 
+                  "\"\<number of iterations\>\""}], "}"}], ",", 
+                RowBox[{"finalRepeat", "[", 
+                 RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}]}], "}"}], 
+              ",", 
+              RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+              RowBox[{"ItemSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "i", ",", "10", ",", 
+                "\"\<initial value in base 10 (click enter after \
+input)\>\""}], "}"}], ",", "10", ",", "100000", ",", "1", ",", " ", 
+              RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "m", ",", "1", ",", "\"\<max number of iterations\>\""}], 
+               "}"}], ",", "1", ",", "500", ",", "1", ",", 
+              RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "b", ",", "10", ",", "\"\<base to compute 196-algorithm\>\""}],
+                "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+              RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], 
+            ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "v", ",", "2", ",", "\"\<base to represent iterations\>\""}], 
+               "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+              RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}],
+            "]"}], "\[Rule]", " ", "\"\<196-Algorithm\>\""}], ",", 
+         RowBox[{
+          RowBox[{"Manipulate", "[", 
+           RowBox[{
+            RowBox[{"Grid", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"\"\<visual representation in base \>\"", "<>", 
+                   RowBox[{"ToString", "[", "v", "]"}]}], ",", 
+                  "\"\<numbers after each iteration in base 10\>\"", ",", 
+                  RowBox[{"\"\<numbers after each iteration in base \>\"", "<>", 
+                   RowBox[{"ToString", "[", "b", "]"}]}], ",", 
+                  "\"\<number of iterations\>\""}], "}"}], ",", 
+                RowBox[{"finalReorder", "[", 
+                 RowBox[{"i", ",", "m", ",", "r", ",", "b", ",", "v"}], 
+                 "]"}]}], "}"}], ",", 
+              RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+              RowBox[{"ItemSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "i", ",", "10", ",", 
+                "\"\<initial value in base 10 (click enter after \
+input)\>\""}], "}"}], ",", "10", ",", "100000", ",", "1", ",", " ", 
+              RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "m", ",", "1", ",", "\"\<max number of iterations\>\""}], 
+               "}"}], ",", "1", ",", "500", ",", "1", ",", 
+              RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "r", ",", "1", ",", "\"\<number of digits reordered\>\""}], 
+               "}"}], ",", "1", ",", 
+              RowBox[{"Length", "[", 
+               RowBox[{"IntegerDigits", "[", 
+                RowBox[{"i", ",", "b"}], "]"}], "]"}], ",", "1", ",", 
+              RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+            ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "b", ",", "10", ",", "\"\<base to compute 196-algorithm\>\""}],
+                "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+              RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], 
+            ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "v", ",", "2", ",", "\"\<base to represent iterations\>\""}], 
+               "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+              RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}],
+            "]"}], "\[Rule]", " ", "\"\<Reorder-Algorithm\>\""}], ",", 
+         RowBox[{
+          RowBox[{"Manipulate", "[", 
+           RowBox[{
+            RowBox[{"Grid", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"\"\<visual representation in base \>\"", "<>", 
+                   RowBox[{"ToString", "[", "v", "]"}]}], ",", 
+                  "\"\<numbers after each iteration in base 10\>\"", ",", 
+                  RowBox[{"\"\<numbers after each iteration in base \>\"", "<>", 
+                   RowBox[{"ToString", "[", "b", "]"}]}], ",", 
+                  "\"\<number of iterations\>\"", ",", " ", 
+                  "\"\<NestGraph (if there is a repeating pattern)\>\""}], 
+                 "}"}], ",", 
+                RowBox[{"finalRat", "[", 
+                 RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}]}], "}"}], 
+              ",", 
+              RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+              RowBox[{"ItemSize", "\[Rule]", "Full"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "i", ",", "10", ",", 
+                "\"\<initial value in base 10 (click enter after \
+input)\>\""}], "}"}], ",", "10", ",", "100000", ",", "1", ",", " ", 
+              RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "m", ",", "1", ",", "\"\<max number of iterations\>\""}], 
+               "}"}], ",", "1", ",", "500", ",", "1", ",", 
+              RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "b", ",", "10", ",", "\"\<base to compute 196-algorithm\>\""}],
+                "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+              RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], 
+            ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+               "v", ",", "2", ",", "\"\<base to represent iterations\>\""}], 
+               "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+              RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}],
+            "]"}], "\[Rule]", " ", "\"\<RATS sequence\>\""}]}], "}"}], ",", 
+       RowBox[{"ControlType", "\[Rule]", " ", "SetterBar"}]}], "}"}], ",", 
+     RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}], ",", 
+   "\"\<MyProject\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.676491267326728*^9, 3.676491267329234*^9}, {
+   3.676491894949027*^9, 3.676491955167765*^9}, {3.676492044843875*^9, 
+   3.6764921548332796`*^9}, {3.6764922750445547`*^9, 
+   3.6764922814837203`*^9}, {3.676492332893901*^9, 3.676492385344971*^9}, {
+   3.676492417819399*^9, 3.6764924308097143`*^9}, 3.6764924638924384`*^9, {
+   3.676492642211088*^9, 3.6764926810829163`*^9}, {3.6765756867208056`*^9, 
+   3.6765756929315805`*^9}, {3.6765785076804028`*^9, 3.676578514983039*^9}, {
+   3.6765786792165804`*^9, 3.6765786812985096`*^9}, {3.676579553606348*^9, 
+   3.6765795875678625`*^9}, {3.6765796269092054`*^9, 3.676579641672245*^9}, {
+   3.6765797072614655`*^9, 3.676579711237074*^9}, {3.6765800093818884`*^9, 
+   3.67658001242684*^9}, {3.676580474607653*^9, 3.676580540026958*^9}, {
+   3.676618732574401*^9, 3.676618760067193*^9}, {3.6766201678019505`*^9, 
+   3.6766202326302185`*^9}, {3.6766203133266854`*^9, 
+   3.6766203283033085`*^9}, {3.6766203760476356`*^9, 3.676620390893486*^9}, {
+   3.6766208796019125`*^9, 3.6766209740114827`*^9}, {3.6766217504253263`*^9, 
+   3.676621758313815*^9}, {3.676628079269477*^9, 3.6766281264646883`*^9}, 
+   3.6766281879920597`*^9, {3.6766282307395244`*^9, 3.676628275210794*^9}, {
+   3.676632090380713*^9, 3.676632097752632*^9}, {3.6766322720164776`*^9, 
+   3.6766322839232917`*^9}, {3.6766323734906273`*^9, 3.676632463087341*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TagBox[
+    ButtonBox[
+     PaneSelectorBox[{
+      False->"\<\"https://www.wolframcloud.com/objects/user-93fd27ca-361f-\
+427a-a2ee-618f3aacdaf7/MyProject\"\>", True->
+      StyleBox["\<\"https://www.wolframcloud.com/objects/user-93fd27ca-361f-\
+427a-a2ee-618f3aacdaf7/MyProject\"\>", "HyperlinkActive"]}, Dynamic[
+       CurrentValue["MouseOver"]],
+      BaseStyle->{"Hyperlink"},
+      FrameMargins->0,
+      ImageSize->Automatic],
+     BaseStyle->"Hyperlink",
+     ButtonData->{
+       URL[
+       "https://www.wolframcloud.com/objects/user-93fd27ca-361f-427a-a2ee-\
+618f3aacdaf7/MyProject"], None},
+     ButtonNote->
+      "https://www.wolframcloud.com/objects/user-93fd27ca-361f-427a-a2ee-\
+618f3aacdaf7/MyProject"],
+    Annotation[#, 
+     "https://www.wolframcloud.com/objects/user-93fd27ca-361f-427a-a2ee-\
+618f3aacdaf7/MyProject", "Hyperlink"]& ], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/objects/user-93fd27ca-361f-427a-a2ee-\
+618f3aacdaf7/MyProject"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{3.6766321329131413`*^9, 3.676632286043028*^9, 
+  3.6766324671850815`*^9}]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (June 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 17631, 498, 639, "Input"],
+Cell[CellGroupData[{
+Cell[18214, 522, 14294, 310, 563, "Input"],
+Cell[32511, 834, 1176, 30, 33, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

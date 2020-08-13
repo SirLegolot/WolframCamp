@@ -1,0 +1,544 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     23553,        536]
+NotebookOptionsPosition[     22934,        509]
+NotebookOutlinePosition[     23277,        524]
+CellTagsIndexPosition[     23234,        521]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Initialization", "Section",
+ CellChangeTimes->{{3.676374401693583*^9, 3.676374406433017*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"countPalindrome", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"NestWhileList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"IntegerReverse", "[", 
+          RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", "i", 
+      ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"IntegerDigits", "[", 
+         RowBox[{
+          RowBox[{"IntegerReverse", "[", 
+           RowBox[{"#", ",", "b"}], "]"}], ",", "b"}], "]"}], "=!=", 
+        RowBox[{"IntegerDigits", "[", 
+         RowBox[{"#", ",", "b"}], "]"}]}], "&"}], ",", "1", ",", "m"}], "]"}],
+     "]"}], "-", "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listPalindrome", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"NestWhileList", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"IntegerReverse", "[", 
+           RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", "i",
+        ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"IntegerDigits", "[", 
+          RowBox[{
+           RowBox[{"IntegerReverse", "[", 
+            RowBox[{"#", ",", "b"}], "]"}], ",", "b"}], "]"}], "=!=", 
+         RowBox[{"IntegerDigits", "[", 
+          RowBox[{"#", ",", "b"}], "]"}]}], "&"}], ",", "1", ",", "m"}], 
+      "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listPalindrome2", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Pane", "[", 
+   RowBox[{
+    RowBox[{"Column", "[", 
+     RowBox[{"FromDigits", " ", "/@", " ", 
+      RowBox[{"IntegerDigits", "[", 
+       RowBox[{
+        RowBox[{"NestWhileList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"IntegerReverse", "[", 
+              RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", 
+          "i", ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"IntegerDigits", "[", 
+             RowBox[{
+              RowBox[{"IntegerReverse", "[", 
+               RowBox[{"#", ",", "b"}], "]"}], ",", "b"}], "]"}], "=!=", 
+            RowBox[{"IntegerDigits", "[", 
+             RowBox[{"#", ",", "b"}], "]"}]}], "&"}], ",", "1", ",", "m"}], 
+         "]"}], ",", "b"}], "]"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"200", ",", "200"}], "}"}], ",", 
+    RowBox[{"Scrollbars", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"palindrome", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestWhileList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"IntegerReverse", "[", 
+            RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], ")"}], "&"}], ",", 
+        "i", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"IntegerDigits", "[", 
+           RowBox[{
+            RowBox[{"IntegerReverse", "[", 
+             RowBox[{"#", ",", "b"}], "]"}], ",", "b"}], "]"}], "=!=", 
+          RowBox[{"IntegerDigits", "[", 
+           RowBox[{"#", ",", "b"}], "]"}]}], "&"}], ",", "1", ",", "m"}], 
+       "]"}], ",", "v"}], "]"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"finalPalindrome", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"palindrome", "[", 
+     RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}], ",", 
+    RowBox[{"listPalindrome", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"listPalindrome2", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"countPalindrome", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}]}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.6763629302853594`*^9, 3.6763629861779804`*^9}, {
+   3.676363058597972*^9, 3.6763631347279525`*^9}, {3.6763631697205524`*^9, 
+   3.6763631944472814`*^9}, {3.676363231840043*^9, 3.6763632776783676`*^9}, {
+   3.676363327509223*^9, 3.6763633351057916`*^9}, {3.6763633824421186`*^9, 
+   3.6763635143360915`*^9}, {3.6763635447787714`*^9, 3.676363597463366*^9}, {
+   3.676372716072522*^9, 3.676372797141733*^9}, 3.6763729301113825`*^9, {
+   3.6765762122240515`*^9, 3.6765762347402315`*^9}, {3.676576343292381*^9, 
+   3.676576381214123*^9}, {3.676576634547122*^9, 3.6765766656147094`*^9}, {
+   3.676576866260321*^9, 3.6765768739780617`*^9}, {3.676576910917553*^9, 
+   3.676576916934019*^9}, {3.676577062196336*^9, 3.6765771066297035`*^9}, {
+   3.676577281091058*^9, 3.676577286641013*^9}, {3.676619904872391*^9, 
+   3.6766199314656715`*^9}, {3.676619976330902*^9, 3.6766199771367493`*^9}, 
+   3.676620126131996*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Program", "Section",
+ CellChangeTimes->{{3.6763744116279535`*^9, 3.6763744127904863`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Pane", "[", " ", 
+    RowBox[{
+     RowBox[{"Grid", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"\"\<visual representation in base \>\"", "<>", 
+            RowBox[{"ToString", "[", "v", "]"}]}], ",", 
+           "\"\<numbers after each iteration in base 10\>\"", ",", 
+           RowBox[{"\"\<numbers after each iteration in base \>\"", "<>", 
+            RowBox[{"ToString", "[", "b", "]"}]}], ",", 
+           "\"\<number of iterations\>\""}], "}"}], ",", 
+         RowBox[{"finalPalindrome", "[", 
+          RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}]}], "}"}], ",", 
+       RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+       RowBox[{"ItemSize", "\[Rule]", " ", "Full"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"600", ",", "400"}], "}"}], ",", 
+     RowBox[{"Scrollbars", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"True", ",", "False"}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "i", ",", "10", ",", 
+       "\"\<initial value in base 10 (click enter after input)\>\""}], "}"}], 
+     ",", "10", ",", "100000", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"m", ",", "1", ",", "\"\<max number of iterations\>\""}], "}"}],
+      ",", "1", ",", "200", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"b", ",", "10", ",", "\"\<base to compute 196-algorithm\>\""}], 
+      "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"v", ",", "2", ",", "\"\<base to represent iterations\>\""}], 
+      "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6763740048996243`*^9, 3.6763740375684175`*^9}, {
+   3.67637409147192*^9, 3.6763741879758234`*^9}, {3.676374361834709*^9, 
+   3.6763743635404406`*^9}, {3.6763747828582754`*^9, 3.676374954177506*^9}, {
+   3.6763749868457155`*^9, 3.6763750200796328`*^9}, {3.6763750522764263`*^9, 
+   3.6763750788584623`*^9}, {3.6763751257003336`*^9, 
+   3.6763751285641813`*^9}, {3.676375314136479*^9, 3.6763753358257833`*^9}, {
+   3.67637539676926*^9, 3.6763754018191304`*^9}, {3.6763754408457828`*^9, 
+   3.676375447292564*^9}, {3.6763755214033813`*^9, 3.676375536923795*^9}, {
+   3.6763755807898583`*^9, 3.676375610795195*^9}, 3.6763756436751704`*^9, {
+   3.6763756942978487`*^9, 3.6763756953006663`*^9}, {3.6766193736507797`*^9, 
+   3.676619440002059*^9}, {3.6766194933562837`*^9, 3.676619546684268*^9}, {
+   3.6766195940836754`*^9, 3.676619642280678*^9}, {3.676619718048029*^9, 
+   3.6766197200523915`*^9}, {3.6766197845764513`*^9, 3.676619799093137*^9}, {
+   3.676619861691693*^9, 3.6766198621321564`*^9}, {3.676620026441183*^9, 
+   3.6766200360746355`*^9}, {3.676620068996547*^9, 3.676620069210947*^9}, {
+   3.6766207164152546`*^9, 3.6766207893858986`*^9}, {3.676620843193604*^9, 
+   3.676620847396329*^9}, {3.676733563454241*^9, 3.6767336289179773`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`b$$ = 10, $CellContext`i$$ = 
+    10, $CellContext`m$$ = 72, $CellContext`v$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`i$$], 10, 
+       "initial value in base 10 (click enter after input)"}, 10, 100000, 
+      1}, {{
+       Hold[$CellContext`m$$], 1, "max number of iterations"}, 1, 200, 1}, {{
+       Hold[$CellContext`b$$], 10, "base to compute 196-algorithm"}, 2, 10, 
+      1}, {{
+       Hold[$CellContext`v$$], 2, "base to represent iterations"}, 2, 10, 1}},
+     Typeset`size$$ = {600., {196., 204.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, $CellContext`i$5252$$ =
+     0, $CellContext`m$5253$$ = 0, $CellContext`b$5254$$ = 
+    0, $CellContext`v$5255$$ = 0}, 
+    DynamicBox[ToBoxes[
+      RawBoxes[
+       Manipulate`ManipulateBoxes[
+       1, StandardForm, 
+        "Variables" :> {$CellContext`b$$ = 10, $CellContext`i$$ = 
+          10, $CellContext`m$$ = 1, $CellContext`v$$ = 2}, 
+        "ControllerVariables" :> {
+          Hold[$CellContext`i$$, $CellContext`i$5252$$, 0], 
+          Hold[$CellContext`m$$, $CellContext`m$5253$$, 0], 
+          Hold[$CellContext`b$$, $CellContext`b$5254$$, 0], 
+          Hold[$CellContext`v$$, $CellContext`v$5255$$, 0]}, 
+        "OtherVariables" :> {
+         Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> Pane[
+          Grid[{{
+             StringJoin["visual representation in base ", 
+              ToString[$CellContext`v$$]], 
+             "numbers after each iteration in base 10", 
+             StringJoin["numbers after each iteration in base ", 
+              ToString[$CellContext`b$$]], "number of iterations"}, 
+            $CellContext`finalPalindrome[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$, $CellContext`v$$]}, Frame -> All, ItemSize -> Full], {600, 
+          400}, Scrollbars -> {True, False}], 
+        "Specifications" :> {{{$CellContext`i$$, 10, 
+            "initial value in base 10 (click enter after input)"}, 10, 100000,
+            1, Appearance -> 
+           "Labeled"}, {{$CellContext`m$$, 1, "max number of iterations"}, 1, 
+           200, 1, Appearance -> 
+           "Labeled"}, {{$CellContext`b$$, 10, 
+            "base to compute 196-algorithm"}, 2, 10, 1, ControlType -> 
+           PopupMenu}, {{$CellContext`v$$, 2, "base to represent iterations"},
+            2, 10, 1, ControlType -> PopupMenu}}, "Options" :> {}, 
+        "DefaultOptions" :> {}]], StandardForm],
+     ImageSizeCache->{651., {287., 294.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.676374198678427*^9, 3.676374365049143*^9, 3.676375032977632*^9, 
+   3.6763750802962666`*^9, 3.676375136013099*^9, {3.6763753978761897`*^9, 
+   3.6763754029222097`*^9}, {3.676375532040534*^9, 3.6763755376696053`*^9}, {
+   3.6763755835612044`*^9, 3.6763756117668133`*^9}, 3.6763756443931875`*^9, 
+   3.6763756967904987`*^9, 3.676376302645567*^9, 3.676376952570245*^9, 
+   3.676576320383176*^9, 3.6765763564635324`*^9, 3.6765766426622157`*^9, 
+   3.6766194419620514`*^9, {3.6766195036445847`*^9, 3.6766195473420815`*^9}, {
+   3.676619595694455*^9, 3.67661964342001*^9}, 3.6766197215279255`*^9, {
+   3.6766197906376066`*^9, 3.676619799735178*^9}, 3.6766198632852306`*^9, 
+   3.6766200373899283`*^9, 3.6766200701282473`*^9, 3.676620731454854*^9, {
+   3.6766207715546956`*^9, 3.6766207913264265`*^9}, 3.676620848436683*^9, 
+   3.676733543066733*^9, {3.676733587453199*^9, 3.676733630765164*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "x", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "i", ",", "10", ",", 
+       "\"\<initial value in base 10 (click enter after input)\>\""}], "}"}], 
+     ",", "10", ",", "100000", ",", "1", ",", 
+     RowBox[{"ControlType", "\[Rule]", " ", "Slider"}], ",", " ", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"m", ",", "1", ",", "\"\<max number of iterations\>\""}], "}"}],
+      ",", "1", ",", "200", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"b", ",", "10", ",", "\"\<base to compute 196-algorithm\>\""}], 
+      "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"v", ",", "2", ",", "\"\<base to represent iterations\>\""}], 
+      "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"palindrome", "[", 
+        RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}], ",", 
+       "\"\<options\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"palindrome", "[", 
+         RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}], "\[Rule]", " ", 
+        RowBox[{"\"\<visual representation in base \>\"", "<>", 
+         RowBox[{"ToString", "[", "v", "]"}]}]}], ",", 
+       RowBox[{
+        RowBox[{"listPalindrome", "[", 
+         RowBox[{"i", ",", "m", ",", "b"}], "]"}], "\[Rule]", " ", 
+        "\"\<numbers after each iteration in base 10\>\""}], ",", 
+       RowBox[{
+        RowBox[{"listPalindrome2", "[", 
+         RowBox[{"i", ",", "m", ",", "b"}], "]"}], "\[Rule]", 
+        RowBox[{"\"\<numbers after each iteration in base \>\"", "<>", 
+         RowBox[{"ToString", "[", "b", "]"}]}]}], ",", 
+       RowBox[{
+        RowBox[{"countPalindrome", "[", 
+         RowBox[{"i", ",", "m", ",", "b"}], "]"}], "\[Rule]", " ", 
+        "\"\<number of iterations\>\""}]}], "}"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6765818424208546`*^9, 3.676581861312598*^9}, {
+  3.6765818960531445`*^9, 3.676582186592435*^9}, {3.6765822587353725`*^9, 
+  3.6765822686743784`*^9}, {3.6765823940071216`*^9, 3.6765824020530148`*^9}, {
+  3.67658266980593*^9, 3.6765827200161457`*^9}, {3.6766177223941727`*^9, 
+  3.6766177469634748`*^9}, {3.6766178073159156`*^9, 3.6766178315326395`*^9}, {
+  3.676617903209793*^9, 3.676617908461666*^9}, {3.6766180090163565`*^9, 
+  3.676618053311678*^9}, {3.6766182045044394`*^9, 3.676618245803011*^9}, {
+  3.676618310073881*^9, 3.676618351176628*^9}, {3.6766184816339254`*^9, 
+  3.676618504150523*^9}, {3.6766189220768385`*^9, 3.676618924614377*^9}, {
+  3.6766189924850807`*^9, 3.6766189945241175`*^9}, {3.6766192163485007`*^9, 
+  3.676619267146915*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`b$$ = 10, $CellContext`i$$ = 
+    4538, $CellContext`m$$ = 78, $CellContext`v$$ = 2, $CellContext`x$$ = 
+    Graphics[
+     Raster[{{0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 
+      1}, {1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+      0}, {1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 
+      0}, {1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 
+      1}, {1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 
+      0}, {1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 
+      0}, {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 
+      1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 
+      1}}, {{0, 0}, {22, 8}}, {0, 1}], Frame -> Automatic, 
+     FrameLabel -> {None, None}, FrameTicks -> {{None, None}, {None, None}}, 
+     GridLinesStyle -> Directive[
+       GrayLevel[0.5, 0.4]], 
+     Method -> {
+      "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`i$$], 10, 
+       "initial value in base 10 (click enter after input)"}, 10, 100000, 
+      1}, {{
+       Hold[$CellContext`m$$], 1, "max number of iterations"}, 1, 200, 1}, {{
+       Hold[$CellContext`b$$], 10, "base to compute 196-algorithm"}, 2, 10, 
+      1}, {{
+       Hold[$CellContext`v$$], 2, "base to represent iterations"}, 2, 10, 
+      1}, {{
+       Hold[$CellContext`x$$], 
+       $CellContext`palindrome[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$, $CellContext`v$$], "options"}, 
+      Dynamic[{$CellContext`palindrome[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$, $CellContext`v$$] -> 
+        StringJoin["visual representation in base ", 
+          
+          ToString[$CellContext`v$$]], \
+$CellContext`listPalindrome[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$] -> 
+        "numbers after each iteration in base 10", \
+$CellContext`listPalindrome2[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$] -> StringJoin["numbers after each iteration in base ", 
+          
+          ToString[$CellContext`b$$]], \
+$CellContext`countPalindrome[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$] -> "number of iterations"}]}}, Typeset`size$$ = {
+    360., {67., 74.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`i$11819$$ = 
+    0, $CellContext`m$11820$$ = 0, $CellContext`b$11821$$ = 
+    0, $CellContext`v$11822$$ = 0}, 
+    DynamicBox[ToBoxes[
+      RawBoxes[
+       Manipulate`ManipulateBoxes[
+       1, StandardForm, 
+        "Variables" :> {$CellContext`b$$ = 10, $CellContext`i$$ = 
+          10, $CellContext`m$$ = 1, $CellContext`v$$ = 
+          2, $CellContext`x$$ = $CellContext`palindrome[$CellContext`i$$, \
+$CellContext`m$$, $CellContext`b$$, $CellContext`v$$]}, "ControllerVariables" :> {
+          Hold[$CellContext`i$$, $CellContext`i$11819$$, 0], 
+          Hold[$CellContext`m$$, $CellContext`m$11820$$, 0], 
+          Hold[$CellContext`b$$, $CellContext`b$11821$$, 0], 
+          Hold[$CellContext`v$$, $CellContext`v$11822$$, 0]}, 
+        "OtherVariables" :> {
+         Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> 
+        Dynamic[$CellContext`x$$], 
+        "Specifications" :> {{{$CellContext`i$$, 10, 
+            "initial value in base 10 (click enter after input)"}, 10, 100000,
+            1, ControlType -> Slider, Appearance -> 
+           "Labeled"}, {{$CellContext`m$$, 1, "max number of iterations"}, 1, 
+           200, 1, Appearance -> 
+           "Labeled"}, {{$CellContext`b$$, 10, 
+            "base to compute 196-algorithm"}, 2, 10, 1, ControlType -> 
+           PopupMenu}, {{$CellContext`v$$, 2, "base to represent iterations"},
+            2, 10, 1, ControlType -> PopupMenu}, {{$CellContext`x$$, 
+            $CellContext`palindrome[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$, $CellContext`v$$], "options"}, 
+           
+           Dynamic[{$CellContext`palindrome[$CellContext`i$$, \
+$CellContext`m$$, $CellContext`b$$, $CellContext`v$$] -> 
+             StringJoin["visual representation in base ", 
+               
+               ToString[$CellContext`v$$]], \
+$CellContext`listPalindrome[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$] -> 
+             "numbers after each iteration in base 10", \
+$CellContext`listPalindrome2[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$] -> StringJoin["numbers after each iteration in base ", 
+               
+               ToString[$CellContext`b$$]], \
+$CellContext`countPalindrome[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$] -> "number of iterations"}], ControlType -> PopupMenu}}, 
+        "Options" :> {}, "DefaultOptions" :> {}]], StandardForm],
+     ImageSizeCache->{533., {173., 180.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.67658215242258*^9, 3.6765821879232244`*^9, 3.676582270686568*^9, 
+   3.676582367535157*^9, 3.676582403118171*^9, {3.676582710105109*^9, 
+   3.6765827216992373`*^9}, 3.6765828342463226`*^9, {3.676617734607336*^9, 
+   3.6766177486734304`*^9}, {3.676617811690513*^9, 3.6766178326968203`*^9}, 
+   3.6766183946703053`*^9, 3.6766185062038465`*^9, 3.676618925564455*^9, 
+   3.6766189956306148`*^9, 3.6766192390998087`*^9, 3.6766192692840085`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (June 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 99, 1, 70, "Section"],
+Cell[682, 25, 5102, 131, 202, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5821, 161, 96, 1, 70, "Section"],
+Cell[CellGroupData[{
+Cell[5942, 166, 3379, 69, 126, "Input"],
+Cell[9324, 237, 4224, 77, 598, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13585, 319, 3222, 70, 126, "Input"],
+Cell[16810, 391, 6096, 114, 370, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

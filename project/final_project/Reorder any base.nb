@@ -1,0 +1,339 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12455,        331]
+NotebookOptionsPosition[     11955,        308]
+NotebookOutlinePosition[     12297,        323]
+CellTagsIndexPosition[     12254,        320]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Initialization", "Section",
+ CellChangeTimes->{{3.6763933554437013`*^9, 3.6763933585256615`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"reorder", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer", ",", 
+    "v_Integer"}], "]"}], ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"FromDigits", "[", 
+            RowBox[{
+             RowBox[{"Flatten", "[", 
+              RowBox[{"Delete", "[", 
+               RowBox[{
+                RowBox[{"Prepend", "[", 
+                 RowBox[{
+                  RowBox[{"IntegerDigits", "[", 
+                   RowBox[{"#", ",", "b"}], "]"}], ",", 
+                  RowBox[{"Take", "[", 
+                   RowBox[{
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{"#", ",", "b"}], "]"}], ",", 
+                    RowBox[{"-", "r"}]}], "]"}]}], "]"}], ",", 
+                RowBox[{"-", "r"}]}], "]"}], "]"}], ",", "b"}], "]"}], "+", 
+           "#"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "v"}], 
+     "]"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listReorder", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"Column", "[", 
+   RowBox[{"NestList", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"FromDigits", "[", 
+         RowBox[{
+          RowBox[{"Flatten", "[", 
+           RowBox[{"Delete", "[", 
+            RowBox[{
+             RowBox[{"Prepend", "[", 
+              RowBox[{
+               RowBox[{"IntegerDigits", "[", 
+                RowBox[{"#", ",", "b"}], "]"}], ",", 
+               RowBox[{"Take", "[", 
+                RowBox[{
+                 RowBox[{"IntegerDigits", "[", 
+                  RowBox[{"#", ",", "b"}], "]"}], ",", 
+                 RowBox[{"-", "r"}]}], "]"}]}], "]"}], ",", 
+             RowBox[{"-", "r"}]}], "]"}], "]"}], ",", "b"}], "]"}], "+", 
+        "#"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listReorder2", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"Column", "[", 
+   RowBox[{"FromDigits", "/@", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"FromDigits", "[", 
+            RowBox[{
+             RowBox[{"Flatten", "[", 
+              RowBox[{"Delete", "[", 
+               RowBox[{
+                RowBox[{"Prepend", "[", 
+                 RowBox[{
+                  RowBox[{"IntegerDigits", "[", 
+                   RowBox[{"#", ",", "b"}], "]"}], ",", 
+                  RowBox[{"Take", "[", 
+                   RowBox[{
+                    RowBox[{"IntegerDigits", "[", 
+                    RowBox[{"#", ",", "b"}], "]"}], ",", 
+                    RowBox[{"-", "r"}]}], "]"}]}], "]"}], ",", 
+                RowBox[{"-", "r"}]}], "]"}], "]"}], ",", "b"}], "]"}], "+", 
+           "#"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "b"}], 
+     "]"}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"countReorder", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer"}], "]"}],
+   ":=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"NestList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"FromDigits", "[", 
+          RowBox[{
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Delete", "[", 
+             RowBox[{
+              RowBox[{"Prepend", "[", 
+               RowBox[{
+                RowBox[{"IntegerDigits", "[", 
+                 RowBox[{"#", ",", "b"}], "]"}], ",", 
+                RowBox[{"Take", "[", 
+                 RowBox[{
+                  RowBox[{"IntegerDigits", "[", 
+                   RowBox[{"#", ",", "b"}], "]"}], ",", 
+                  RowBox[{"-", "r"}]}], "]"}]}], "]"}], ",", 
+              RowBox[{"-", "r"}]}], "]"}], "]"}], ",", "b"}], "]"}], "+", 
+         "#"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], "]"}], "-", 
+   "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{"finalReorder", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "r_Integer", ",", "b_Integer", ",", 
+    "v_Integer"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"reorder", "[", 
+     RowBox[{"i", ",", "m", ",", "r", ",", "b", ",", "v"}], "]"}], ",", 
+    RowBox[{"listReorder", "[", 
+     RowBox[{"i", ",", "m", ",", "r", ",", "b"}], "]"}], ",", 
+    RowBox[{"listReorder2", "[", 
+     RowBox[{"i", ",", "m", ",", "r", ",", "b"}], "]"}], ",", 
+    RowBox[{"countReorder", "[", 
+     RowBox[{"i", ",", "m", ",", "r", ",", "b"}], "]"}]}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.676390920716978*^9, 3.6763909477666087`*^9}, {
+   3.6763910721695986`*^9, 3.676391124915141*^9}, {3.676392138727694*^9, 
+   3.67639213962422*^9}, 3.676393075378216*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Program", "Section",
+ CellChangeTimes->{{3.6763933713373556`*^9, 3.6763933726609945`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\"\<visual representation in base \>\"", "<>", 
+          RowBox[{"ToString", "[", "v", "]"}]}], ",", 
+         "\"\<numbers after each iteration in base 10\>\"", ",", 
+         RowBox[{"\"\<numbers after each iteration in base \>\"", "<>", 
+          RowBox[{"ToString", "[", "b", "]"}]}], ",", 
+         "\"\<number of iterations\>\""}], "}"}], ",", 
+       RowBox[{"finalReorder", "[", 
+        RowBox[{"i", ",", "m", ",", "r", ",", "b", ",", "v"}], "]"}]}], "}"}],
+      ",", 
+     RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "i", ",", "10", ",", 
+       "\"\<initial value in base 10 (click enter after input)\>\""}], "}"}], 
+     ",", 
+     RowBox[{"ControlType", "\[Rule]", " ", "InputField"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"m", ",", "1", ",", "\"\<max number of iterations\>\""}], "}"}],
+      ",", "1", ",", "500", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", ",", "1", ",", "\"\<number of digits reordered\>\""}], 
+      "}"}], ",", "1", ",", 
+     RowBox[{"Length", "[", 
+      RowBox[{"IntegerDigits", "[", 
+       RowBox[{"i", ",", "b"}], "]"}], "]"}], ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"b", ",", "10", ",", "\"\<base to compute 196-algorithm\>\""}], 
+      "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"v", ",", "2", ",", "\"\<base to represent iterations\>\""}], 
+      "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.676393121601194*^9, 3.6763931237243986`*^9}, {
+  3.6763931561032543`*^9, 3.6763932872063684`*^9}, {3.6764112413334613`*^9, 
+  3.6764112903474035`*^9}, {3.6764113317645206`*^9, 3.676411375632216*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`b$$ = 2, $CellContext`i$$ = 
+    100, $CellContext`m$$ = 1, $CellContext`r$$ = 1, $CellContext`v$$ = 2, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`i$$], 10, 
+       "initial value in base 10 (click enter after input)"}}, {{
+       Hold[$CellContext`m$$], 1, "max number of iterations"}, 1, 500, 1}, {{
+       Hold[$CellContext`r$$], 1, "number of digits reordered"}, 1, 
+      Dynamic[
+       Length[
+        IntegerDigits[$CellContext`i$$, $CellContext`b$$]]], 1}, {{
+       Hold[$CellContext`b$$], 10, "base to compute 196-algorithm"}, 2, 10, 
+      1}, {{
+       Hold[$CellContext`v$$], 2, "base to represent iterations"}, 2, 10, 1}},
+     Typeset`size$$ = {939., {36., 43.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, $CellContext`m$1962$$ =
+     0, $CellContext`r$1963$$ = 0, $CellContext`b$1964$$ = 
+    0, $CellContext`v$1965$$ = 0}, 
+    DynamicBox[ToBoxes[
+      RawBoxes[
+       Manipulate`ManipulateBoxes[
+       1, StandardForm, 
+        "Variables" :> {$CellContext`b$$ = 10, $CellContext`i$$ = 
+          10, $CellContext`m$$ = 1, $CellContext`r$$ = 1, $CellContext`v$$ = 
+          2}, "ControllerVariables" :> {
+          Hold[$CellContext`m$$, $CellContext`m$1962$$, 0], 
+          Hold[$CellContext`r$$, $CellContext`r$1963$$, 0], 
+          Hold[$CellContext`b$$, $CellContext`b$1964$$, 0], 
+          Hold[$CellContext`v$$, $CellContext`v$1965$$, 0]}, 
+        "OtherVariables" :> {
+         Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> Grid[{{
+            StringJoin["visual representation in base ", 
+             ToString[$CellContext`v$$]], 
+            "numbers after each iteration in base 10", 
+            StringJoin["numbers after each iteration in base ", 
+             ToString[$CellContext`b$$]], "number of iterations"}, 
+           $CellContext`finalReorder[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`r$$, $CellContext`b$$, $CellContext`v$$]}, Frame -> All], 
+        "Specifications" :> {{{$CellContext`i$$, 10, 
+            "initial value in base 10 (click enter after input)"}, 
+           ControlType -> 
+           InputField}, {{$CellContext`m$$, 1, "max number of iterations"}, 1,
+            500, 1, Appearance -> 
+           "Labeled"}, {{$CellContext`r$$, 1, "number of digits reordered"}, 
+           1, 
+           Dynamic[
+            Length[
+             IntegerDigits[$CellContext`i$$, $CellContext`b$$]]], 1, 
+           Appearance -> 
+           "Labeled"}, {{$CellContext`b$$, 10, 
+            "base to compute 196-algorithm"}, 2, 10, 1, ControlType -> 
+           PopupMenu}, {{$CellContext`v$$, 2, "base to represent iterations"},
+            2, 10, 1, ControlType -> PopupMenu}}, "Options" :> {}, 
+        "DefaultOptions" :> {}]], StandardForm],
+     ImageSizeCache->{990., {137., 144.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6763932890381355`*^9, 3.6763933850542955`*^9, {3.6764113595973835`*^9, 
+   3.676411379142457*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1350, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (June 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 103, 1, 70, "Section"],
+Cell[686, 25, 4979, 136, 183, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5702, 166, 96, 1, 70, "Section"],
+Cell[CellGroupData[{
+Cell[5823, 171, 2342, 57, 107, "Input"],
+Cell[8168, 230, 3759, 74, 355, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

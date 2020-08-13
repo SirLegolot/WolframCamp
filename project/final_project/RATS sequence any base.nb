@@ -1,0 +1,4093 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    177839,       4085]
+NotebookOptionsPosition[    177010,       4052]
+NotebookOutlinePosition[    177353,       4067]
+CellTagsIndexPosition[    177310,       4064]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Initialization", "Section",
+ CellChangeTimes->{{3.6763934752014403`*^9, 3.6763934777891183`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"rat", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"FromDigits", "[", 
+           RowBox[{"Sort", "[", 
+            RowBox[{"IntegerDigits", "[", 
+             RowBox[{
+              RowBox[{"IntegerReverse", "[", 
+               RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], 
+           "]"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "v"}], 
+     "]"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"countRat", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"NestList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"FromDigits", "[", 
+         RowBox[{"Sort", "[", 
+          RowBox[{"IntegerDigits", "[", 
+           RowBox[{
+            RowBox[{"IntegerReverse", "[", 
+             RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], "]"}], 
+        ")"}], "&"}], ",", "i", ",", "m"}], "]"}], "]"}], "-", "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listRat", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Column", "[", 
+   RowBox[{"NestList", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"FromDigits", "[", 
+        RowBox[{"Sort", "[", 
+         RowBox[{"IntegerDigits", "[", 
+          RowBox[{
+           RowBox[{"IntegerReverse", "[", 
+            RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], "]"}], 
+       ")"}], "&"}], ",", "i", ",", "m"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listRat2", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"Column", "[", 
+   RowBox[{"FromDigits", " ", "/@", " ", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"FromDigits", "[", 
+           RowBox[{"Sort", "[", 
+            RowBox[{"IntegerDigits", "[", 
+             RowBox[{
+              RowBox[{"IntegerReverse", "[", 
+               RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], 
+           "]"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "b"}], 
+     "]"}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"finalRat", "[", 
+   RowBox[{
+   "i_Integer", ",", "m_Integer", ",", "b_Integer", ",", "v_Integer"}], "]"}],
+   ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"rat", "[", 
+     RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}], ",", 
+    RowBox[{"listRat", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"listRat2", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"countRat", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}], ",", 
+    RowBox[{"ftrRat", "[", 
+     RowBox[{"i", ",", "m", ",", "b"}], "]"}]}], "}"}]}], "\n", 
+ RowBox[{
+  RowBox[{"ftrRat", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"FindTransientRepeat", "[", 
+       RowBox[{
+        RowBox[{"NestList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"FromDigits", "[", 
+             RowBox[{"Sort", "[", 
+              RowBox[{"IntegerDigits", "[", 
+               RowBox[{
+                RowBox[{"IntegerReverse", "[", 
+                 RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], 
+             "]"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "2"}], 
+       "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "=!=", 
+     RowBox[{"{", "}"}]}], ",", 
+    RowBox[{"NestGraph", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"FromDigits", "[", 
+         RowBox[{"Sort", "[", 
+          RowBox[{"IntegerDigits", "[", 
+           RowBox[{
+            RowBox[{"IntegerReverse", "[", 
+             RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], "]"}], 
+        ")"}], "&"}], ",", "i", ",", "m", ",", 
+      RowBox[{"VertexLabels", "->", "\"\<Name\>\""}]}], "]"}], ",", 
+    "\"\<No repeating patten detected\>\""}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6763618108716793`*^9, 3.6763618136125054`*^9}, 
+   3.676361858506648*^9, {3.6763619026692286`*^9, 3.6763619033776717`*^9}, {
+   3.6763621033988085`*^9, 3.6763621343712068`*^9}, {3.6763623001511564`*^9, 
+   3.6763623544224825`*^9}, {3.67637811602085*^9, 3.6763781165999994`*^9}, 
+   3.6763784088460903`*^9, 3.6763813141230154`*^9, 3.6764903340473967`*^9, {
+   3.676490428030179*^9, 3.676490435937457*^9}, {3.6764904752843914`*^9, 
+   3.6764905158678365`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Program", "Section",
+ CellChangeTimes->{{3.6763934882724557`*^9, 3.6763934894491067`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\"\<visual representation in base \>\"", "<>", 
+          RowBox[{"ToString", "[", "v", "]"}]}], ",", 
+         "\"\<numbers after each iteration in base 10\>\"", ",", 
+         RowBox[{"\"\<numbers after each iteration in base \>\"", "<>", 
+          RowBox[{"ToString", "[", "b", "]"}]}], ",", 
+         "\"\<number of iterations\>\"", ",", " ", 
+         "\"\<NestGraph (if there is a repeating pattern)\>\""}], "}"}], ",", 
+       RowBox[{"finalRat", "[", 
+        RowBox[{"i", ",", "m", ",", "b", ",", "v"}], "]"}]}], "}"}], ",", 
+     RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "i", ",", "10", ",", 
+       "\"\<initial value in base 10 (click enter after input)\>\""}], "}"}], 
+     ",", 
+     RowBox[{"ControlType", "\[Rule]", " ", "InputField"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"m", ",", "1", ",", "\"\<max number of iterations\>\""}], "}"}],
+      ",", "1", ",", "500", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"b", ",", "10", ",", "\"\<base to compute 196-algorithm\>\""}], 
+      "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"v", ",", "2", ",", "\"\<base to represent iterations\>\""}], 
+      "}"}], ",", " ", "2", ",", "10", ",", "1", ",", " ", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6763812851031194`*^9, 3.6763812967603273`*^9}, {
+  3.6763816553585873`*^9, 3.676381665795256*^9}, {3.676489534573025*^9, 
+  3.6764895937056217`*^9}, {3.6764897404179068`*^9, 3.676489747442834*^9}, {
+  3.676490347861286*^9, 3.676490358608967*^9}, {3.676490411881053*^9, 
+  3.6764904154535666`*^9}, {3.676490545650505*^9, 3.676490561101118*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`b$$ = 10, $CellContext`i$$ = 
+    196, $CellContext`m$$ = 51, $CellContext`v$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`i$$], 10, 
+       "initial value in base 10 (click enter after input)"}}, {{
+       Hold[$CellContext`m$$], 1, "max number of iterations"}, 1, 500, 1}, {{
+       Hold[$CellContext`b$$], 10, "base to compute 196-algorithm"}, 2, 10, 
+      1}, {{
+       Hold[$CellContext`v$$], 2, "base to represent iterations"}, 2, 10, 1}},
+     Typeset`size$$ = {1304., {449.5, 456.5}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`m$12886$$ = 0, $CellContext`b$12887$$ = 
+    0, $CellContext`v$12888$$ = 0}, 
+    DynamicBox[ToBoxes[
+      RawBoxes[
+       Manipulate`ManipulateBoxes[
+       1, StandardForm, 
+        "Variables" :> {$CellContext`b$$ = 10, $CellContext`i$$ = 
+          10, $CellContext`m$$ = 1, $CellContext`v$$ = 2}, 
+        "ControllerVariables" :> {
+          Hold[$CellContext`m$$, $CellContext`m$12886$$, 0], 
+          Hold[$CellContext`b$$, $CellContext`b$12887$$, 0], 
+          Hold[$CellContext`v$$, $CellContext`v$12888$$, 0]}, 
+        "OtherVariables" :> {
+         Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> Grid[{{
+            StringJoin["visual representation in base ", 
+             ToString[$CellContext`v$$]], 
+            "numbers after each iteration in base 10", 
+            StringJoin["numbers after each iteration in base ", 
+             ToString[$CellContext`b$$]], "number of iterations", 
+            "NestGraph (if there is a repeating pattern)"}, 
+           $CellContext`finalRat[$CellContext`i$$, $CellContext`m$$, \
+$CellContext`b$$, $CellContext`v$$]}, Frame -> All], 
+        "Specifications" :> {{{$CellContext`i$$, 10, 
+            "initial value in base 10 (click enter after input)"}, 
+           ControlType -> 
+           InputField}, {{$CellContext`m$$, 1, "max number of iterations"}, 1,
+            500, 1, Appearance -> 
+           "Labeled"}, {{$CellContext`b$$, 10, 
+            "base to compute 196-algorithm"}, 2, 10, 1, ControlType -> 
+           PopupMenu}, {{$CellContext`v$$, 2, "base to represent iterations"},
+            2, 10, 1, ControlType -> PopupMenu}}, "Options" :> {}, 
+        "DefaultOptions" :> {}]], StandardForm],
+     ImageSizeCache->{1325., {549., 556.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6764895484104996`*^9, {3.676489581712307*^9, 3.6764895949950347`*^9}, 
+   3.6764897498385315`*^9, {3.6764903598106203`*^9, 3.6764903670746117`*^9}, 
+   3.676490439828455*^9, {3.6764905017924376`*^9, 3.676490520646566*^9}, 
+   3.6764905623227234`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"rat", "[", 
+    RowBox[{"#", ",", "50", ",", "10", ",", "2"}], "]"}], "&"}], " ", "/@", 
+  " ", 
+  RowBox[{"{", 
+   RowBox[{
+   "879", ",", "196", ",", "7059", ",", "1997", ",", "9999", ",", "80049", 
+    ",", "80059", ",", "40069", ",", "80069", ",", "13097", ",", "14096", ",",
+     "89099", ",", "13197", ",", "80269", ",", "80279", ",", "60289", ",", 
+    "80289", ",", "15297", ",", "59299", ",", "70379", ",", "90379", ",", 
+    "30389", ",", "30399", ",", "40429", ",", "80439", ",", "20459", ",", 
+    "60489", ",", "80489", ",", "10553", ",", "70559", ",", "10563", ",", 
+    "50569", ",", "10577", ",", "50579", ",", "90579", ",", "10583", ",", 
+    "10585", ",", "15597", ",", "18598", ",", "10638", ",", "60659", ",", 
+    "10663", ",", "10668", ",", "80669", ",", "60689", ",", "10697", ",", 
+    "13694", ",", "14698", ",", "10715", ",", "10728", ",", "10735", ",", 
+    "10746", ",", "10748", ",", "10783", ",", "10785", ",", "10787", ",", 
+    "10788", ",", "12797", ",", "18798", ",", "10877", ",", "10883", ",", 
+    "12898", ",", "89899", ",", "30929", ",", "70949", ",", "30959", ",", 
+    "10963", ",", "10965", ",", "10969", ",", "10977", ",", "30979", ",", 
+    "10983", ",", "10985", ",", "99999", ",", "140096", ",", "150096", ",", 
+    "990099", ",", "150195", ",", "790199", ",", "130295", ",", "150297", ",",
+     "490299", ",", "990299", ",", "150397", ",", "490399", ",", "690399", 
+    ",", "890399", ",", "130494", ",", "130495", ",", "140496", ",", "490499",
+     ",", "790499", ",", "890499", ",", "990499", ",", "700509", ",", 
+    "150595", ",", "150597", ",", "700699", ",", "150695", ",", "190699", ",",
+     "290699", ",", "790699", ",", "890699", ",", "990699", ",", "300709", 
+    ",", "890799", ",", "700899", ",", "590899", ",", "990899", ",", "700909",
+     ",", "300929", ",", "700949", ",", "190997", ",", "101917", ",", 
+    "101948", ",", "101968", ",", "101976", ",", "102918", ",", "102988", ",",
+     "103905", ",", "103908", ",", "103927", ",", "103937", ",", "103986", 
+    ",", "104905", ",", "104907", ",", "104927", ",", "104947", ",", "104948",
+     ",", "104956", ",", "104958", ",", "104968", ",", "105917", ",", 
+    "105925", ",", "105968", ",", "105998", ",", "125997", ",", "106918", ",",
+     "106938", ",", "106976", ",", "106982", ",", "106988", ",", "107917", 
+    ",", "107938", ",", "107967", ",", "107968", ",", "107985", ",", "117994",
+     ",", "108907", ",", "108936", ",", "108937", ",", "108947", ",", 
+    "108953", ",", "108957", ",", "108976", ",", "108978", ",", "108985", ",",
+     "118994", ",", "109908", ",", "109918", ",", "109958", ",", "109963", 
+    ",", "109967", ",", "109980", ",", "119994", ",", "129995", ",", "139994",
+     ",", "149995", ",", "149998", ",", "199999", ",", "399999", ",", 
+    "499999", ",", "999999", ",", "7000069", ",", "6000089", ",", "8000089", 
+    ",", "1500097", ",", "8900099", ",", "8000199", ",", "9000199", ",", 
+    "1400196", ",", "1800196", ",", "1900196", ",", "8000299", ",", "1300297",
+     ",", "1500295", ",", "6900299", ",", "1000379", ",", "9000399", ",", 
+    "1700396", ",", "6900399", ",", "8900399", ",", "1000469", ",", "6000499",
+     ",", "7000499", ",", "8000499", ",", "1300495", ",", "1500497", ",", 
+    "1600497"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.6763935427428412`*^9, 3.6763936332549515`*^9}, 
+   3.676410609930109*^9, {3.676410749223627*^9, 3.676410805987774*^9}, {
+   3.6764109438413887`*^9, 3.6764109445667486`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJuIGYEAiCBwRoVHZmiYBpIMjBAJMBsiBhEEADOPwNE
+
+     "], {{0, 0}, {11, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkssRgzAMRCUayaQGOqEEGqD/W4i1WtmyDplwtQfG2E+svu/zOs5NRPb7
+fd2vcn0/pa12wBa4XYkhGHUYXGFiUlpx+EqYDmAmmrCd3fGMXRlhT1iR1uz4
+R25BaxE5f7SnxkGNSwh6YpGV6+Aiitpt7lKVDWGVUh+Q1thNtpNanUXMAHXH
+oq5pWdOypiUV4O9pecjZ+CI0j3vs2MyLrLOBfgBuHgZS
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIhIGaEASCTAZlPQIiBEcyCCaLSYGVIGiAcBiQzEBQ5
+lo+6Z9Q9VHYPI9Q1UAEGqH1wZzLAFMBcBLEe7hWoAUj6kE1G9xYDinYkl0At
+AgBDOQQ6
+     "], {{0, 0}, {18, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUtsRgzAMs1ik1xm6CSOwQPf/q4tfCjFc/wuXXBJkK4qt5/Zet0VEXjof
+OpGf7r9DN7oawrDj8BBAhmzC98OOA3NAhAkOsJ3j4hkOZnH6I2yiTP2E/YKb
+aDTKM9FGDxdquBRhPKxeFTz+o4pKS1xpyUFU3NQHf9bYzWxnclGEF6MKmXwc
+kEbIshP/7ZbbLUPAH7uFG9hGeEMxw+WV3ixczkZ5OIO81Ai/cjFS2ZnyKOoH
+c+oGRw==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJ+IGYEAwYwQgIgGQbGUdlR2aEmywBmQQhGMIsRyoKo
+gMqAKAYARkAEKA==
+     "], {{0, 0}, {15, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJBIGZkZAQTIBrEgrAZEGyYJIQLVwFVA9NLsggYMsBt
+Q6JG3THqjsHjDjifEcxngNkPcxDEMigJy00o6hgAUSUEFQ==
+     "], {{0, 0}, {17, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVtl1wyAQ3EknqSFd5DMluIH0/xdbaA4sOwJkPcsWgtnZ2QM+b78/t4+q
++rp/v+/fQgGPn+13+/d4eDy1exvZRtu09rdd+7OWeNr2XhAbzI7UXtCuoarN
+B2S+ILt6uy9HjKbFZ05tiabR7M6u+DEf6OnASeZ327AJ4xKws3jkBC0uOiuh
+KZjs0t4bTr3ru2Om6hAgiL3mpHgxepB0JZ2tA5V6ySkiyfxRoDgmyQLwBadO
+H83ItFOOKafecSJ7rba1OiCecOr1USxL3kE5hjNOCC2tG5hqT5L9y0kUKn3d
+U0GFFwX5D6dgErVPf9w6BjhBalDhTAW7NcKJy3rdvNSN6JwTybtlRcPqY3jK
+CdYFWi8oDwxwgoo5gN10VA4jnBB+ENbtQnkywsnGwk1VJKIpDmFFLlkjXeOc
+TEjlXyKXGo5iIVcH2CQnUGNGXykR72ewkCmgwpzlRLPaFtDTmsTqupxGFnDA
+RARDMA+QWG4IXU9dggIynapmBe+xoq+kbAtg7Ke+XYFKJy84aB5d7xxd7P0m
+BrwRjUPFoUAoi25VZeEdyM6xQoCVuvA8Ei/XSm4L01Bx6vHxZR6rz2s2lrWy
+U/S9nS/meIV/4e0SVMNjwWAhCwJLml/i1CjFDnOBE8hI571Ljdg5fglJOxTP
+i3/84w0H
+     "], {{0, 0}, {74, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUtsNwkAMS1gEMQObMEIXYP8/TiSO3SaV+EVqdddTa8eXhx/b+7XdzOy5
+9n1t3z3ru9b38AMeJMv3Ec4fgXuHPQDzdvGPuBvUB0IExpphooEbBVEYq4JO
+/jBUpAeujGAIURtcCO3yYo9FSxjZDDay9JSAEKu2iz7ki6RtwZg1S5/wavzl
+lsstf+sWHeDIyIF6h+mV2SzaziFzOEO8NCR+IhzxtHKriPM46ZnJzIbUSGow
+xghLfwCS0AZR
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUkEShCAMS/zIzr7Bn/gEPuD/b6u0KQXdGe8iMChJYxv6LftWFgDrsT7H
+4viA52mdcBw2xRWur8qkH8DZ3VaHEUKUbNriSqjLC/ZvdFqJAU+akRHbexAU
+Ykz2+pIPUrYFEk9Z8g5XOaOpsjNVMjhOReEGlnIy9Yq7KxfsCR6X+6cdIvvZ
+LbNbZre8p1vQQq26HwqTBiA=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERxCAIXNLITWq4TlKCDaT/32lgEUYe+d1HRx2TXVdYONt9tQPAt69P
+X9IHxny2vsYYn4bpGGeQAyHBGc9NZfHHPDuBV5QpWZ/yTgqw4TlKqXCmk2F/
+ACGTjCvJtBeYyqBbFW6uLNgbXIOWInK/qLOGJxoqOi2E+2tZsMhUl5BYqHDo
+iODS7pbdLbtblgf+1i0WdfV0EoAUAtmKEp7u/AA+dwY8
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytlm16gyAQhHd6k56hN2lvkAv0/v+aKPOBSSwqpumjgMPLsLvk8/b7ffuo
+qq/79+f+LeDxV/f/vs/natfjlp1r69LLz/K8XKsK0F6wcOtpg62oXjXqJd4s
+ctVNVP0z2UjXAIz+TLmqrHdaU2mitdeLbG0B+4pS08pXLk8zl18oAnRuPlHK
+TMo2Xo3wroDLt8WvKSGlZlelFmRdkbBNskvJh4JINExWuzWnfkspz2SXxoGY
+ikZv/z6lgBpN7I8ncOTH1DuU3mXmAC2MvEqLqv6n7O1xsERYZuRz+C4lIumD
+mxJBkxP/QwklueJQ28s22RrKe5Sdhxrq0I9Y3RaE95RcmHMwasxWepSy91AR
+sCknjtQhSoTx9hYM2eaOsm2IUlCVNrRIUpJH8o9QBltUHi7VhesIZVsds6dL
+KtW/8lqGKPl+G102gqm5DbaxyxVHM3izY+fHKWHvICFpuuEIJVRBYgbXPiXa
+IUrEEqnvYqUwO0Tp6cMBZT+iWh8TjZi0j/qcoDSiik8JN30+LIqUCdWzlOCG
+MHgUUdF/ShQZQSoCpykJojMNPehZUZfKOC+uUK6ayqg4O65QQsmTMXpN8IWm
+ya+IUhOZWZc1ZWEce9dFiTtFMDXjhJ+ped1KicaPozmSLfDz6J2hCRXTqaIs
+IRMlMWnDQzQO4kmKmCiZqTgrLuO3MvAHeyYOjQ==
+     "], {{0, 0}, {83, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzdltt1wzAMQ4lu0hm6QUfoCFmg+/81rgQQahxFov/qxDmKZUKXD9F+v31/
+3d4i4uN+fsZx4Dji93v/OS78nse4nZxCuz36CEjLdq2NZNg+UqJs3swBeFOb
+7wqysLV8nZGh/7blA2ZIv5pp9+GMYfBfM0GYDEmXOWMgpaxSPR6UnjCM/is3
+IS86ZyisjwywGGVcup1chUhPGLRkuE+RCSdEPGewlZEC5AaHmDAwK6Fi8pQm
+/oyBt49xSRNWxoyBkCrSUDzlQ7xgQPoN2UkiL0wYoE1mgtqoCsqUAcZLudy+
+yveMIcXNHe0YAAsM5B3Cr74RKwwJoO0YgvEYvdKAW5nIIgMYO2ZRqbX5FQ14
+KrVxVhm4jNotRoxFjWwN1uw2GDq9un02vg0GqCS9NrbsTySSa0ODEvB63ZWQ
++9aRtzUIU7F3CXuSXJDYDoM07AFaUuj15T2/gqHmcUWDu6wucZGhUpD/VSLb
+Z9m8ti9Sga8DNXM1/CsEFyrqz+teUcIeXbUjX6lK68OzsC+ht9T+J34A83MM
+Zg==
+     "], {{0, 0}, {66, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJ+IGYEQxACYyibESLAOCo7KjvUZWFMmAxMHZADAHlT
+AwQ=
+     "], {{0, 0}, {15, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytVlF2gzAMs3aTnWHn2M+O0Avs/n9rwZYUFkog0Ne1DZ4iy7LD5+P35/ER
+EV/P93e8LgSe1/Ilf60fsay+/uQr1wBfjCU+vyAxkIsBoeQmTSjvCk2xuQkI
+mBzzHsh0XY3gpj1mIMYa6cmskeEScOsdZvUR4O4MoKRa9U07zKgNZWEEilqU
+Tkx6lxlJJAOrgKALs9m0y0wVjMqaupd4jSAR75i1MsgCZrO6ZbXYY8YKVj3N
+iJRdgpRqe8xQxiuZrXS1RvkMs8+s0YpBMrF5T72xz6zSUAfJ2/9Aj5m1WrG6
+mwEg5x0wg0krDVEW3Mh3xIxEwpNOf7A5rWnfMzM+NiUqMQ2ZMWagMiW4+0P5
+DTKr/8y4UNrVWFsLHV2aDsRWIa2qI8wgjUAIomlhjBnY84atCcVmGWQGS6iQ
+NVhonkFm2tLyZdfC5ugonHlMevF1iplocVAEKbqeJ+DgAIZ3nhlK8rIEfWL3
+T8LBfcHmvcCsNuepgpbceTiNMpve15itaOwKm+TXmIEN4J67CtVBE9trcIUG
+744JNEplB88MXFGchHI0O1HvQZuRjHD20DELlhb2A28ODRx2N8FV09+Cdh+z
+Sfv34O5L8xZy9aQ13wHtyTLf6DqMJ8HoBz5w/AGzyQ24
+     "], {{0, 0}, {77, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztks0RhCAMhV9sZMcathNLoAH7vy0xP7wMHDzuARkE/ZJHSHK2+2oHgG+f
+nz5FpL+gOx36qcvzn5ZnmAFgboaSE3O9fHSPsAktsrBT4BocAhuEi1lK1Q/5
+NCLsvEYpKx7XqTgPAN2kcjNy7QmHMiV15p6Vib3hFrQsIk/HrPICD4pR0ZFC
+ZH79FrtbdrfsbmH+r91ClVwUlOLCkKrcozL3HxRKBiI=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERwyAMk7tILzN0k46QBbr/LwlGtgA/ev30kwQuB7IFlpVt/7z3B4DX
+OZ/ntOnxjbYPrmYc17umfoU31hZUBHiijxpO1HEkoXXSa3DlPH0DrEg/PNKT
+SZTcjCXRcC/42Ri4JKKLkUIGnwYwBSG78JM+glQWkFxuaRUewk+iIvU2EW64
+n/HgFb7dIirdbvm3W37F02AULwB0w9AY0MLEeekbKQxhNla+HMxO0lNTx8QT
+hV6m7Sh/Am3p2hKtWwuQ9EEuHIiCBkE=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkcsRgDAIRBfr8GINdmIJacD+byZhIQwTPXuIDpMMyyN8jnJfZQNwVtur
+yexr/vZPFJm6F7e4xf2GC3gD0AXppleNEd6U7DBBhhIF84bTnlOfBMwC/Mks
+yqjlTRzdfoosgQlhvSTRekRSWDlyUk6Bc4t78GSx8jh9WwBGVFqb9RNBr55u
+PC1GBlE=
+     "], {{0, 0}, {28, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUlsOwjAMc7gJ4gjchCPsAtz/j23Uj7b0FwmJSZWW1nESO9ft+dguAO77
+ue2n2nf87gHev0dwxOddGXNC2nPDJ+AERRoIN6znKFT/vMZUdPS+5m3LBjwH
+iG1gRSaseOo0OHnQ+OKq9JPlmA0GTM+0omTirCg0YlQgAdJFHdCFsovgxHqI
+If5O/5jTFLToM4G5CqDn8n50GqooTXqMisy2dk6rDsfGgEBpbGSzM4ubCpax
+XW9yGuCNDF2W4sK060LqwQjJ4EpdIWMqqOToKC+xNnOpCyWciLo1Hq0mJg6b
+mzDR5djKlzHaXU6+ZLEbnyAFyYpZOhPFGuAFtYMGIQ==
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERwyAMk7tILzN0k46QBbr/LwlGtgA/ev30kwQuB7IFlpVt/7z3B4DX
+OZ/ntOnxjbYPrmYc17umfoU31hZUBHiijxpO1HEkoXXSa3DlPH0DrEg/PNKT
+SZTcjCXRcC/42Ri4JKKLkUIGnwYwBSG78JM+glQWkFxuaRUewk+iIvU2EW64
+n/HgFb7dIirdbvm3W37F02AULwB0w9AY0MLEeekbKQxhNla+HMxO0lNTx8QT
+hV6m7Sh/Am3p2hKtWwuQdFiWDByIewY/
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzdlt1xwzAMg4lu0hm6QUfoCFmg+781jgQQujiKRL81iX06S4Q+/ojO5+33
+5/YREV/36zuOD45PPH732/HgcR3jdnEKbXn0EZCW7VkbybB9pUTZXMwBuKjN
+dwVZ2F6+z8jQ7237gBnSr2bafThjGPzXTBAmQ9JlzhhIKatUjyelFwyj/8pN
+yIvOGQrrMwMsRhmXbidXIdITBm0Z7lNkwgkRrxlsZ6QAucEhJgzMSqiYPKWJ
+P2Pg8jEuacLKmDEQUkUaiqd8iDcMSL8hO0nkgwkDdMhMUAdVQZkywHgpl8dX
++Z4xpLi5oxMDYIGBvEP41TdihSEBdBxDMB6jdxpwKxNZZABjxywqtTa/ogFP
+pQ7OKgO3UbvFiLGoka3Bmt0GQ6dXt8/Gt8EAlaTXxpb9iURybWhQAl6vuxJy
+3zrytgZhKvYuYW+SCxLbYZCGvUBLCr2+vOdXMNQ8rmjwlNUlLjJUCvK/SmT7
+LJvXzkUq8O9A1Zxds6pgjapunn1mW4D3WirGFlVhsNdOtaB6fw29CP8A9VMM
+Zg==
+     "], {{0, 0}, {66, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVt15gzAM1HWTztAh+t4RskD3f2s+0P04oQE7EALY6Hw6ybI/b78/t4+q
++rpf3/ercD8K1T+2YHtlX7duj/t9N9k/agx/s3Xr3vZbd3c0EHE4ZA/o5h1F
+nQ1KtGG4BzaQZQm2h21Qem4XD9mM7rY/JgnBISgdsAG/LOKGpBTW7lOdZzb9
+2MIirOkmwxndB2wGTdRdpGWZGutfNiQtU49TT3Cv2IyaKHIlp6Bcwks2CPGs
+FZhSDzL9z0aDV7rYUWcqMxlfsQkOMArdAB9xxgZSgJJm1O3NKRvajFrZjhl0
+yoacldYloeVSXWEDawEZC8cNZ2ygWRqoriNK+FM2CPrEdBFQSpyy8TDhnWYb
+osKdA0XOWBedF9mYiiZ1iVbqdgkIaRpIM2xAURloRT/6LwMho61JN8WGA6qu
+YyQ0AzSULLXMgoDZBmo+aZ1AnuZDdZzHATJtqqYUHoGiVKRUs0isjP5bxknf
+Vv0yg6EKXrL0ahENXkYu4sQCLogVb6pyUj3RnOCDQCoV00kYnp4KWdfncGJj
+4k3GOzhHBWwGKKqzNzFrhDzPl8Learj41DqOXYpkegdnKeQEGtff5XpaCjaX
+niUUaGnfX9+oN7FBXD1Ue/jyB3T2DKs=
+     "], {{0, 0}, {71, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytltFxwzAMQ4lu0hk6SO86Qhbo/n+NGwKEXLuWJTmXSyLL0CNEUnl/fH89
+3iLi4/n+jN8Lz9f2sV2737GN4DUAjdVjaB7m/EglqoGzX2p6MMcAHwxqkCj1
+czhQOg1wTtXdY7pcCJJMTrurWBlyfj2kg1TSnnAdyKogWS5wSscvARFoiqyt
+UV/2kE4eyR7NAfGCftU2n9MJJCnQWEG7lCK27Ald7WYwdu0ATWxsififrrWj
+EsLSzrOa00/ptJvc28q20AaULXTvnA7MeBpu28gx2WiqZ3SNZ5pWaW25uC/w
+YzoGU3WldeOPbA9d65l2etcaKhMv6WAml5dgSu5svKYTTHjomS0qWivmKzpj
+sg7C8KoB9dJBDtF6z5aKspuOz+bMqOBZbvuEur6qc0i9NtV2uI8O5RUkIr0a
+6KWDuoGpV/9SAXXTwcKidjUdpVI3XS1rUauaYZ22X9ByrnzT6yZdoamJhDDd
+11uCcAlTHKEDzWeCKGvs/m1BeJaoqIfoCKDzBy3giGC1Ouvxo3QvPVWK9ftR
+OqgoPAfHxQ70inhUkHrwipnSk2V2RM0JEnNazPXsBF6lN2edBO3PyrxcJrUf
+j7N6UDNcJsh2sEhvJd10SRwJrgx2ESD/p62oijoc59rnTlAn9w9usw39
+     "], {{0, 0}, {79, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIBIGZgBEIgCQIQCsoBizPCROBMmEIGBAVTAdNIksCo
+/aP2D6T9cC4j1DmMUHcxQBRAMVwUAF8LA9g=
+     "], {{0, 0}, {16, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsENhDAMc1gE3QxswggswP4/KhInpu3jdM8TqKUCJ06d+HOc+7EA2Npe
+27bH075z3Yd1uAch3j0cPxy3ETYHYEPhL3ED2ScBnuhrDhfqOIqQwkoVeeIH
+qEgPlvRkEhU3Y0n0uFf1WLgkIppRjUw+DWAKsu3CT/oM0rZwzHpLm+HZ+Nct
+r1v+1i2/4mUwNi8BhGFoDKgwcV75RoQhzUblQ2FOkp7qJsYs1D06SVmfkx0k
+I43d1gWIFAY5
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIhIGaEAiCLAYlLhhADI5gFE0SlwcqQNEA4DEhmIKhR
+94y6Z+i4B66MAck9jEgugSuBqIObyMAIFYRoRfIDAwMASGoEQw==
+     "], {{0, 0}, {18, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyVVut5wzAIhG7SGfp1kY6QBbr/vzoWx51sGVEnTmKb0/E4UD5fvz+vDzP7
+Os7v4zT38Xl84e3vm/GFA1bv43x8AgjzsZTHgrSIh4GMtZzvYT5OIJQJFnFt
+dDf43UCuTGAfYWCN4HdLXy5Mzhg8TRPFGzNTeMZV6JEGeGVycQQrpNeeRbkw
+aVrSzzDLFe5MzIEkLKqd6BsTaVDkFMMc7wLmaii4ZybkMXOf+b+Gfoe55jvF
+WTBhMfDhN7X2jKOOJoUWEEctHZkpbScnU+rggIRLFPz01HCLbGoODbHGoav5
+0USplz0PufrUwQs7Tii5wdG1RLlMOwD2fpmp+G4uPHK54CzbvgThRRHpdKlQ
+EBCFWOMuqFU7Fi6axrQXvGw452Uv8REFm8u6KDonxeujGklPXGxvLRJyiVa7
+UM4wdtWzJUuZgvdn7WGe6uZrvo1saqh5jFcxUTfoQ/4/qKg4Xz2zXg+jBWqT
+u/QwjXV73KAGdB54++IuxnJjJk2jrDuVTWqTWWwcWaD/7G3OKo/8/QGgOAnC
+
+     "], {{0, 0}, {53, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkeERgCAIhR/N0Z9maJNGcIH2/5fBQ9SyATo9OTkfHwhu6TzSAmDPtmaT
+54Lu0boZvAZMbnKT+ytX4TcAFUTNXIsRekYqTJChRMG81enl7E4qzANKyV6U
+eMtIjG4/RPLxqmY0RZTSZzspJ4X5mxFHfz3JKflP4AJiOAZr
+     "], {{0, 0}, {28, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytlkl2AjEMRFW5Sc6Qm2SfDRfI/XchWDWYvDQ9GB7Qk0vfUlnm/fb9eXur
+qo/75+v+KQA1XvcD9Cl+f8b543qh348jjPsaiundw4cCtT1CY3x5BGgE32ma
+SZssHYJDxlH5BhiC0K3YGHp2g7yBFQoxht/NL9pnmv/Je1z56PlOJqlgMqFu
+kcPFbJoYw2MnGH6oJ7BJTnf4RmF+kOgd0hiazga5TmoyoaMGf9EE0JMvyHOy
+4cg4Jy+J55K8IJfDEDN2EUCHgPSaK/aQC2V2pH3qySBMOmV9g1xJZwBa2SVR
+Vpicyeub5JBmp7VSlc1CKRPKTnJepo3dYqIkvpoQO8iVW6XVndF9riKB6fWX
+5IIsNgODKJTXVEDsIofbL7OkOmajyyQdIMeURlsubJ5rio/vJEc0m5gLxYIw
+EXaTQ81FvpY1eE3pjxj7yFsiFkuMzNZp5x8h57S94sVUf4IcJ8eUa7nnqaHZ
++QfJEaVyDcAlMMIr/UfJBdqy7lSypZfUcfLgjS7IRLiJniMfoto+poWrrlye
+30FyKvW4cprYCJ4te/Tl7qdYNkq45gw5nGNIUuq+cI4c6mERyx1Zi/kkOSIB
+jOTGKbOeJDdS5EddB7GvnJUPjzvfel8iN7YaYWkKWY8L8kjB0L9ODpaQFpQv
+4/5FeaQP1XwWkBNOuzRm+Ovy00ahK2ukwTUDVniJZsq7NU471Sp1IG1etaCe
+s3w03SzBGn3uUv5aKa4/G6rxYvVpn16p7e1vdVa0ePR/YKm2/nO5FaxUl2PG
+9w+DNA+X
+     "], {{0, 0}, {93, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzllt1RxDAQg1d0Qg0UwgwlXAP0/8aFrLRySIhj5+1yw3A4jvyt9ie8P76/
+Hm8R8fH8+YzfC8/P8mu5Nn/HsoJ1AVqrx9A8zP2RSlQDd69qejDXAF8MapAo
+9XM5UDoNcG7V3X26PAiSTE67q1gZcn7dpYNU0p5wHciqIFkecEjHLwERaIus
+rVU/dpdOHske7QHxgn5Vmo/pBJIUaKygXSoRO/aArrIZjF0ZoImNLRH/07V2
+VEFY2XlVc/shnbLJ3Fa1hRJQttC9Yzqw4mm4pZFrstFUj+gaz7Stytpqcdvg
++3QMpvpK58Yf2R661jNlejMaqhJP6WAml5dgSW5sPKcTTHjoWS1qWmvmMzpj
+sgnC8GoA9dJBDtF6r5aKspuOz+bOqODZbtuCOr9qcki9kmoZ7qNDeQWJSK8W
+eumgaWDqNb/UQN10sLCoXUNHpdRNV8da1Opm2KTtF7SaK9/0uUhXaBoiIUz3
+9ZIgXMIUR+hA81kgqhq7f1kQXiVq6iE6Auj9gxZwRLBGnc34UbpVT51i836U
+DmoKr8FxsR29Ih4VpB68Y6b0ZJm9ouYEiTkt5nr2Br5Lb846Cdo/K/NyWdT+
+epzVg4bhbYIcBzfp3Uk33RIvqldjdF5LL7ecUT90SQ4L
+     "], {{0, 0}, {79, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUtsRxCAIhDRyczWkk5RgA+n/74iwgJGbyU/+dHR8LKyw8G3n0TYi2mV9
+ZLEPOV9TDrIrkmHD2UyYafBOeL90nHk2gBnxDdY7Pp5hMJPR32ENSqOfsCe4
+Bs1F5O6os4YDVZyCEIlFVuCxhxA1bfhSnUEU3KkOltZYTS+ncyULEyOEdL5s
+4I3gsif+1S2rWwaD1S0v4ZUkhXedGLT/mxf4S9Egdi/bD3e/Bk0=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIBIGYEAiAJQmAmI0wAQcFUMEA5JAmAjICJw22D8BCW
+jto/aj+F9kO4MIugxiPEIEyIiQwwCxnAKpEEGFF1M0KVwAgQHwBf3gPb
+     "], {{0, 0}, {16, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkusNwyAMhO0uUmWGbtIRskD3/5cUn89gTNUBQEEEPnPGj+P8vM+HiLzu
++byncnx/pY22wRK4HYkhGHUYXGFiUlpx+EqYDmAmmrDt3fGMXRnPnrAirNnx
+n9wercXLedG+Ggc1LiHogUVUroODSGq3uEtVFoRZSnVAWGM1WU5qdRbRA9Qd
+k7q7ZXfL7paUgJ/dEFGuuD8wI9ddXe2CWzUTGqTAVK7SMpZLLmqFBkM=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVtthgzAM1HWTztAp+tsRskD3/2sKvocTEmwDgQBGp9NZkvm8/f7cPqrq
+6358348CCvX/u1/9XwLbP7aRbcN+4nC72/bdihb7fxFPg80a8TQdVvPVLnYL
+vUWnjVtxMxvo7pGRnDfPkAMYlnidwydGkK0ipWuJJa90d8yoD7tFZaJWH0Hr
+kJFmivOGEJcSWwSqdMSo3TSJEfYMVnni4UNGnTZ6oUgtc0u59IIRqcs4M+QR
+8D2jXhvNYik0KLdwwgghozUDU+xBrneMRKAy0JYDKrYowteMggeMo/LmJc4Z
+QUpQ3MwBxzTAiFa9ZrZ05zllROZuUdGg+tk7YwRrApkLyQ/OGUH1G7juMiqC
+AUaIIIjqBqEEGWBkVxGjqhDRA0egIoesj/ZhRqajgi9RS/0GoZDGgTXHCJSX
+065ciPEJKOTcqxgnGdGpVgD0pOaguqamJ/MwYP6B6k/bJ5RbQNdBV5CATKOq
+Sa17qGgkKdk8FrunTxeQMsL16Myi65SDtl5Z4oGXnGGkWPgFshZTVRbbE9Up
+TgisUsudBuLuAskVYBYpPmv8gTIN1WczO8lSqWnavWavZXZFcBHqCtIOxyrB
+/PQHlOS+wmgnFGvJOiOQj77mrnRdZ/bl9l3kdG3LL13UHzLcDPc=
+     "], {{0, 0}, {73, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERgzAMk7tIjxm6SUdgAfb/NcFWbBPnjusbIMeBbEWRte3Hd38B+LT1
+bkuuF87V7gK7g/eCE6rJe6M+Neyo4nBCMdL+8Et57AesOr24pTaTyLlZS6Kk
+C7o3EleoMDOMI0qIBWyBGZP4ST+Koi0geVApFT6Mv5gK91uCcUmfcOMZJnMw
+dcaftIztnrRQ019piQMsK2ygMsOelTos0c5COZMRslQIXxBrv0d5OpHPY+EZ
+wsxK4SOT5cEs2ouDJaIZ5rQq6pRY4Ad8/QZU
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztVMERwzAIg27S6wjdpCNkge7/axIjIXD86l1f9Z1zjiMQlojv2/u13czs
+uc/HPn2MfWHH89g517F0GZeY2B6fzjV2I9riGQEDG2C+ZUKXT+RFzOCvW86F
+0iHa8IJwDfM4ijGnC1HHkEAB1IUVBBz5ADAk80JokiXOXiUuFlQHoJXXoWGk
+S9jf6S+dhqAOnwHUVjB4Tu+700ZGalIxJJltLU6TB8e2hjDnsU2LnbNkUZKl
+l5udrAZkR4ouS3Et066JWEMiKEMyFaLEuKSio11eYNPMpS6QcEpU2rhbDYxM
+FDdhpMpeym8x2fz8ky7S8A666qnONN0whQ6YWTopCH/rgok9teDh1QGjPraF
+Bjc=
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyNVdGVwyAMk2+TW6A/3eRG6ALd/+/SBEmmGEjz2kdBFkLYzu/r/ff6AfA8
+vg98PhE4n8/n+qtpjq/Fc+ZAnpAQRnBPNFREI3Z8Q2qzjjvSngwNDXGtmdvE
+SVJbV2iG6YAB+Kihp+c2cVto9M2PkTvMDHvnwC9uuiMrZWda/8ZHto/Dkpvh
+3IFjAgu8bxt2FhNs8DJ07BrUH5dCyMo8q+GUJOnLPcw5HGOmnxegnx08C9qI
+MV9XQxkgM5AmaMtwOGWTqnAlAciJMmw6sqeipTGolLBfEKJCn92OocoUGnkD
+XtVFpQZZ9yIdRe9MXPnYlDrZsYVbR7qEG/CVhwpATHpJzZ4SahuDHFPfjivR
+YoYk69hcNA4tlXQJ3rfAUrevmgWhV1PthDtVyMRJyRfwmSMSI1R+YczgEWMj
+WdxO0dlWld91im1j6+DbJqviZfXv8hCqgo2HGc7EufFOyQ1oi3Y63SFP9X6o
++Qe65wid
+     "], {{0, 0}, {46, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU0EOwjAMs/kI4g38hCfsA/v/jYrUSbZaiCvSpnbV6tRNHO+x7a/tBuA5
+5n1MHp7xneOz8IRHEOb7DM+NwLnCDABcLv4RJ8RuAuJgDA8XGjiKUIVVVeKZ
+G1BFfdGVcVhExa1YER3yKo0bV4uYYpSQydcDdAQpe+MXfQZ1WdTmniUdnsJf
+brnc8rdu6Q20EbOhXOHyijdLl9NkLmc0L5nEv7mYmZnPXIW51ACUbA5nYv4v
+UfnEG5UUBlg=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIhIGaEAQYwQgUgeQbGUTWjaoaUGgYwB0IwMsDUgxlQ
+KYgQlIXIBTB1DKimMsBMRBjJwIhwEQOKJrBSBhiJUAAXZ0SYgyrCgLAOAClQ
+BJ4=
+     "], {{0, 0}, {18, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytluF1gzAMhHXdpDN0k75OkAW6/79SkO7OJBAb3LykYJzT57Mk5/Px+/34
+iIiv5f2zvAMBYPmH7TqH/i/yOmesn5y0fgOh1yoAjsPvA+3zTZmRFD3yKUVX
+NWyKG0B+Q8oVzGhTjtxxxOkryoFo74uu+JJA8C84NxnzK13melvzylr44DMn
+A9PbWqGtxHbAd/aYk4aWbhKb3Vx6OSCbDzhBqbQsXAy0j9mXUc45667SL1Va
+uzXqsY856Rst40QUKLNSSfCGk0jJY5ukCCoBi33Gqb2OsoJbwwpzlyI6OFuL
+lDOWnl4CNf2cE9YAjLw0jMcjv+OE+oBqXblqvckev+NsfORc1YDl7L45nHDW
+2lSOJIgn7W7O1kfmwa63KGP7OGHuy19U6qZBrLs+TmKFO5EJxYK3RtDFaXTW
+h2q1amNDnLnAqqOmvNgOQ6vp4yyBnB7yoqp0n3Odf+o/DKEtt/0f4IT8A5Uo
+qoEhTrCdWAi1QpbcGCdslRVArYvZNsYpADOBnQDWvgdVLTflJV9XOAXJVhQE
+dq/HVeE6JnuZE7UrlUNMLHt+TRWeSGwI1zkLhQcdWtTLqmqddoTc4txEWVt2
+nNziBMvIc/Wm4gtRsd9SLVF4jd0XpY12Fk5QLeA5ii5qJ/9U0Ql2UtV+OE3S
+zArwE3mKKNhc56pWP5mpiVnbbqp2Pt8Xo40xC7R+4mT3/wMyjg6X
+     "], {{0, 0}, {84, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIhIGaEAQYwQgUgeQbGUTWjaoaUGgYwB0IwMsDUgxlQ
+KYgQlIXIBTB1DKimMsBMRBjJwIhwEQOqJrixMI1QBLWcAepAKBsiBbMXZgcA
+Kb8Eog==
+     "], {{0, 0}, {18, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUtsRgzAMk7tIrzOwSUdgAfb/a0IsP4jLtXwDyeVAjqwoeq3be30AWNp8
+tinHB/tsb4H9gveCHarJ+8YxatjRgcMJRUn74Nfg0R/Q6rSw5dhMIudmLYmS
+LozeSFyhQs1QjighFnAL1JjET3oriraA5EGlVLgZfzAV7rcE45I+YeMZJnMw
+dcbvtFi7Oy3UdCkt8QLLCr1QmWHPSh2WaGehnMkIWSqEn6VYTFmtnAerpAFw
+2/7FUyi+KbPEzsRnx06OAh9/BgZN
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1ltFZwzAQg09swgzMwQsjdAH2f6Ot7yQ5JI0Tp+0HLY6Rf8u6Sz5vvz+3
+j4j4uv98x+OFwP31/JJ/tY94jj5+5TvHAB+M5/z8gtRADgakkot0U3lVapqb
+i4CCyZjXQNI2GsFF18hAjTbTN9NmhlvApTfI6iPA1TmBlmrUF10hoze0hTNQ
+aFE+cdObZIRIAjsBSZdmt+gqmU4watf0vczrDIl4RdbboAhYzOqSncUWGU+w
+ztOCSNtlSLm2RYYKXtlsR1djtM8018k6rzhJIbbsqTa2yWobqiBl+5/oPlnv
+FU930QCUvB0ymLXyEBXBhX17ZAQJ33Tmg8VpRfuazHisS9TG1GTGyEBnynDP
+h/Y3SFb/mfNC267CWkZo76XuQG0dpJ3qCBnkEShBNQ2MkYE1b9rqUCyWQTLY
+hkpZjYXhGSTTkrZfVi2sj47KWcbkF9+HyITFRhFEdD8PyMEFTO84GcryigRz
+YtcPysFzweI9QVaL866CHu64nFqZde9zZE2NVWGd/BwZWACeubNSK2qiPSdX
+avDqmFCjVXbjmZErxEkpV7M76jVqM5ZRzh46ZsUywn7Dm1MDm91FclX0l6hd
+RzYZ/zer8cZ3hVJc5lmwd0yp+DPRNFk9cLRo/AG5MQ3A
+     "], {{0, 0}, {77, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJRIGaEABiDAcSCCYKFYXyEIEwIRSVULQOyCCWiDGCn
+MKA4btSdo+4cku6EsxmwOBNdFGYKitsZoSKIDAv1O9hFUCbERKirYGy4mxGG
+QkONgQFuCEqwMaJ4ngFqLUQhAHIPBNU=
+     "], {{0, 0}, {21, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVtthg0AMs7pJZ+gU/e0IWaD7/5XASZYpCfhIAgEOyzqdH/f5+P15fETE
+13J8L0cAgXj+lqvnJbD+Yx1ZP9hOHB5363ezosX2H8TT4LCGPXWHMXyNi81C
+b9Hp4Bb8JBvobs9IzodnyAESlnjF4T9GkK1mStcSS17p7phRnfaYVRJN9WG0
+DhlppbhuMHEpcYpAlY4YjZshMcyek1Wc5PAho6KNXghS89hSLL1gROoy9gjZ
+A75nVLXRKoamBsUWThjBZEzNwBDbyfWOkQiET3TEgJLNkvA1I+OBxFF68xLn
+jCAlKK7HQM7pAiNaVc3SMivPKSMyzxJlBaqu3hkjpCaQuZDywTkjKH8NN6uM
+kuACI9gkiJoFQgFygVG6sjkqC2E18AqUxVDqo+9lRklHCR+i5vpdhIIbG1aP
+ESgvl12xYOMNKPjaKxmbjOhUHQCVVA+qFDU96cOA8Qeq37Z3qCwBpYLOIAEe
+RhFNrSuUFRKXrI/F6pmnWSA1KOl/A6n0gGkgS5bZSNC6ZeucSJLYM2ChbJKx
+Xotda+lC2X4iu+5MYGs/gBpO00i77jSFlEVtIE9i1VyrG64mkK2Tbcr6QJke
+tQPcRBpPJqEK4K2qa3vRfkNynNIq5wsbe5oyLv4AQXYM+Q==
+     "], {{0, 0}, {73, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVtthgzAQO3WTztAp+tsRskD2/ysB6+GEBBtCSHidTiefZb5v97/bV1X9
+LPvvshdQqMd3OXocAus/1jvrB9sPb7ezdduiGLH9F/F0s0UjrmbCarnawRah
+p5i0cSt+zAY6e2ak5C0zlACGJV6X8IURFKtKmVpiKSvT7TPqy25VmajVR9Da
+ZaSR4rghxKXEFoEq7TFqJ01iRDyLVZ/49i6jThs9UKSWvaVeesOI1BWcHfIM
++JlRr41GsVQa1Fs4YISQ0ZqBLfYk1ydGIlBZaOsBTbaYhO8ZBQ8YR9Obhzhm
+BClBcbMHXNMAI0b1mjnSznPIiMxtUWFQ/egdMYI1gcKF5AvHjKD5G7h2GU2C
+AUaIIohqg1CDDDByqqhRsxDhgSNQ0UPWR9swI9PRhC9RS/0GoZDBgTXHCJSX
+w65eiPsTUMix12ScZMSkWgHQk5qD6kxNV+ZhwP4D1Z+OTyhbQOegZ5CAbKOq
+Sa17qDCSlGwei+7pnwtIWeH56syic8rBWK8sccFLzjBSLPwCOVdTVU62F6pT
+nBBYJcudBuLmCZIrwCxSvNb4BeUa0p7FzUGFi/sV6Cwpe8DJJmiq2JzqCpIL
+i+a6hnSyAQjVr9oXXLc09FyoTgPpBQCTNvKKZD9Z9n8vEQzx
+     "], {{0, 0}, {73, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJydluthgzAMhHXdpDN0hi7QEbJA9//XBHwPhwK2QxIIjs6fZEn48/H78/io
+qq/n57v2F4DC8/Q6dEaVhttAQb+2y9e/sBnTiv/niCWp1U1WstwNeNreOwGa
+kWXbF+XeSWBAyBMDQmIInANJ55XZaBQz5lQHknbRwomwpYMtGBXDB5IuFhos
+Ijk8TemEhLgy9Bx1EDsn6WOh1Sq549zBBQkiZI4RmEJv4Tkj0cSVzrV1Ztoy
+9c5JYn5Ygw6Al7gm4TqV8izX2X7ckNCij5GtmDE3JKRVCpfCK2fqngSOAWQq
+Fd+4JoFqMTTdKZTcNyQIcCq60JUENySeIvxSVSH6151M5IjjoWOIxBgq3BJS
+xmtABmkYOuMkYCi5tFrvGB+UQa6vimuChJOpW6OHGZfpGpLuzEmAuQVGeso2
+ZVzKXeebVQEyTaom4trLRDPIEM3psOv5a1ElvVrzyLN3HW7Azk+AuOFHw5BK
+PIglMO9HVRbPAXGYBaFTapNTIjyc9NmtZ1Ria+GNwrrKf+1pXCa6rrchKzCu
+5YWFblFwc6lVFTsTybOusrDI0mnbnSWIZIkH6joKmLiLHXKnORbjqoxTeFFC
+2w7UH83tDGA=
+     "], {{0, 0}, {69, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU9sRwjAMk1iEYwY2YYQuwP5/lMRy7MTtwTf0cX1IcWVZvW3Px3YBcN/P
+635y3sD323bAcPRDXOF6akzaCxg7XdreCV6UHLXFVaGkC/3bSLUCAyaarojj
+3gla0pnM9VXeSdEWqHhQyQpXO7OpsjN0MjlOrUIBq3IwdcXNlQX7BPfhHsTB
+1f/T8gNpiQMsGTZQrvDISh2WaGehXMkIWSqEn6WYrqxWrsYqaQCGbd/iKRTF
+WnezFObjKPr2vwrK+9SRrVQklo694aNPnw2MCL8Q+AJGSwZK
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzllsF1wzAMQ4lu0hk6RO8dIQtk/1v9bAKEEieypN6axC+OZX6BEEXn83b/
+uX1ExNd2fG9HYHsFIj+8gv0nx/Lqfnp8HyHHTcmoe/ZhfWf8PpwDCSKHU+aE
+dfmgaDChpDXTPaiBIkPYnDahzLxSPFXTppv5lEgIB5N0oga8M8g1S2lspU93
+ntXkaRoLi2aaXE4bPlHTeKLhoKyyKVkv1VC0QmueeMK9U9N6opULJQXVEt6q
+gZlXXoEl9WDTazWaPDzFXHWWMovxnRrTgKIwDfAUPTWQA7TUV72y6aphTOtV
+xbGCumqoWWUdMlopxRU1KC+gYHHqQk8NtEuNWn1EBd9VA5NPZjUBlURXTU1j
+2Wm3wTpcH2Q1U77ofVFNSdGmDsly3y6B4KFGGlEDmsqF1urb+GUQfLW16YbU
+cEL1dbSCRkDVaqyXjqo5OKps66ujaqAi9hoah5xwSuEoiBx4hU9xZIm1/jkQ
+ZU1DnGNPsFXOnDUC2cN8HpPF6I+ZaUFqRssgbtNFzl+omS7hf8KpFr3GWNhT
+heE/lSUGO/MSxlrgIqOa1yymmnLgF3byDRE=
+     "], {{0, 0}, {71, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU9sRwjAMk1iEYwY2YYQu0P3/KEnkOInKwTf0cX1IcWVZvW37Y7sAuB/n
+9Tg5b+DrbTnQcNRDXOF6Kky2F2js4VL2SoiiZK8trgoNulC/jaFWYqCJZihi
+vw+CllQmx/oqH6RsC1Q8qaTD1c5squxMnUyOU6tgYFVOpq54c2XBPsFjuCdx
+CPX/tPxAWvIALaMNlCvcs+LDku00ypWMlCUj/F2KGcq8cjXmpAHotn2LD6Ew
+a8NNKyzGYfqOvwrK+9wRMjqvji+eDlv/oR+35lF7eAJGLwZN
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIhIGaEAQYwQgUgeQbGUTWjaoaUGgYwB0IwMsDUgxlQ
+KYgQlIXIBTB1DKimMsBMRBjJwIhwEQOqJrixMI1QBLWcAepAKBsiBbMX4glG
+RgAptwSi
+     "], {{0, 0}, {18, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1ltFZwzAQg09swgzMwQsjdAH2f6Nt7iQ5JI0Tu+lHWxzzW5Z1Fz5vvz+3
+j4j4uv98x+NC4H49v+Rvy0c8Rx9v+coxwAfjOT+/IBnIwYAouUgzlXdF09xc
+BASmxrwHKl1GI7joljKQscz0zSwzwy3g0jvK6iPA1TmBlmrUF91QRm9oC2eg
+pEX5xE3vKqOIVGAnIHQxm0U3lekEo3ZN38u8xpCIV8paGxQBi1ndsrPYU8YT
+rPO0INJ2GVKu7SlDBa9stqOrMdpnzG1ljVecpBBb9lQb+8pqG6ogZfsf9FhZ
+6xVPd9UAlLwDZTBr5SEqgiv7jpRRSPimMx8sTiva18pMj3WJ2piaTJ8y0Jky
+3POh/XUqq7/MeaFtV2GtI3R0qTuQrYO0U+1RBnkEIkjTQJ8ysOaNrQ7FYulU
+BttQkdVYGJ5OZVrS9suqhfXRXpxlTH7xdUqZZLFRBCW6nydwcIDxzitDWV6R
+YE7s/kkcPBcs3gvKanE+VdCKO49TK7PufU3ZQmNVWCe/pgwsAM/cVdQGTWqv
+4YoGr44BGq2yB88IriQOopxmT9Q5tBHLiLN/OkZhGWF/4I3RwGY3CVdFP4U2
+T9lg/N9M44NvBimmeRbsHSOQJE2pdIViKao/unsNwg==
+     "], {{0, 0}, {77, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkcsRgCAMRHetw4s12Ikl0ID931TYQIyf8eQJxgyMmxc2YUrrkgYA8x7j
+Hrwu5O9pHQxuEzrXuc79xTn8AJAF5ijHkkOdCplhgUoVCtV1u11X/tFhllCv
+jCKblyexdfsqyoIKwnoJovWIoMg5YlFNQXPz71CLeeefRKKaN8M8o/YsJM+i
+jUDNbCb4Bk4=
+     "], {{0, 0}, {28, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVNsRwjAMk1mEYwY2YYQuwP5/pG0ky6l75EgvxC/ZlvPavp/tAeA99nPs
+GAv77/iMva/975Sdaz+DOggqSOOwPLV4kWcp0OTUjOqf7qVk4imvKKOTM50q
+VgBYJlV+Kk3fFzE9g9Xq5LMqF5k0EF6iFeCsSgPNgHfurZwN8pgNzfJ3wG9x
+W7+i11FiXegSv0POoreeraeLNYiZgrbfxujOM0p6qMZgdCUGMb/yXd4RTFQe
+UNKeHEZoxtZ6GN4ZpQ6R5kRjSsC6M9jCStoHS6JRIquUbiRqfthBG4BM7BI7
+E7lK86pFHmmf8MtQLDmSA6RwqXciB32GV71BbviMeQJsfSmECbM1rNU8Vhb/
+kxc6WLXuHDRvC6mmXi/LBrB/u+zlGIcfQ6oGCQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylltt1wzAMQ4lu0hk6RP87QhbI/n/1sQkQysMylaZJHMmCLiGK8vft/nf7
+ioif7f27vQPbXyDyny3Yf7IvW/fL4/sYctyUGnXP3q3vHL93Z0cKUYdT5oTV
+fKioM0WpNkz3QAONDMnmtCnKyCvElzRjuBlPQUJyMKQXNOCdQV2zlMZW+HTn
+mSYv01jYaIbJ5bTuFzSDJ+oOYpVNqfWWhtAaWvPEk9wZzeiJVi4UFJRLOKWB
+mVdegSn1YNN7Gk0eHmKuOlOZyXhGYwwoFYYBXmJGAzlAS33VK5opDceMXtU4
+ZtCUhsxK65DRCimu0KC8gAZLpxpmNNAuNdWqI0r4KQ0Mn5pVBJQSU5qaxqLT
+boNVuLmQ5Uz5otdFmkLRpg5huW+XhOBDTalDA5rKhdbqW/9lIfhqa9O1aDih
+6jpGoI7QULLU0hUBsw30vDnahWqbD9WxrwN42kS0HB6FrFS4VV0lVsb6WNbx
+2FbjKoKhCl4aWaeFNdQxclHHDnBJrEQT4ZvqCbPBA1MKFdOmDF+1Fbyu93Ts
+waQeMppCY+ayVixsKS10nb4rWRwWlgXZ1znEuB/QXXATksnrNAeMnQ+rNCCL
+nsQ+kOHnBzRVkLVeizD2cLBc/ShEsvgHeIcMqg==
+     "], {{0, 0}, {71, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJRIGaEABiDAcSCCYKFYXyEIEwIRSVULQOyCCWiDGCn
+MKA4btSdo+4cku6EsxmwOBNdFGYKitsZoSKIDAv1O9hFUCbERKirIGy4kxAs
+uKUQeWQfwUxEqIJ6FMZnAAB0gQTh
+     "], {{0, 0}, {21, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkssRwjAMRFc0wlADnVBCGqD/G8HalSJbB2a42hNPYj9Fq9/jeL+OG4Dn
+ue/nNi6M/T1DF/kdBmOFZcHjCo5odMHk6RUoODm1JhwCNINN2M8SXrE8M+wF
+qwCr8I/cg7Ym8vjRnx4ndY50qMQyK/nhRRb18pKkWTQkqjT1gWnVbkY7w9ee
+lim/PS0hsKfln2lh1J10cQBrHNRStHFBNVkTY0d7rG4qwA90rwZE
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztVMERAiEQy9qJYwl2YgnXgP3/PIFksyAz/lWHGWBDspdwdz2ej+MC4H6O
+2zli/M7Z+/+etRXaiES0nVZlAUJGsrTVKPQjInYllQfeAb2JPCa5hFWOQNTy
+HhPWUd+GnhMU4xLEDrBWSRhWKh50cwafbYUmLsfT4ILH/VjQMnGGCc0YCTjg
+n/TPJU1DgzkT6FcBzFzZz0lDivKkYiSyxlqSlg4fGxMCoceGN7uyZFPGMreb
+N9kDyBtpvmzNRdLuhdRDImRDKhWhxIRRKdHZXmIzzK0vtHAhKtd4jpoYG2xu
+wViXcyvfYwZIb+sixJ3yCflAo88GtlIyvnO8AKVHBhY=
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1VNF1w0AIE1mkrzNkk4yQBbL/X68+BOKg6VecOLGtEwjQ+fv5ejxvAO7r
+/FqnxbGuf7/rYv1vRGHHzZeYobAFv24u3Kwv4DLYAe97Ju4wI8PDn/AWtdU3
+LFbs1AObWZGplCjCp/AIXTYo3yQnd7qz/tRNfEd6W9iUuuSflLPpY2SZ6cEG
+NRMY5x1eaT2FzEL6V4I7HoWBHwhNC4Ox0IiAUrZ7GO6x7lITvZ4FBY59Aoag
+4HgmskMrbW9sSWwluirKtVTNH05QNkAW1nJnIR3NR6NyS37KL5viqJEeoIVL
+v1M5GNO064Ny0SfOC8Eyl2IYE65orXQ7XfwfXuwg3dIFUlRWWnAdaJesrxZr
+x4fxfJ2+f3tc+n8AYv4GFQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztVMERwjAMs9mEYwQ2YYQuwP4/2saSZad5woty4dJEthzJzX17v7abmT33
+8diH52PxO+d2jONxQMY01k5k2V5jYnlsnXOsRrTFfwQMbID5lgldtsiLmMFf
+l5wTpUO04QXhGuZxFGNOF6KOIYECqAsrCDjyAWBI5oXQJEucvUpcLKgOQCuv
+z9/p7zoNQR0+A6itYPCc3nenjYzUpGJIMttanCYPjm0NYc5jmxY7Z8miJEsv
+NztZDciOFF2W4lqmXROxhkRQhmQqRIlxSUVHu7zApplLXSDhlKi0cbcaGBko
+bsJIlb2U32Ky+fklXaThHXTVU51pumEKHTCzdMmll8dlEr2W/AO71wYt
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUtsNwzAIPLpI1Rm6SUfIAt3/r4k5wGAqVeqvraDEHLnj9Tjer+MG4Hna
+/TThwbDrDnPEtweM45EJHi4oxKAJJh6sQIIDp1aBXYBhkALr3YRX2JiZ9gJb
+A1bhH3FNWprM/Ud9ejhQxRGEVlhUZTx0RFOnl0mK+EC8S2UOLCtP08fpXHtb
+Sn17W1xgb8s/28KsO+lEAGkIcisa2qnvtW7xjL/uMdixS/wDdjIGSg==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVNsRwjAMk1mEYwY2YYQuwP5/pDSS5cQcOdIr8SOSLfdxvF/HDcBz7PvY
+MRbO3/cx9rnOv9N2rfMd9EHQQR7fyMuLB/kuB4ZcnlHzM72czDztFWV0dtKp
+Zl0AY1Ltl9PMvZmZGaxWZ59V2WzyQHiJVoCzKg00A96lt3I2yGM2NMvfAf+J
+2/oVvY+IdVeX+zvkLHqb2Xq6RIOYaWj7bYruMqPQQw0GbxcxSPlV78qOIFFl
+QKE9NYzQjK31MLzzljpEmhONKQHrzGALK2UfLIlGiaoS3UjUfLCDNgBJbLs7
+iezWPGqRR8Yn/DIUC0dqgBIu9U7kYM7wqjfIDZ8pT4CtL0UwYbGGtYbHquJ/
+dj921nsCfRs6PVnHm+mnFsORLw6qxAdC2wYM
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztksEZgCAIhaFF+pqhTRrBBdr/lgoPMDl07GBlkT8C4jvKfZWNiM469jpY
+rmbU0d7t6Tc5brN9Siz5MdscsEQ8B0wW3pwCVu5RY+6Ba64XtgQUdjJycdLY
+E0ZkLXvCaMCc+COXojmp3BbKk2OnwskDYmO+K8TRCW9q+CAlczxojx3OAWII
+BS21oA1LLUstf1CLdyHDKCtXi1qpmIJ0iB9ZHwZB
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1Vut53DAMI7pJZ+gm3aBZoPv/S+6T8KCd+vxQc1+csywRBEjC+fnx9/fH
+j6r69fX7p14/AF7X19+vb+DSa3Vc56550faam8fu9uFhPpthUBljgo1bMMhI
+JKAJvEGIU/BeIc2lgBgHxr2/cXMdMSCKlODtfNJPMPI4JMV2CI0BHN+nzKoC
+rKwLNhkdMQBTdglTe2rRZQEcZVeFPQPW1aL5nGVG3HOTMzpmsC9hPJUeXRb1
+lhgeMoALHD2knEqJKn6lRCcYsGv8sNA3k8KEdSrbWfgXAy1Ua1AjBw+PWMzg
+WwZJPLo17pk3M+8lOsFgxAyNOVdMuwuucrcqHDNQSr1b3cMmhWjgVoU3DFQE
+gsiSnC4VolBtFt4ygOJOmSsj01gkn9K5wICP2Oa2pCiRVzORkwyktWS2o9ob
+K8TMWTjFQMkWjcMJCc5zF4mcZgBbNxVTbdMcU7CLDNBkdTvGGOTccfsFBghz
+Ck4MGJlmGpcYQGakvlfLcE3lCJzzDGaYGKg4nZbrybjKgBLYHZRb7YDuMUDT
+Xl21MUFPxg0GiPK5JuCIjBRUjjsMlPAMbXdTy3rs7jGIvMM9KYrN9z6DEViv
+oDbgcvQyzxsMGG2eLUtG09i2850fu6bw3EDRTXcZwJpDYYXghfsMIN8LPLu5
+hv4BA4QYRLPhqpEfMHBqoZVcCvFuegIRM2D99XnMwOnLQEtUsj4PIZBBA2MN
+A7CsbE/1bDxfAIHsUZnVIgagHfll0UisgWgvG62sCw/OFVj1ZXETwpba3ngr
+EYAcg6pFNe4QYdhZknUYfNv58h8QUqn1Kun/jWVm8R2CClD1CasED+c=
+     "], {{0, 0}, {97, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1VulZQzEMs9mEGdiEEWAA9v9H21iHU9q+I7QfLSQvluRD4f3r5/PrLSI+
+Lj/fcXvl9XX5ur3HSuD7uqEHon65fqZv4bTe2MsRo56u57EdhUu8rA8+Tk7j
+WEMAaQUFFY9ScGl8olAdHNBPVIAwotUxUuUyNUotH54zNalQZnlAiY6cziB2
+0Qsefa4ihWAVpbIwuFB2cuL0XEWCtorpNUBGenLUiIHKPVeBCoe3GhOtQuvv
+qR83qLgvpu1PE4PksM/uZuOBilSprZ/IK0iWCOGJ2qSiEmTbkf1xyChgkZln
+47EKLkVrV2GbFg2dTeUGFS5/sqDWuuquXqpNKkZUyzUmDdR74ln4Vo1XKkir
+9646WsLS2rlV46UKFgMwtCpRRp6QrjYbG1QkI1e6w2PDbphEEtqlAptoe1mV
+lUqrTmWzihHL0y23lWuGpdRnY6MKEg7YiUgRUJNoVHaoSBk78sYqu2162nar
+yJZeNaeNhU8iHt+lIs20TBdCGlsnslNF0qQ4B2wfrLEshrRHRQWyEbPzbsea
+lP0qBgi8JJ1f3EEdVZGtBuywyR41KYdUpBVStUmMzCDBshxTQdIVXL7HBtYg
+HlVh3M1ZkRoZ8xkVIzQvqTb09PuQ1kMqEK9OhxIHK5mb+9hLjkpENZN11nEV
+qdwnAxNDC2dUJB3REOX1NIJTKtJSAjyZMdv6lArRs4zRvdJur3MgNhOqA98L
+VICrmWtQjtfpNEh6WENZpSJRYDQrO9j2l4CkdyxNbJmKhE3pMmlCVoG064gr
+KwH+xuB1shBkNlok7T8x1pVbIGkjp0tqOQb/g+i330oU0l/eUg2Ebn75+gVg
+6RAi
+     "], {{0, 0}, {99, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytlkt6ozAQhLtykzlDbpJ9Nr5A7r8bJ3Q9xEwwAtmfbRCo9KtVKvzn8fXx
+eKuq9+fn8/kpALW9ngfoU3z/bOc/7YV+/xxhu66uGN7dfVOgtnuoj5u3ARrB
+V5pm0CZLD8Eu21H5AjgEoVuxMXTvAXkDayhEH343v2j3NL+Td7/y0f5KFqlg
+MqEekcOL2TTRh8cuMHxTT+CQnO7whcJ4I9F7SGNoOgfkOqnBhB41+IsmgO58
+QZ6TDUfGOXlJPC7JC3I5DDFjLwLoEJBec8UZcqGMjrRPPRmESYeqH5Cr6ByA
+VvaSqCoszuD1Q3JIs8taqcqwUMmEcpKczbSxIyaWxK0JcYJctVVZnYzOuYoC
+ptdfkguyGAYG0VDeUwFxihyOX1ZJ65hBl0WaIMdQRlsubJ57irefJEeETcyF
+YkGYCKfJoXCRr2UNtqn8McY58paIzRI9Mzrt/BlyTts7Xkz1zyDz5BhqLffs
+As3OnyRHLJXXANwC2/Aq/yy5QFvWSSVbekvNkwdvpCAL4RC9Rr6J6vExbFyl
+cnl+k+RU6n7lMjEI9padfTn9NJaNEq65Qg7XGJKUuhuukUMZFmM5kbWZL5Ij
+CsCRHJwy60VyI0V9lDqI58pV+fC46633LXJjKwhLU8j1uCGPFAz9++TgEtKC
+8mVcvymP9KHCZwE54fSUxgh/X354UKhljfT/1RX3K+QdjZH6i8TzeUQPYVVh
+4Dgz+jLpvfrKmlOe37blSvly5KzWbvnVy2nl+BuwuuYOlLXSAO2ifzX1F4b1
+D6U=
+     "], {{0, 0}, {93, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVslhgzAQ3E0nqSFt5JUS3ID7/8VGzLFgbB22wSCJ0ezsxfft/nf7ioif
+x/H7OCK3Uz5/z+vtavvfPm1Fu9/+MBv4hta20SReRvBRLAiOtmU7KDbRboRo
+Cxs0QBoxkOc02J544RzJvTm/A6SN+p5nXtSFknBBgliEq8G7F7xIYd/fxBcy
+IMuer3jJdwGTKTmEK2pEvOFVJZDvITIx08hd8aLv4ElFVVBxqQHFLnjt97vi
+aRCwmsGj6SteRSeuUexazCkjLnnBBqUNd4wT5kdeVSf6NWhjMubyM680VaVf
+IvQO0n3gRRrhFgcKAbNUVeYdL2NjdQFWqax08UqqAq09MGRcHy88WPXTwypT
+PbxggkqaFbTqzw5eKX2SCATTQBevZJobtEoSU6SPV5o1AFYpYdT08dKGZiwz
+Na1sdqJZbEkrfkd4iRRLQ5Cga9mPlv68wQ3zSqiNWGCA2PwYWnpAMGHHeWFr
+NpCs1IbRSh3kyBRSIjQTzpiBcDQVi1J3J8EyPbwixqWvaFZ1XL4pONRcnRaw
+2OXojjWw0kJWsCybFsKDnlQXnsuiOPJAeR2nZJ07D81pAs1eU9TDJ8Oe7xhZ
+w2wF7NDiZsFUB3fwebiaj/WdbhzLPGfvfVNYyp/aQNbB9pEVOFo604fOaAj9
+5+U/GC0NWg==
+     "], {{0, 0}, {76, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUssVgDAICy7icwY3cYQu4P4364NQaHvw6KHaPj8JIUaOcl9lA3DWvdct
+/YH3tDWHG6o4dJFLnE+qYy9g7HRhSy2mUNMml0LJF7Q3klZgwEyLO5J27wSW
+KFOyPuWdFGMBxYNLmeH8nD5UtLwlBJf8CRuPMJVDqCNuqQzYF9x/7poWCdJr
+Wqb4mpZ/TYtlaqXjtBDvW0cCTeIBC50GGg==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJRIGaEABiDAcSCCYKFYXyEIEwIRSVULQOyCCWiDGCn
+MKA4btSdo+4cku6EsxmwOBNdFGYKitsZoSKIDAv1O9hFUCbERKirIGy4kxAs
+RrijGZDdiZCDG4fwKMw0BgB0mATf
+     "], {{0, 0}, {21, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzlltF5gzAQg0/dpDN0jr50hCzQ/d+SwJ0kEwgG85bka5MaV/4t6w6+b/9/
+t6+I+Hn8/MbzhcDjNX3Jv+aPmEafv/KdY4APxjQ/vyA1kIMBqeQizVRelZrm
+5iKgYDLmNZB0Ho3gomtkoMY80zczzwy3gEtvkNVHgKtzAi3VqC+6QkZvaAtn
+oNCifOKmN8kIkQR2ApIuzWbRVTKdYNSu6XuZ1xgS8Y6stUERsJjVJTuLLTKe
+YJ2nBZG2y5BybYsMFbyy2Y6uxmifaa6TNV5xkkJs2VNtbJPVNlRByvaL6D5Z
+6xVPd9EAlLwdMpi18hAVwYV9e2QECd905oPFaUX7nsx4rEvUxtRk+shAZ8pw
+z4f210lW/5nzQtuuwlpGaO+l7kBtHaSdag8Z5BEoQTUN9JGBNW/a6lAslk4y
+2IZKWY2F4ekk05K2X1YtrI/2ylnG5Bffh8iExUYRRHQ/D8jBBUzvOBnK8ooE
+c2LXD8rBc8HiPUFWi/OughbuuJxamXXvc2SzGqvCOvk5MrAAPHNnpVbURHtO
+rtTg1TGgRqvsxjMiV4iDUq5md9Rr1EYso5w9dIyKZYT9hjemBja7i+Sq6C9R
+u45sMP4fqOYPkONi9kwzjGVod7uyDcQ=
+     "], {{0, 0}, {77, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJRIGaEASAThMBMRhRRBIWilgFZhBJRkNlwNoqDYNLI
+to+6c9Sdg9idcDYDFmeii8JMQXM7I1ZvMqA4E2IiVC1EHKYAqgzOZIBKMaBq
+YEAxBSrKgMWRSP5nAAB01gTg
+     "], {{0, 0}, {21, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkssRgCAMRBMbcazBTiyBBuz/JmHzQzh4dQYFhbywCZCj3FfZiOisfa+d
+8cigdvlKay8FFmszYYSJj93BlsCzw+Ty7pSw8lDNsTuusV7YA1DaSc/hpNoD
+NmVNe8B2AGPgjxxJ8yRzX4g2x0HBKQRtY7Er01FDHGr6WUjmfNGhne7BiiEl
+tKrFjmFVy6qW31ZLZ5lpw8EL5QFYKQY+
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJRIGaEABiDAcSCCYKFYXyEIEwIRSVULQOyCCWiDGCn
+MKA4btSdo+4cku6EsxmwOBNdFGYKitsZoSKIDAv1O9hFUCbERKirIGy4kxAs
+RgYke1CEod6DmotkNdRQIAEAdGQE3A==
+     "], {{0, 0}, {21, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzdltlhgzAQRHfSSWpIDWkgJbgB9/8XA5oDEy7pL77Alnf0drRa+Hw8fx4f
+VfX1en/X8gBQeB2mp46o0nAbKOjbfDr9C3Mwo/h/jliSWqvJSpFLAA/zayFA
+C7Js+6DcOwkMCGViQEgMgbMhWWVlNgbFjDnVhqSdNDsRsUywmVExvCFZeaHB
+IpLtaUo7JMRVoOeojdg+ydoLrVYpHdcODkgQltkjsITe7Nkj0cSVybV1Ztmy
+9PZJYn5YgwmApzgm4TqV6izX2XmckDBi7ZGjWDEnJKRVCZfsVTJ1TgJ7AIVK
+xT8ck0B7MTTdKVTcJyQIcCp6o6sITkg8ReSlXYXoX2cyUSP2Q89LJMbQxi0h
+pV8XZJCBoXOdBLSSS6v1jvGLMsj11ea6QcLJ1K2xhrku41YSXfIeyaKiKo6O
+eY8EKtismbsSf6iY7p4MVZDV3KEiK6Kh98gQqVMiVeKKNKbSY4lk4qLcK9JK
+Ly8cnTBqNoMy3IxDKuMkneX671XcekcUuveORXivMaDAjtsVTgLdzvUg6Lrs
+m7EeFSidAVNKyUwiv96NDLw=
+     "], {{0, 0}, {69, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIhBhBgZIBQQAAnQQwEGlUzqmZUDXlqIKoYIXIITVD1
+EAOQ9DJCTAQAOZMDtg==
+     "], {{0, 0}, {18, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytlu15wyAMhKVu0hm6SbtBFsj+/+rYug+cxMEGp+ljAz5eDknk+3b/vX1F
+xM/y/Vu+kfn4i+W/7v056nrconNrXXvxWZ/Xa1PJrBckXD01WIrsZSNfws0q
+F81E0T6DDXQFIPRnyk1lu+OaghNtvVpktRnsK0pOS1+xPM4ceiEA0Lj5REkz
+IVu8HKFdSSxfFr+mTCqVXeFaSesChDXJISUeIknCYbRarT71W0p6Rrs4LoHJ
+aNT2H1MSqGhsfzSBIt+mPqDULiMHYKHllVsU8ZmytUfBYmHpkY/hh5RpSW/c
+kDAan/gDZTLJGYfcXrTRVlM+omw85FCFvsXqviC8p8TClINWY/bSvZSth4yA
+XTlRpHZRphkvbxMhW+4w27ooCRVuQ0USk9ySv4fS2KzyYKkqXGcoa3XIniap
+WP9Ca+mixPs1OmQEUnMfbH2XKg5n0GbbzvdTprxLClFTDWcokxXEZlDtY6Kd
+okxbIvRVrBhmpyg1vTnA7E+r1udELSblIz8XKIXI4hPEdZ9Pi6bLmOpVysSG
+IHgYUdZ/STQ9glgELlMChGdatqBXRVUq7bwYodw0mVF2doxQJpPHY3RM8IWm
+yEdEoZmeWcOatNCOvXFR4E4RdE074WdqjltJUftxNEeyAt+P3hmayWI6VRQl
+ZKJkTtpwE7WDeJJiTpT0VJygCK2gjf97Kg6O
+     "], {{0, 0}, {83, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIhIGaEASCTAZlPQIiBEcyCCaLSYGVIGiAcBiQzEBQ5
+lo+6Z9Q9A+MeBAPhHJhKpLwE0wRzOMRsBgaY9QxwDQwQE6EugBkLAEj8BEo=
+
+     "], {{0, 0}, {18, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIRIGZkZAQSIBoFgYQYINKMEHJU3ai6UXVDRB1IFSMD
+VBasjwEpr8PMAgAy3QQf
+     "], {{0, 0}, {20, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztktERgzAMQ+Vu0usI3aQjsAD7/zUQy5ad8tk/uAtckofsSHlu+2d7AHiP
+8RrDxgM7P3Z+zgmQM3ALBw7Mn/ydZGN8kbTFc+z7nstMGhAAFLNSEKIy+zQC
+LiuFzBG2NHkFeHauRrnEqobx/EXlJ2PS0VxGnBMsxinIOhyzFDTZKh7QXzEp
+ImO8We5O+k76T0nTUGPOBPUqgJlH9j1pRMXwpDJRZI21JB11eGw0AhbHhja7
+qmRTotLbzZusAeSNFF8uzUXKXheKHpIIG7JSKZSMiVQk2u0lm2Fe+kILF6Fy
+jXvUZGSwuYWRLnsr2nZJaiWqSWN8AavRBgQ=
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytltt5wjAMhaVu0hm6SR86AAt0/7dC4nNRmpux4QMSxzn6fSwpfD5+vx8f
+EfH1/Pw8P5Gvz+u1HLVjO+fPa0CX2uW0t27m5OW2qJNx3Gasopi03FFEM3GJ
+yhqJrDMA22IpPhewx2rfmLVqI5wRN0GyxzGrrwv49RyEYKy2H7GuQubbOju5
+6moi9604u8PK4PQY62T80D3aQXd2j5XGQrlRu/kwAD7I7kNW5hmsC5dLz15l
+mjt7wIpzpCPSv9iuUY9+xkr/aB2nJmBVZkyIS1ZiBepXoRlDRWHRz1mTQgFD
+uEmsOvcq4hZrtUoZZOnqRYHpV6xpjcHooWJMHvuaNdkImJ/ccIzRYhO/YC1+
+craqwnJ42zROWbFCFSkp4p96B2sWP5kTm66jDL7LmrYP8jmRys0m1uJdVqKF
++9HSi43AGsRNViO0HoU1q8V1srZlorZKybFZhlZ0lxUS7YaQI6jdbQbefqk3
+MYi233KhizXlY1KLshroZE02GguiRsky7GVNWytCqK0x93pZBWFWsEOkNfhu
+XctVecr3e6wCZZsKQrvn7+imK5nwAGtif5BRTDO7/q5uelqxUYywAoePxKy4
+A7qlY3NkUHNflu13SFeNy7rwqKo/EZAZOewBycJgxzW3slN8hS6+lWVTdEPt
+YZpo0522V1tZf7hN0tXDcqIqU3em5qKLf2TTZXNObanVzuoDlEr/zxl/oBsO
+3Q==
+     "], {{0, 0}, {86, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytluthgzAMhKVu0hm6SbtBFsj+/0qw7mGSEMAmJQVjzp/Pkpzv2/339hUR
+P8v5t5yR+fiL5VvXfh91PC7xsLWuT/FZ79ejqWTWCxKuJ9VZinzKRr6Ei1Uu
+uoGivwcb6ApA6M+UTaVdcU7BgdpTTbLaDPYVJYelr5geRw69EADo3HyipJmQ
+LV720Kokpi+LX1MmlcqucK2kdQHCGmSXEjeRJGE3Wq1WH/otJT2jXeyXwGQ0
+avn3KQlUNLY+GkCRb0PvUGqVkQOw0PLKLYr4TNnbo2CxsPTIR/ddyrSkN25I
+GI0P/IEymeSMQy4v2mirKe9Rdh6yq0LfYnVbEN5TYmLKQasxW+mjlL2HjIBN
+OVGkHqJMM17eJkK23GG2HaIkVLgNFUlMckv+I5TGZpUHU1XhOkNZs0P2dEnF
++heayyFKvF+9Q0YgNbfBduxQxeEIWmxb+eOUKe+SQtRUwxnKZAWxEVT7mGin
+KNOmCH0VK4bZKUoNbw4w+9Oq9TlRi0n5yM8FSiGy+ARx3efToukypnqVMrEg
+CB5GlD2/JJoeQSwClykBwj0te9CroiqVtl+MUDZNZpTtHSOUyeTxGB0TfKEp
+8hFRaKZn1rAmLbRtb1wUuFMEXdN2+Jma41ZS1H4czZGkl7Mm3jS1f87Sq/8x
+I9QlZDv7kKRvjpETJBXdqvETsodsmvu4pv+UWc5/YEEOaQ==
+     "], {{0, 0}, {83, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJRIGYEAQYQhLEhFDITJMmIIgzjIwRhQigqoWoZkEUo
+ER1156g7h4074WwGLM5EF4WZguZ2RqzeZEBxJsREqFqIOEwBVBmcyQCVYkDS
+AHU2RCsDAHLsBOA=
+     "], {{0, 0}, {21, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwjAMk9mEYwQ2YYQuwP4/WmLJckI/vJu7tE2sSo6U+/Z+bTcAz30+
+9hnH2J84voGxk8/I14LJTaJD46hnLWkGGjAASBZNEMbyXWVh/CJiV1I58Q4Y
+TdRvkitY5wiev7H8xIR1NLahc4JiXILYBGtVhGGl5gH9NZMUGeSzPiuq7A21
+upK+kv4/aRoazJlAvwpg5sp+ThpSlCcdI5E11pa0dHhsTAiEjg1vdmWppoxl
+brdusgdQN9J8OTUXRXsupB4KIRtKqQkVJoxKic72ElthnvpCCxeido3nqImx
+yeYmTEnIn1gGdHLBO4msMRcWDliQ3/cHj8cF/g==
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztVNsRgzAMk7tIrzN0k47AAt3/r6Gx/Eh0vQ4AkAMiRxaKjsfxfh03AM8x
+7mOYOMbkF1AwztMvDSc6cSShOel58W3y+AS8ut3Yci4mUXKzlkRNF2ZvNK5S
+ARdtocjyOQq4BG5M4yd9FFVbQPKi0hQexi+mIv22YlzTZ2y8w2Qupu64u7Jh
+/+BXWq60LBW+gfrf4tp2OLOiw1LtFMqZjJIlIfxXii2UaeX8MNW69VfKabpk
+LnuayTeyZU6aqYheFN3JwyuP+iKNIeSWrMqRKTHuzAdTjQZA
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERwyAME12klxm6SUfIAt3/lwRbtjA8ev30kwQuB7JlI5Rt/7z3B4DX
+OZ/nbOWxjb4PriqO651Tv8I7aw9aBFiijTWcqOFIwuak1+DKeHwDPJF+WNKS
+SZTcjCXR0BesNgYuiXAxUsjg0wCmIGQXftJHkMoCkkuXbYWH8EVUpN5NhBv6
+ayw8w7dbRKXbLf92y694GoziBQA3DI0BPZg4L30jB0OYjSefCqNgYwSdJqzL
+K/HsmkyT8T8pV5Its/tJFteDhj4AiHwGPQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVt15gzAQO3WTztA5+tIRskD3f2sC1o8pBGzgSyDGkXU63ZnPx+/P46Oq
+vp6f73odKDyP5ab9Wi+1jL6+2tnGgBysZX67QcNAGywYpS3STdVTo3luWwQC
+bBzbM4jpOlqlRfeYQRjrzAxmnVkpgZY+YMZLQatrgiT1aC66w0zaSBbNAKkV
+dVLQh8xEojGIDBiamN2iu8ycwWLU0p3idYJUvWPWy2ALhM34KHJxxEwZZD7D
+iJLdglC1I2ag8ShzpI5jki8w95l1WmmSTRzec20cM2MYriB7+x/oObNeK2V3
+0wDsvBNmCGmtIWjBjXxnzESkMujmDxVnFO17ZsEnugQDc5O5xgxShoKnPxzf
+RWb8Z5tXDpuFtbXQ2eHuIGwnMrJ6hRmsEQQhNA9cYwbVfGC7Q6lYLjJDBERk
+NxaZ5yIzLxnxqmoRffQqXHjMeukcYmZaahQliqnnABwSIPDGmYGS0xLySTwf
+hEP6QsU7wYyLa1dBT24czq0suvccsxVNVRGdfI4ZVADpuVmoHTSznYMjGrI6
+bqBJqth47sCR4k2oRIsd9RYe25DBbyBlw5z02abNxsvJIEq7YX3qM26NKG6/
+uMzQCrj1LilNK1bJTeymsMAECMFdZJKbg+QOM+2zCnuwpc2qBsin3o5v+L/C
+ai6FeThuAH7R+gMhwQ1p
+     "], {{0, 0}, {77, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkN0VgCAIhaE5emmGNmkEF2j/twQuSkYtkHo4crh8/LiV8ygLEe3V1mqc
+HYnLTRROw5Ob3OR+ywVcAFKB1cy1HIZnpMIAkQqUUDe83s5iHDBPaC1Hkfss
+b2Lf9lPECChIvssg+o63qgj7/zxa4lNsxQtldAZr
+     "], {{0, 0}, {28, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1VEESAjEIC37E8Q3+xCfsB/z/zXVoIBTUk+vsjG0aCJDu7Xg+jguA+/le
+z9fkOVfvDd97/6kwD/AYbIN97SwMMCNjhd9hcwA9sZ7w1AObWZGplCjCp/AI
+XTYod9Iid/pifdRN3CN9LWxKXfJPytn0MbLMdGODmgmM8zbmbz2FzEL6V4Iv
+PAoDfxCaFuZwGM1DaG4nODiZhS5EzrLQLbKv2DmY3BPZoZW2N7ZkKeVliW5a
+LJmbWDoA6taeOwvpaG6Nyi35Kb9ciq1GeoAWLv1O5WBM064PykWfOC8Ey1yK
+YUy4orXSbXfxL7zYQbqlB6SorLTgOtAuWT8t1p7/4Fo3J9caAxG74WLduH6F
+zpuJbOALdPkGFA==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERgzAMk7tJryN0k47AAt3/VyCRZBt49kfuApdESLYUnsv3szwAvNf5
+WmesA7G/Yn/tC8Ar8AgbHBgfzaeRDTM3iQ6N7XyeTZqBBhIAJIsiiMQy6gwC
+Jm0SiglhSQOfAeydu5IzrHIE+y8sp5hIFY1tqE9QjEsQO8FamTDSUfGA/iaT
+FBnjtdyd9J30n5KmocGcCcxXAcxc2fekIUV5UjESOcZakpYO20ZDINQ2crFH
+FheVWHq5vsk5AN/I5MuluTDttZBqMEI2WKkIGROJSol2e4l1mJe+0MIDUbnG
+PWpi0mRxDWMJ+RN9zL/Rf+DJYGO67j+qnwX8
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERgCAMS13EcwY3cQQWcP+fSBtogfPtA6XnadK05nKk+0obgDPXnkuG
+C6XyPQONUKAZQRv1zOGGKo4mKCb6Hr6pjn2AscODI7WZQk2bXAqFvaCzEbQc
+w8wwDb+CJ7AFZkzQp3wleVtAcbelzPBqfGcqmt/ijAv7CQePMJWdqSP+lYaV
+lpWW7v9WWuqAX6fFpYFudI7a8OrpAz/jBhg=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJhIGaEACADhMBMRiQxBIWkjgHBJ08MZCJMFtkJEBrZ
+xlF3jbprKLkLIoIQhLoG4S4GqBoGmIMYoA6CyDEwoolBeVDnQDXCzGVkQDgT
+AEsDBHQ=
+     "], {{0, 0}, {19, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVNFVw0AMk1iExwxswghdoPv/cfROtnw20DZpEp1t6Szn4/H8erwB+FzH
++zoYn3X981sX638jDh+cZwmJEm346+aFk32BloEXvO9VuMPKjJP+hjepzb5h
+sWKXHqJVFVnKA434lB7BiwPzHXSCe/iJ+pW38J3pT2FT6VJ/Yq5NHzNbT69o
+iLOAsd/hlbansF7Y/pXkBw9h0BcW5sJACY0MKLKPh3E81l1K43uqoMAxJ1AK
+EY5nRju4yvbUlsQoyVUhl8laJ3XQBiCFtdoppKP5aGTOjE/6ZSgujfKALFz2
+O5lDOem7PjA3fua8IGx9KYahxRrXGs7bxf/hxQ62W77ARKXSgntDB8o5PtWq
+kSDGZ3pFRI/GGUu/kyV5vMelvAlT0nzwDWLwBhQ=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVMERwzAIE12k1xm6SUfIAt3/1+SwQBjaJpe7xLJAgJzH8X4dNwDP87mf
+j8l1fl0Lvna9VJgbuA22wf7tLAwwI2OF32FzAD2x7vDUA5tZkamUKMKn8Ahd
+Nih30iJ3+mJ91U3cI/0sbEpd8k/K2fQxssx0Y4OaCYzzNuZvPYXMQvpXgi88
+CgNvCE0LcziM5iE0txMcnMxCFyJnWegW2VfsHEyuiezQStsbW7KU8rBENy0+
+mZtYOgDq1p47C+loLo3KLfkpvxyKrUZ6gBYu/U7lYEzTrg/KRZ84LwTLXIph
+TLiitdJtd/E/vNhBuqUbpKistOA60C5Zfy3Wrn94Jh4OWf0nC7zVjXjVDQi3
+Z5mSdDWLuyo95htHCR9yqAYP
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwyAMk7pJryN0k46QBbr/r+SwZJtcH/30RXIhYMsWSNyP9+u4AXiO
+7zE+6hlTnOMZQyyY6QDFGwUTnrDeg2BPf8dEWKwqpKsRYxRMbIC9yoYsKfOq
+ZvL3ED2pdKqGFiqvZZRk7slCtGJMUAHWxTuQC0yLoBM7UQ7RT6kWlrhZsJ3e
+Tm+n/+a0BKV8FrBeBchze786DTNak44xydXWHzBVE9TfClAY2lXvomwR94Kx
+iKnEcjnTJCbdCvEuC2jB5MXyRf8AePUF8w==
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJydVttxwzAMA7pJZ+gCnaEjZIHu/9eeIxBQHNuik3PqUiIAPkT78/H78/gA
+8PV/ff9f4PYFt7983g0jCWoJY1mbdUPv3z7DNoAxrN4/zGXPC2C4gbJtVsRy
+8o9dw6u2W5xiGiB7fukrHyNjh/OWf45b258uyg2eH77nZ2TG+RheFSRL5Y6/
+6JDRjCJCa3AadvzBSrtLMXXLQ35VAtU6WUQLP+bX5jkfdlAnHPNLXjUkKoul
+Hqf8dLwsrwKw4ZCfdZQCTt3jZJzwM5QKzEe0KnzMb+AIpE4GyUt+KZ1SXnMB
+1/wmryOHEpK5OUdg+gTEEj+VMdWtihnr1wjM4tUBWeMXRQ1RzhKWEKbZUZZl
+b6pdqISuuiWCD+E0nxoAZJYfWEvfjBAnONOxDKHZ5J8+QIbRDsGc0xw6d/FM
+DoOH9RVAPPzKtyUcyAOwE7aigAGBmmOr/vq6e3OILgLE89uP5FsA7ybJWgzI
++FtHMZ7i27/tKo6IPQxwA8DqoyluAfQqWBD5+tPT/8LeH4Ov8rsYHnzVOY3+
+Kb4Mv90/2fj35q9f5Nbm16RAivUY6knwe4BCB/4A/ksLkQ==
+     "], {{0, 0}, {64, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIRIGYEAzgNYkHZYFEYFy4GE0FWB1XJgCRAtiAD2A0M
+KK4add+o+0bdh8irDAghqEORHc6AUARzIdgxEAVwbwAxAFtABKg=
+     "], {{0, 0}, {20, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVtl1wzAMI7pJZ+gc/ekIWSD7/zWxSQBK7FiH/XLJCgSCIKXv2/3v9hUR
+P4/XbzwvBB7X9iV/7R+xjT7f8s4xwAdjm59fkBjIwYBQcpFmKp8KTXNzERAw
+OeYzkOk+GsFFj5iBGPtMD2afGS4Blz5hVh8Brs4JlFSjvugBM2pDWTgDRS1K
+JwZ9yowkkoFlQNCF2Sx6yEwZjIqaupd4jSARn5i1MsgCZrN6ZLk4Y8YMVj7N
+iJRdgpRqZ8xQxiuZLXU1RvkM85hZoxUnycTmPdXGObMKQxUkb7+BXjNrtWJ2
+XxqAnHfBDCatNERZ8EW+K2YkEh50+oPFaUX7mZnxsS5RganJ9DEDlSnB3R+K
+r5NZ/TPnhcKuwnq10NWl7kBsJdKy2sMM0giEIJoG+piBNW/Y6lAslk5msIAK
+WY2F5ulkpiUtXlYtrI/2wpnHpBfvIWaixUYRpOh6DsDBAQxvnBlK8rIEfWLP
+B+HgvmDxTjCrxbmroCU3Dtc0Ro7MQaE8isrIFIbDqXU0nXgWDXCbRUzo38JZ
+E3IJ5/CqC+ttEc2jXYtUbJqOO/B/7Vg2oK1sCM0OGgSajy/Ci/ON8jA3GF6w
+fU+B1a1i8l1lBs2OVDoYraMdtclxONsVdPxaIafesWCQVEnNLVbRFKSZbxKu
+OaNhymcNOSV1A/sHII4Nbw==
+     "], {{0, 0}, {77, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkN0VgCAIhS/N0UsztEkjuED7v6X8iZZNAEeOHLkfIEe5r7IBOKvv1elt
+4LOyxuBTkFxyySU3cgFvADhB7BKKhjQSkmEFVaootG64rZ28UcBM4C3nJPVZ
+Vsn+258keV8MQt9Fb2RDTmvUulzmAXlwBnQ=
+     "], {{0, 0}, {28, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylltuVwjAMRDXbydZAF3xuCTRA/39LYmtmTALxAw6POPHoaiwr+X08/x4/
+EXF7fe6vTyCA7Wf/3f9tB9tR+S4j+2i5rPwt73rMKbpsP0+JXaYqlRMZV1JR
+rgcYPsC4PFunw0Y94jtTmcLLMmyli3yJBzw6MDF8jQ2FkG4KNhGPTODkyGRp
+dBrGuBnvA1Obek1MqFoCGNg5E9crVw+0LuizfEinTplsJbN+uFA5RstM8ISp
+8YdXeNmxxlhTn5iSnrMVLQ6KF0ytP1zLYHZgjeGKCealfEOW2ptlX5mIEJ5r
+LQVuPNuQX5iMxPZ+5qPW0cEEupEOeykorR6mnNb6pqlqRNdMCa+WZQ2rXcNL
+JsgXcD6lNNDBBG5mE1bT4XboYYLlkbJqF6yTHiYFszS5I2FNsUvLakke8d3P
+JCBu/yCce9irBZ9tYoNMSI9z9VkSdn5EC14C3JijTBmWtwW0WINaTZfjyIQO
+shCRSzAu4FpqCE1PnZICvJwiRg1vtayvuG0TYtlP9bUi5UkuJCiOpnf2Ttb9
+xgZ0I+qXsocCqkymFeEb7wA7RgUTC3bhcaV8a6/4bWFYyp569PiyKHXW8wa1
+rLPrCWkaSx1hthaqM2pWsSSl3KzIFqVm64Bi9ZlsHodULKklKFVCNoKIf/pp
+DQc=
+     "], {{0, 0}, {74, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVNGxAkEIAxtxrOF1Ygk2YP9/3rokBBbneaN3biAb2HCP1/v5upnZ3/W9
+X193v35sPa1r/V2377rcvtcOMNtpGyIuWPDxs54NMeCSiL2LBYdK0ACk7Eiv
+/KBnkMCBV5U+4SinwtzApJKK76DgPmAwS1NPPLpyYIww1xZ1gdGVQZoIn+il
+nYNyOCPbPwn/qVvOy+cYFjZtXfaflKPpI7OcacuG4wmM593d3pitlGc12bA7
+C7M2RSAgewwgjBaj1McowMkscCGmxGvXmK1jCsFcE9nUCts7WsJRgqtYrqfq
+9m7hirr13DsLOdFcGpV75qf8MhStRngAFi79nt6K2vVBuegT51GwnEsxjEuu
+aK3p3l38H67LWrUElAO2lJYE9Pku9QMmaAYA
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztksERhDAIRWEbcazBTrYEG7D/m274fCLh4KzXZMzE5BHIB9b9+O4fEdmu
+uVxTOX6/0kbbYAncjsQQjDoMrjAxV1pxxEqYAWAmmrDtPfCI3TOePWCFrDHw
+Q26P1uLlvGhfjYMal3DowkKV+8FBJLVbPKQqC8IspTpA1r2aLCd9dRbRA/R7
+T+rsltkts1tSAv7ullc8uknr61XKIEg6bVm3MBfeEydsCgZE
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytlttZwzAMhSU2YQY24YEBugD7v9EmPheF3Fy7/VISxzn6fSwpfD5+vx8f
+EfH1PH6eR+TreH2Ws3Zu1/zzGtCtdjvtq4c5eXks6mSctxmrKCYtTxTRTNyi
+skYi6wzAtliKzwXssdovZq3aCGfETZDscczq6wJ+vQYhGKvtR6yrkPm2zk6u
+uprIfSvO7rAyOD3GOhk/9Ix20J3dY6WxUG7Ubj4MgA+y+5CVeQbrwuXSs1eZ
+5s4esOIa6Yj0L7Zr1KOfsdI/WsepCViVGRPikpVYgfpVaMZQUVj0c9akUMAQ
+bhKrzr2KuMVarVIGWbp6UWD6FWtaYzB6qBiTx75mTTYC5ic3HGO02MQvWIuf
+nK2qsBzeNo1TVqxQRUqK+KfewZrFT+bEpusog++ypu2DfE6kcrOJtXiXlWjh
+frT0YiOwBnGT1QitR2HNanGdrG2ZqK1ScmyWoRXdZYVEeyDkCGp3m4G3P+pN
+DKLtt1zoYk35mNSirAY6WZONxoKoUbIMe1nT1ooQamvMvV5WQZgV7BBpDb5b
+13JVnvL7HqtA2aaC0O75O7rpSiY8wJrYH2QU08zuv6ubnlZsFCOswOErMSvu
+gG7p2BwZ1NyXZfsd0lXjsi48qupvBGRGDntAsjDYcc2t7BRfoYtfZdkU3VB7
+mCbadKft1VbWX26TdPWynKjK1J2puejiP7LpsjmnttRqZ/UB6vrLK+IPoBMO
+3Q==
+     "], {{0, 0}, {86, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJx9VNsRwjAMk1mEYwY2YYQuwP5/tCSy5QfQa+5SRbZsKzyO9+u4AXie7/18
+LX7n5tqf67Vc+wQH/t18cbN+gMdgBV77xcIAMzJ2+AovUddTE+uJlXpgMysi
+lRJF+BQerssG5Yu0yZ2+WT91E1+R/hY2pU75J+Vs+hhZZlrYoGYC47zdK62n
+kFlI/1LwjXth4AOhaWEwFuoRkMreHsb2WHepid6dBQlm9h07BhPfRLZrpe2N
+LfGrRFd5uRaquXCCcgGisJY7CulofBqVW/BDfroUpUaGVZ+lw5xSMQtaFm+w
+DmUYqIVIL5H27/8tYiSSk1NFvY3XIPV4uqZAoJXsKcR1DZZxFK8ll6lytpIm
+pgBTXGyebwnb5iFqU50PV1+6JleeE/wAXQIF/g==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUkEOgzAMc/jItDfsJzyBD/D/24DUjdNm0qRddgDRIurESVw/t33dFgCv
+Yz2OZfm5/v343Ee4HThuM2wOwGbm7/CLldVn7Ez0t4YDdRxByMFiKvK0A3Ai
+/bCkJ5MouBlLotQXvDYSl0Q0MULIzqcBTEGXXfhJ34NUFpBcurQK78IPoiL0
+NhEu9Xe75XZLKvC3bvkJDzdZna639zEZGVcTWaWZXr/bsQpA3Mk4Dt06JzNR
+m67tEK55A59kBk0=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERwzAIE92k1xG6SUfIAtn/1yRGsqDtr0875xwBgQxy7tv+2m4Ansd+
+HDvmQj6XjXOfKwgZZvouZAn/xqR7hC6b3sxGvjNhYBOsr1kwLCRe5gz+6goZ
+Tsds8IPpnhbZClQzjKhjROAAzUUnSDjrEQAWi0IIq5K91xEXCaoCnFXUtZRe
+Si+l/6E0BxrUmUC/CqDm0r4rDTFqJo6xiyMOnWwqLY9x+IHDexFlq6I4O7SO
+Zudl9tGKOBkvXBvejGr0vYJjNEt84HgYyfmllP9jpHwDerAF/A==
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylltt1wzAMQ4lu0hk6RP87Qhbo/n/NsQkQsp1YVJ2XI5lXIEVR+nz8/jw+
+IuLr+fl+fgLPKxD5Zgu2v+zL1u12/91N9oeSUc9s3fpN+607OxJEDofMAat5
+p6gzoaQNwx3UQJYhbA6bUHpeLl6qGd1Nf0okhINJulADPhnkWkgZ2HKf0Tmr
+ydsMLMyabnI6rftCzRATdQdlVZiS9VINRcu0xokT7p2aMSaauZBTUC7hrRpY
+8CpWYEodwvRajQYPdzFnnanMZHynxjSgKHQDvMWdGigCDKnPenlzq4Y2Y6zK
+jhl0q4aaldahQMulmFGDigVkLE413KmBVqlRq44o4W/VwOSTWUVAKXGrpoYx
+77TaYBXuHmQ5U3HRa1JNSdGiDsnyuE2B4KZG6qgBg8qJ1uxb/zQIPttadC01
+HFB1HaOgDmgoWWrpQsBsA2PetHZQLfOhOvY5gKdNRCvCI8hKhYeqS2JlrK9l
+jvu26lcpGKrglGXtFtZQ28gkxzZwIVa8ifBFdZLZ0AMjhYppE8NXLQWv6z2O
+HUzqkPEfzlUB64Bsy1tc60fHan9ug4adFCtyKMA3BsNOY+rgNLa0Oceqjmb6
+EWSluA5OC1fwaGmleekSKJQCCxD3bL/7A2w0DJ0=
+     "], {{0, 0}, {71, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERwjAMk9mEYwQ2YYQu0P1/pImlyAF+PJNeeq4tW7GV3o/zddwAPNt+
+tB1zIZ9u49rXCkKGmb6OLOHfmHSPULfpzWzkOxMGNsH6mgXDQuJlzuCvrpDh
+dMwGP5juaZGtQDXDiFaMCByguegECWc9AsBiUQhhVbL3OuIiQVWAs4q6ttJb
+6a30P5TmQIM6E+hXAdRc2q9KQ4yaiWPs4ohDJ5tKy2McfuDwXkS5VFGcHVpH
+s/My+1iKOBkv3DK8GdXo1wqO0SzxgbP/Kcz6juGM23oDewsF/g==
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIRIGaEAiALhMBMRmRBBIWskgFJgGxBkLEweRSXMEJl
+kewddd+o+0aa+xihroMKQR2K7HAGhCKYCxlgCiA+gOhjADuRgRFqHJQCAFmC
+BKI=
+     "], {{0, 0}, {20, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJydVtF1wkAMk7pJZ+gCnaEjsED3/2tfOEs6QpJz4AWC7yzJPtvh8/H78/gA
+8PV/ff9f4PYGt28+74aRBGsJY7k21w29f3sN2wDGsHr/MMueF8BwA8u2WRHL
+yT92DS9tt7iKaYDs+UuffIyMHc5b/jnu2v50qdzg+eJ7fkZmnI/hpSAplTt+
+0SGjGYeIWoPTsOMPVtq9FLNuechfJwGVTh6ihR/z1+Y5H3aoSjjmL3kqSCiL
+Uo9TfjpeyksANhzyU60UcFU9TsYJP0NpgblFdcLH/AaOQNQZJC/5S+mUcs0F
+XPObXC0HCcncnCMwfQJiiZ+VsTo3HWasXyMwD08NssZfFBqinCUsIUyzQ5Zl
+b1a5sBK66pYIbsJpPjUAyDx+YC19M0J0cKZjGaJmkz/6ABlGOwRzTnPo3MUz
+OQwe1lcA8fCTb0s4kA2wE7aigAEBzbFV/3q7enOILgLE89uP5FsA7ybJWgzI
++FutGE/x7Wf7FEfEHga4AWD1URS3AHonKIj8+9PT/8LeH4Ov8rsYHnyqnEb9
+iC/Db9dPFv69+es/cmvza1JQiusx1JOgeN0B+AP+jQuV
+     "], {{0, 0}, {64, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERwzAIE12k1xm6SUfIAt3/VztGRmA/er3rL0l8OUdYgFAex/t13AA8
+27q3ZfXCudq9wb7Be8AJ7cn7wfHs4UAHjiA0J+0Pd4PHP8Cj04spx2ESBTdj
+SZTqwsiNxCURLoZzaAkawCNwYRI/6WeQygKSS5W2w6fwRVSE3ibCpfqMiVeY
+zCLqil9umekut7Cmv7jlVzwMRvEmADcMjQFtTJwXvpHGMM3GzpfEnCQ9VSYm
+ntjoFSUgeEpjnCjiL0hNR0PlqLrVN9lMnDNoWnwAaYMGMA==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERwyAMk7tILzN0k46QBbr/LwlGtgA/ev30kwQuB7JlkJVt/7z3B4DX
+OZ/ntOnxjbYPrmYc17umfoU31hZUBHiijxpO1HEkoXXSa3DlPH0DvJF+WNKT
+SZTcjCXRcC54bQxcEtHFSCGDTwOYgpBd+EkfQSoLSC6ntAoP4SdRkXqbCDec
+z1h4hW+3iEq3W/7tll/xNBjFCwDdMDQG9GLivPSNXAxhNt58KcxO0lNTx8QT
+hV6m7Sh/Am1p0ZLoVfIMtVmZ+AGH6gY6
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytVm1WhEAMa7yJZ/AgvucR9gLe/5+77uRjWBAowlOxDJk0TQvvt++v21tV
+fdx/Puv3wP18/Hkci//rEcEzAMX8GKaHub4GEtHA1U80PThiQAaLGGQ08Ee4
+YJyJ8Fiqu+vsxkYQ5OAZd5UrUx6Xq+wglCFPJQ4kVZHZ2GCTHS8KYqAlktbR
+3HaVnTSSPFoD0ivq5TJvsxORwQKTFJRLFoltN9i5msXcVQGKOMlS9Te7WQ4b
+ImyXrubyTXaqJmtrt5UKYFmo3jY70PEUPMrImGQM1C12k2ZaZluHF5cNvs6O
+ybivtG+9wB5hN2umSi9Gg524yw4hsrUELbmQcZ+dyFSmPtyipo1m3mMXnGKC
+MD0PoKPsIIUofbrFWR5mx2fHynLybLelofYPTw6hu6hR4WPsYK0gEOE5cJQd
+NA0C3fNLDXSYHSItYnvoyEqH2XnbyFrdjJi0xwHDc9ZN50l2pqYhUqKZup4C
+REIEYocdKD4NItfE/dOASJeoqVvsSEDvH8wEO4DT6FSkCwa6FqxNEyUBPVam
+ad3HA9J2Va1KzIAxolLKLiIntX9dxsucr+ZrRtNUPoXgt1sE/No7iRcfKIK6
+kmVVNu0L7QY/BGJpyDfheLrF8v3Tw4sPMn9U/Qfe2iDtAMbbwx9vTTyoHPHN
+0oWbZ8ql6Sm4qG/1muwFMCbp/foH8JwNtg==
+     "], {{0, 0}, {79, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVNEVwkAICy7icwY3cYQu4P5/to8LhAO1vr7aywUC5Po43q/jBuB53vfz
+NrnOt2vB164/FeYGboNtsL87CwPMyFjhd9gcQE+sOzz1wGZWZColivApPEKX
+DcqdtMidvlhfdRP3SD8Lm1KX/JNyNn2MLDPd2KBmAuO8jflbTyGzkP6V4AuP
+wsAfhKaFORxG8xCa2wkOTmahC5GzLHSL7Ct2DibXRHZope2NLVlKeViimxav
+zE0sHQB1a8+dhXQ0l0bllvyUXw7FViM9QAuXfqdyMKZp1wflok+cF4JlLsUw
+JlzRWum2u/gfXuwg3dINUlRWWnAdaJesnxZr1z88Ew+HrH6TBdZPipzSWjdM
++tiqYrPiWfvKkxFzxwd1QAYY
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkt0NgzAMhH1dpGKGbtIRWID93+riv0tiob4XlAjC51wc+7b9eO8PEXnp
+fOpEPvr9HfqhbyOMncNDABl2Ez8XJwfWgAgTTNjWcfCKQ1lcfsaWlGW/sF+4
+JY0m89xoo8dFjUsJxsXqVqHjP6qo9IojbXMIlTb1wa81djPbmVoU4cWoQqYe
+B6QRsuykf7vldssQ8Mdu4Qa2Ed5QrLi80puFy9lkHs4gLzWJX7kYmZlMaPKc
+fABzwQZG
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyllu1ZwzAMhHVswgwMwX9G6ALs/488ie7DbWlil1Ja7Oj86iwr+bz9/tw+
+qupre39v78L2U6j+5Qj2fznXo/vX4/MIOS5qDV+zT+uz4/fpnmgh6nDJXtDD
+h4omW5Rqw3J3NFBkSbaXbVFm7hSf0ozpdj6GhOQQSE9owCuLumEpjXX6dOeR
+pr+2sYhopsntjOknNIMnmi5i2abW+peG0Ar1OvUg94pm9EQ7V0oKqiW8pEGY
+Z6/Akrqz6X8aLV6ZYu86S5nF+IomGGAVpgF+xRkN5AAtzV13Nqc0jBm9chwr
+6JSGzCrrktFKqa7QwF5AwdLxwBkNdEpD1X1EBX9Kg8CnppuASuKUxstEdjpt
+iA53LhQ1Y1/0ukhjFB3qElb6dkkIGRpKMzSgqdxo7X7MXxZC7rYO3RQNF1Rf
+xwg0IzS0LI3MioDVBno+GZ1CPuZDd5zXAbJsqqYcHoWiVaRVs0rsjP6zrJO5
+reZlgqELXor03SIGfBu5qBM3cEmsZFOVh+oBc4IHoVRqppMyfPkoZF+f04kH
+Ez9kvKPzrIHNCEV39kPMGpDP+dK2txtuPrWu45SimN7RWdpyKfUD0yJI8sRt
++B0csJiX++hB9HhMl2BUOpviH3OyDKk=
+     "], {{0, 0}, {71, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwzAIgy7S6wzdpCNkge7/qxMsELGu118/ycXxxcIChB7b+7XdzOw5
+1n0s78/xH8f79wzPg8B9hT0A85X5N/xgRfYV2y/Gq+FCA7ciRGPVFXjmgaEj
+3pAyLoOouBELolaXRW5rXBQxxSghk48DcMVSduIHfQaxLAZyqtIVnsKfRLXS
+20m4Vt/llsstLcHf3MIDlBFzoL7C5RVtFpZTVA5nkJdE4d9c7FmZrhyNqdQt
+v6ocoktmmqkYKA1sbB+f2wZX
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwyAMk7tIrzN0k46QBbL/rwlGtgBfr330lyRcDmSEkPXY9td2A/A8
+xv0YNj2+0NbB2YzjfNetX+GNtRUVBb7RvxpO1HEkoXXS8+PMefoCeCP98Ujf
+TKLkZi2JBl3wszFwSUU3I40MPi3gFoTtwk/6KFJbQHJRaRUexk+mIv02MW7Q
+Zzx4ha+0iEtXWv6dFm1gWdEbaiucWanDonYWypkMyVIh/FOKLZTVynmxShqA
+tO1XfAhFqczClrXfvZ9d1xuZegZZ
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJBIGYEQyANAqgUWIIRLgRjwyQhXLgKqBqYXpJFRt0x
+6o6h4A5GRhgJ5jNALIK7joERoQbKBgBNcQQR
+     "], {{0, 0}, {17, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJBIGYEAyDNgKBgInBpkkXAECqDSoElGBkQqiHsUXeM
+umMA3AHnM4L5DDD7YQ5igLoL4mioDoTjIdrg7oRKQPXBbQIATxYEDw==
+     "], {{0, 0}, {17, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsENwzAIPLpIlRm6SUfIAtn/V6twHI55ROqvSmRsxQcHnNn2470/ALyG
+PYfZ9I3/XN/DTrg7IfYzHBeO2wqbA7Al8UXcQPbGwQN99bBQxyFCNqauyBMX
+YEf1YEoPJpG46UuiqS5pXLiKR4ghIZOvOjAEKXvhJ306VVn4zLVK6/AU/p6W
+e1r+dlp+wztJmui5MfUivSdYgsabdJojrMkvzRvBctKSe4021Ao/kx4GRw==
+
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztj8sRgDAIRBer8GoNdmIJNmD/Nxk+y453b2GSIYTHAsf9XPcG4PS7+7Uw
+9wirgBYJd3IWv/jF/8V7nEBC8dXZKkTrluC8sw25TMkgxSNVQZyDRfuSnIG5
+QKvJAja139Ws5KUAQ3J8JqwVVMV0G+HBBln6Ao9qBOs=
+     "], {{0, 0}, {24, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJBIGZkZGQAQRCCYBiPEcodVTGqYlQFHhWMMHEwH6aJ
+EcZiBAAqnANt
+     "], {{0, 0}, {17, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERgzAMk7tIrzN0k47AAuz/a4qt2CY67voHkuNAjqLI4rXtn+0B4D3m
+c0xbLhxz3AqMggNSBb7Qh4YTdRxJaEH6G3xznviAqG4PbumLSZTcrCVR0wXf
+G42rVIQZwVEl1AIuQRjT+Ek/i6otIHlRaQqfxp9MRfptxbimz7jxCpO5mLri
+V2m403Kn5XS+qzSUBsqKaKitcGZFh6XaKZQzGSVLQvhVim0q08p5MCUNQNr2
+L95CIdZON6Ww2Y713PnzqKywS8zimF9r9gZN
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJydluthgzAMhHXdpDN0hi7QEbJA9//XPHwPQwkW0AaCo08nWZb5vP3+3D6q
+6uv+/12vA0DhfnmcuqJKw2OgoG/P28ev8DSmFX/PESPJmpyVLF8GvDz/Xgow
+jIwdH8RtlcACoUgsEIIh5OyUTFFZG43CY7raKRk3I50IWwY4klExvFMy5UKD
+RUlOzyAdKKFcGdpH7WDHSuZcaLZK4bh28EYJImXOEVhCm/QcKZHjyuDGPLNs
+WXrHSsI/zGAA4C3eK+E8leos59lxnCihxZwjW7FiTpRQrUq4lF4FU+dK4BxA
+pqL4wXsl0FoMpjuFivtECUI4iV7oKoITJXYRcWlVIfrXGSZqxPnQuaTEMrRw
+S5IyXwsYpGFw1pWAqeTUar5jfBGDnF8troYSOlO3xixmHTM1JD3pIcDaAjPd
+sk2Ml/LU+boUIMukqpHXGRPNIFPU47Dr+eMiJaO6FpG9Tx1uwc47QDzw1rBE
+iY1YgH4cVbl4dhKXtSA4pTbZgvB00We37lDi1cIvCtcp/7WndUxsYJfW8zYk
+77RNzLQroi+FzrPZB3QR4tee+UmTsu3VaBUbMdFi/drTPvweGKV/AeNV3C98
+MSqn+eLhljK+/wHD6AxX
+     "], {{0, 0}, {69, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJxIGZkYAQCBhgLTEKE0MTBCEkQzGVA0TFqyKgho4aM
+cEMQGAKgiqCqGWEsJA4jVC8DnAkA/f4EiQ==
+     "], {{0, 0}, {23, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFU9sRwjAMk1mEYwY2YYQuwP5/NI1ly4l7AOmVyA/Zll/H93M8ALzP8zyP
+zc94Oc94jt/1RcLj9rqab/NPvIcBXaZlgRHhw0hgxzOq5i6451rgSACppOLT
+yGNvMCM77Q1mA/bEagHTFq0EvSsNNSHehZd2NsynE6T9HfFb3jIv622isC51
+yd8xZ9PbyDLTxRvkTKCdd8qujYxSHqozmD0KQyi/6j23xFhoREAp2zUM19iu
+UhO+nqUuUewJGIKE405oB1fK3tiSWCWqKsq1ZM0HJygLkIVtubOQHc2rlrml
+f9IvS7HUSA1QwqXfyRyMadr1hrnwE+UFYZlLEYyJr3Ct7raq+B9e5CDdUgMp
+KistuA60oZzrU6UqPbzb79ghTuMHWWoGEg==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJBIGaEAiCLAYmLVwQMoTKoFFiCkQGhGsJmQOhHUKTa
+OuqOUXfQwB0I98CdAVOHyBwwHTAW2FgGBqi9ECMYoIaDlYExVBAAT64EEw==
+
+     "], {{0, 0}, {17, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJydVtthgzAM1HWTztAZukBHyALd/695+B6GEiwgCQSj0+kky/68/f7cPqrq
+6/79rtcBoHC/PE5dUaXhMVDQv+ft4y08jWnF9zliSGJNzkqWLwNenp8XAwwj
+w44fwm2ZwAShSEwQAkPQ2TGZojI3GoXHdLVjMm6GnAhbBjjEqBjeMZm00GCR
+kuUZSAdMSFeG9lE7sGMmsxbKVikc1w7eMEFIZo3AEtrIc8REjiuDG3lm2bL0
+jpmEfxiDAYC3eM+EeSrVWebZcZwwocWska1YMSdMyFYlXJJXwdQ5E1gDyFQo
+fvCeCTQXA9OdQsV9wgRBnIie6CqCEyZ2EXFpViH61xlM1Ij10LnExDQ0cUuU
+Uq8FGKRh4KwzAaVkapXvGF+EQeZXk6vBhM7UrTGTWYeZGpKe9CDA2gKVbtkm
+jKfy1Pm6KECWSVVD1xkmmkFK1MNh1/PPRZSM6lpE9j51uAU7rwDxwEvDEkos
+xALox1GVk2dHcZkLAqfUJlsgPF302a07KLG18EbhOsp/7WkdJhawS/N5G5JX
+2ibMtCqiT4XOs9kH6CKItz3zkybKtlejVWyEiRbrbU/78D4wSv8CjGdxv/CF
+UZnmi0dsIF/J/gPDywxR
+     "], {{0, 0}, {69, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVMkRwkAMk2mEoQY6oYQ0QP8/Qtay5bUZwiSQlQ/JB4/j/TpuAJ7nfT9v
+i+v7E9d1vfhXwtcRFuRGAjtubrJC2YR7rg2OBG4G2+D1zsQdZmSn3WBzWT2x
+WqzUgzezIlOpoxCfwks5B+bLCVL+ifhP3tIvm21C2JS65J+Ys+hjZOnp5g1y
+JjD2O8dujIwiD9UZzB7CwA/ETYXBKDQioMj2GYbPWJ9SE76epS5R7AkYgoTj
+TGgHV469sSSxSpyqkGvJmg92UBYghbXcKaSjeTQyt/RP+mUpNo2cAY5wqXcy
+B2OaVn1gLvxk8oKw9KUMjImvcK3utk/xP7yMg1RLDURUKi24NrRT1r8Wa9c/
+nAs8BJeyGwtTXbmB7OEHX7AGFA==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyNVdGVwyAMk2+TW6A/3eRG6ALd/+/SBEmmGEjz2kdBFkLYzu/r/ff6AfA8
+vg98PhE4n8/n+qtpjq/Fc+ZAnpAQRnBPNFREI3Z8Q2qzjjvSngwNDXGtmdvE
+SVJbV2iG6YAB+Kihp+c2cVto9M2PkTvMDHvnwC9uuiMrZWda/8ZHto/Dkpvh
+3IFjAgu8bxt2FhNs8DJ07BrUH5dCyMo8q+GUJOnLPcw5HGOmnxegnx08C9qI
+MV9XQxkgM5AmaMtwOGWTqnAlAciJMmw6sqeipTGolLBfEKJCn92OocoUGnkD
+XtVFpQZZ9yIdRe9MXPnYlDrZsYVbR7qEG/CVhwpATHpJzZ4SahuDHFPfjivR
+YoYk69hcNA4tlXQJ3rfAUrevmgWhV1PthDtVyMRJyRfwmSMSI1R+YczgEWMj
+WdxO0dlWld91im1j6+DbJqviZfXv8hCqgo2HGc7EufFOcY/dAGl0l5hrYlfC
+MfgHum8ImQ==
+     "], {{0, 0}, {46, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwzAIE12klxm6SUfIAt3/l8RYINs8ev30kyS+nC0QIGvbP+/9AeB1
+rue5bHr8oJ2DuxnH9a6pX+GNtQUVAZ7oXw0n6jiS0Drp9XHnPP0AnEh/LOnJ
+JEpuxpJo6AteGwOXRHQxUsjg0wCmIGQXftJHkMoCkkuXVuEh/CQqUm8T4Yb+
+jIVX+HaLqHS75d9u+RVPg1G8ANANQ2NABxPnpW9kMITZOPlSGBM2RtBpwool
+v3BCBuR11dXJX14o+wdNdwCKhgZC
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkNENgCAMRHvO4Y8zuIkjsID7/wn0SgtB/03QNJBeH+31SPeVNhE5c+w5
+MPtKvvwTBdP04ha3uN9zAS+AVAE19Ko14E3JChNkKVHhu+G0dppDwKygtRxF
++Cxvorv9FDkCHxTzMojmUVxRBP1KfL/WtGsX5oFbi3LzZWt5AEvjBl0=
+     "], {{0, 0}, {28, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytVVtuwzAME3eTnWE32RGG/e/+f+tm86EUaF5uUqCJXZEUJfn96+fz662q
+Ph7f75of4HGP7+Phcf3f8Ds+xXbvm3e//nbwB/z/ufgfhdGqb6j5IxgR+wlk
+rnGnBIxXc51Ugv6kJ70kBbzUMaOSTIaZeAhGMy0NndivdJAywznlk4loUaX1
+avM2WVsd6S0ZKdm2N+JMFXKH5r3SEUUTtkpbBV45QdiQ2tEBErej6QOT0vPj
+ciy6t6ODNqdFMl4pRzxzk0nt6nh2tBlWPXMF8xTxAzpgv6OqxKxEVxB9LhzS
+MXMU64W+n0Imstlse+SFDr2rVrUGDzXuvmjPIzoyA5tx1CrYNdbtOqZjhI18
+s+VIvidf7jdHdnWIWC9hF7alIaq6ObKvQ4YQR2PLpJkqZqz1yBEdUOiZ8srg
+nDzKoxid08FVlr/HVtjlt8nluI4RLFPu2esRWpHV7JGjOkS5OFlMS4huyeBy
+Rgc855k6WZ0zNDN3Xgdail2j0R7Zktx+TgdigIUyxgy+yeSsDmhgqR9URHwn
+awLqlI4ZKXotAuRwdsdc0DFQOFaQDOsJ67IONB9UZ5tZ6Y65pgPhpv0BW2ew
+kDUXdYj2jO4hqDp2R17WEexjzjI7HtO3dIzYOrVa+2v8l9Ve08GA8+/l3HGq
+bGv84sfzVZAuqaivGzrg/EORBeIXt3RA4zEgPfo1Eu7pQGSFgB7Nqu57Okww
+kqZJhjjObqJEb9gLXSt0DBBHjhbvXt1HQcYNmGU6QJdZsyrkWF+DgixcDbR1
+OsCR5cOlSVmG4qMjjtylOgaIej+OX6zUAbV59spiBLTTEHHUL0fZNPhaP4QS
+B3w715ei8OwYkMAvUIMQLg==
+     "], {{0, 0}, {100, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1ltFRxDAQQ1d0Qg0UwgwlXAP0/8eFrLRySIhj53LDcDiO8ixr17w/vr8e
+bxHx8fz5jN8Lz8/ya7k2f8cygnUAGqvH0DzM+ZFKVANnr2p6MMcAHwxqkCj1
+czhQOg1wTtXdfbp8ESSZnHZXa+WS8+suHaSS9oTrQFYFyfIFh3T8EhCBpsja
+GvXX7tLJI9mjOSBe0K/a5mM6gSQFGitolyJirz2gq90Mrl07QBMbWyL+p2vt
+qEBY7DzVnH5Ip93k3lbaQhtQttC9Yzow8TTctpFjstFUj+gazzStYm1Z3Bb4
+Ph0XU3Wl98Yf2R661jPt9KY1VBJP6WAml5dgJDc2ntMJJnzpmRYVrRXzGZ0x
+WQfh8qoB9dJBDtF6T0utspuOz+bMqMWz3LaBOr+qc0i9NtV2uI8O5RUkIr0a
+6KWDuoGpV/9SAXXTwZZF7Wo6ilI3Xb3WVq1qhnXafkHLXPmmz0W6QlMTCWG6
+r5cE4RKmOEIHms+AKDV2/7IgPCUq6iE6Auj8QQs4Ilitznr8KN2qp0qxfj9K
+BxWFZ3BcbEeviEcFqQevmCk9WWZH1JwgMafFXM9O4Lv05qyToP2zMi+Xofbj
+cVYPaoa3CbId3KR3J910SbxcT8fkPVox753OoHtSzLSxxccPcF4N/g==
+     "], {{0, 0}, {79, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztktENgCAMRK8uYpzBTRyBBdz/T6Q9aIH47QcqMXrHa7n0SPeVNgBnXnte
+MlwoK98z0QxFmhl0oz5zuamqowHFoO/DL+XYD5g7vFhSNxPU2PQSFPqC1kZg
+OYeFYQzfgjdwCyyYwCe+mnwsINx1KTO9Bt+Fipa3uOBCf8LCo0yyC3XUv6Zh
+Tcualu58a1pqgV9Pi4YMnlaGTAFmZg08QKAGIQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwzAIE12k1xm6SUfIAt3/F+dAoNg8cn32kosvsQUCZL2272d7AHiP
+9RzL5Bm748DPjp8zzACGwSbY956FBiYzgn6GzQGshS/i3rQ1nWeivz1cqOMo
+Qg5WU5EnDsCJ9MOSnkyi4mYsiU59lcbCJREhRgmZfBrAFKTswk/6DFJZ0g3S
+pXV4Cn+75XbL37rlV7wMRvESQBiGxoAOJs4r38hgSLNx8qUwJqy7kjQvFoIo
+IdAOjEUGOg==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwzAIgy7S6wzdpCNkge7/axwsELGu118/ycXxxcJCCB7b+7XdzOy5
+r/u+vD/HfxyP7xmeB4H7CnsA5ivzb/jBiuwrNi7Gq+FCA7ciRGFVFXjmgaEi
+3pAyLoOouBELoqbLIrc1LoqYZpSRyccBuGJpO/GDPoPYFgM5qXSFp/EnU638
+djKu6bum5ZqWluBv08INlBGzob7CNSt6WNhOoRyTQbMkhH+bYk9lWjkKU6lb
+fqUcpktm6qloaKke+wef1wZX
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUkESAiEMS/2J4xP8iU/YD/j/myxL0lCGqxd1ZQZo2pSk9+P9Om4Anm09
+2orxa7vzO3f9hL4iEf2mRxmAkJFV+mkErhQVdiaFB94BVxOZJrqEzTUCMYf3
+mLCOrmvonSAZjyB2gHXKgmGhSYNLnFHPrkIbp2M2eGC6pwUlU80woooRgQP+
+Tv+c0xQ06DOBPgqg5/K+Og0xSpMZI5LV1slp8fDZKAiEng1vdq2STVmV2m5O
+shuQE2m6bMVFlt0TqYdESIZkmogSE1ZKjlZ5iU0zt7pQwqXQNMbVamJssbkF
+Y13WVr6OycGs8hYIR6D9P6aCBhY=
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8sVwyAME12krzN0k46QBbr/rQQjS3wOfb30kiSEB7KFrSiP4/06bgCe
+ddzrKNMVG20fXM04zntN/QpvrC1oExCJ8exhoYFDhKWTng9XwdM3wI584pGR
+TCJxM5ZEQ12IszFwWUQXQ0ImnwcwBSm78ZM+g1wWkNyqLDs8hZ9EhfQuJtxQ
+X+HBK3y5xVS63PJvt/yKy2AULwF0w9AY8MbMefKNNYY0GztfDsaEjRF0mrFi
+yd84QQH6XLufJG2qeudszfX9AYqWBkU=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkNENgDAIRO+cwx9ncBNH6ALu/6cth6Cp/ptUQ9pwvB6wlH0rE4D1jPkM
+9r6ar39HYTc9uMEN7vdcwiuAJrCFXa2GuhnZYIEqFQq9m063sxwT5gWX5VNk
+9PImxrSfolrQg/BZHqLPiFAM4X0lsV83vdmlfhijZVlmvm/wAEv4BmA=
+     "], {{0, 0}, {28, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsENgzAQ83WRqjN0k47AAt3/R9DFZyfkgfqsQESQ2OfcWX5t38/2APBu
+69lW2NN2x0GeHT8jTAJpiAnOfVZhAVMZXX6GIwGcL76IZ9Ox6LwK813DQhOH
+BDmYpqJOPwAn8g+vzGIKSZtcCg19yWPTMkY3Q0aWnhNYgrLd9ClfJLel0mBd
+xgov4++03Gn527T8iitgNK8A9MAwGPDBLHnKjQ2GChsnP12MCRsZ1bDweSSm
+lYU7jP8GQQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVNmxAzEIgzSSSQ2vk5SQBtL/X9YxEgKTebuzl8UhsNjH6/183czs77ru
+1+Xu183W2zrX53p81+XxPbeB2XbbEHHBIh6P9W6wQSyx2FksYigFNYDLtvQa
+H+FpJHDglaVPOMqpMBOYVFLxbRSxDxiRpaknHl05MFqYa4s6wejKQE2IT+Gl
+nQNzKCPbPxH/yVv2y2cbFjalLvkn5mj6GFn2tHlD8QTG/e5qb5GtlGfV2ZCd
+hVmbIgRg9BhACC1GqY9RgJNYoEJMideu0VvHFIS5JrTJFbJ3tISjBFWxXE/W
+7d/CFVXrmTsLOdFcGpl7+if9MhStRmgAEi79nv6K2vWBufAT5ZGw7EsRjIuv
+cK3u3lX8H5676FJvNUiBczuLgUmW9fUBJqwGAQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzdVst1wzAMI7pJZ+ixW3SELND9b00sAYRcuRZ1rF+cOBYhgB9Ren98fz3e
+IuLjeX9Gu/C68frV1/Nv+xx3M2lDxyDA0ZB5fwDsHafog2FWep2WzfqwQaNt
+wk6sYosgSjqlgM6cWEUSMPnRBATHIl12VuNCIikRfMSMFfKIYemzMv7h0T6x
+0m70PW27H3NW6ulhpUwF1yL9m3VIHQHC5osZa9eaM6ZGd3zOCpPGeeQHlL4p
+a05nylXdAP5izQhZUHuNjCvkCpsAK6QxDpdguLmh71jBwDApytQ5JFdgeGZU
+5LesnJjcfM5qvUPLNVt0C6xdKCvMes4KK1RMnuM14ASbSlbAxMIrbRmbLXBc
+XWtg0peAjrUOvYNdd1Vg23xq0F4g3lJLxFrMW2AuhQ3sLmuplP4BNltWHVes
+4YRy1yzi1E+3OHdK4nTIqWJtEyheeayoIrX9VQKVXFGKcFhk81C3COUOrTZR
+k9s3y3pe8wjTRf8ADSwLSw==
+     "], {{0, 0}, {59, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsENhDAMc26REzPcJjcCC7D/76CpkzQNEhKP+wCtUOrECa6XdfuuLwCf
+fb/3LenRg3YORhnH8c6ll/DG2pKKBC3UVcOOKg4nlE56LEbK0w/AP4ofttRi
+Ejk3c0k0zAXtjYErZHQxXEjjiwksgcke+ElvSVEWkDxMKRVuwidR4XpLEG6Y
+T9h4hh+3BJUet/zbLbdwd5OU5dS8nDzgZecLONU7L852CHBywlgKnE2uNuVd
+zfdlburBD6atBmc=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic},
+    ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJztnLFOwzAQhhOaSI2USKnUDpVAysrAwMjAwACIoQsDI1JUUbUDApU+AQx9
+Rd4m9AyysXFSh7Tq2b4h4RzH3x8R+1z7rzopV/On53K1mJbF7bJ8nS+mb8XN
+y3JzqRcGQbDeHJ9FAHG1CX9O66CqIOrB32o2m8ERfMA5VKtY+R3OYZv6SKrf
+HFdQjqBqBFEfopRfS3h0RKjqmt+c8SiSo5TXEu8P786QlxBPy7vnbfsQia6c
+GXZgBwCiT7L/X8yjviYaEBQLNNOgRoT6RjFKznl9/hbEIDmBKNVoiPxCQvsU
+SuW2A00yV54llp8q4rmu/ScPEj+cuIJSUqS4pvQr1pYlgDFJIpDMNZK1XWWk
+eYy8TbYgtV2pHUM5kTN6pFFLZA1dZDodk+SeJAsox3JCFkNcSI41Qq0SNwn9
+W+iU38yExnWSGUHbQXWLKeUzK7s25JIJ4bvjzzR4g3nLdJlL+Ab8eR2evdCh
+jDfdASLo7qEXGmhcJyRqTfMf4Rvwl/zmAUQpH2UpoVQUTl8IJwq7G4Sdh90N
+ws47vFd0eIC1do09UCQWDk4Uozhlw7gndHiHg8T9E1dQSn4W16z1e/yQdNn5
+cVnND7/HD8kCyk55QO4JWeYV2QO11heyG2+3L2Q33h5bxx6o3RaO3XicVo/z
+KJyuEU4Udq8IOw+7V4SdN4Gybp0iIrFNT7wGI62ZR6jffTeWAbrZ3nS94Dm0
+tj+LLGA6FTmPqu3KYofAS8pDI8V0JnGP8sjbsi30pM28YGNbpTcpOztdhhqh
+tqGUNcSozSuzrK3yLRBhaXTJ7Z5D2UZKzgGK7a6sTYm3bSNKGcRi6hCDvcs+
+l9f4rj/00/AbQuEXdm5wMw==\
+\>"]], ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytVVtuwzAME3eTnWE32RGG/e/+f+tm86EUaF5uWiCJXZEUJfn96+fz662q
+Ph6/75of4PEdv8fD4/r/wu/4FNu9b3779beDN/D/5+J/FEarvqHmTTAi9hPI
+XONOCRiv5jqpBP1JT3pJCnipY0YlmQwz8RCMZloaOrFf6SBlhnPKJxPRokrr
+1eZtsrY60lsyUrJtb8SZKuQOzXulI4ombJW2CrxygrAhtaMDJG5H0wcmpefH
+5Vh0b0cHbU6LZLxSjnjmJpPa1fHsaDOseuYK5iniB3TAfkdViVmJriD6XDik
+Y+Yo1gt9P4VMZLPZ9sgLHXpXrWoNHmrcfdGeR3RkBjbjqFWwa6zbdUzHCBv5
+ZsuRfE++3G+O7OoQsV7CLmxLQ1R1c2RfhwwhjsaWSTNVzFjrkSM6oNAz5ZXB
+OXmURzE6p4OrLH+PrbDLb5PLcR0jWKbcs9cjtCKr2SNHdYhycbKYlhDdksHl
+jA54zjN1sjpnaGbuvA60FLtGoz2yJbn9nA7EAAtljBl8k8lZHdDAUj+oiPhO
+1gTUKR0zUvRaBMjh7I65oGOgcKwgGdYT1mUdaD6ozjaz0h1zTQfCTfsDts5g
+IWsu6hDtGd1DUHXsjrysI9jHnGV2PKZv6RixdWq19tf4L6u9poMB59/LueNU
+2db4xY/nqyBdUlFfN3TA+YciC8QvbumAxmNAevRrJNzTgcgKAT2aVd33dJhg
+JE2TDHGc3USJ3rAXulboGCCOHC3evbqPgowbMMt0gC6zZlXIsb4GBVm4Gmjr
+dIAjy4dLk7IMxUdHHLlLdQwQ9X4cv1ipA2rz7JXFCGinIeKoX46yafC1fggl
+Dvh2ri9FqZDzd/MLUHgQLA==
+     "], {{0, 0}, {100, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic},
+    ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJztXM9rE0EUTrObZJuurXrQgwgFDyKI4EEQQQQPFRFF8CCIoEEtLSKWqngR
+QTwIgv+LHvz71sy0ea/z9nuzs8lmszFbaFxndma+970f8+btpg9HH/fevBt9
+3H812r53ODrY23/1YXvn/eG4KVrrdDp/x78vtzvmOhtfHn/87WSZuYrMv9nu
+7q757fwxn2uyy/7/t/lcm19/13wmpj02zZ3IXGbHP+P/jX+6pqlnrnrmqktt
+R93ZRLgu9dpJ1rX51k1TYq5SWteOjfSZJ5OqV7E2TCBgkKgDTaCKGrkIhPi2
+N27Zbzr7Ym4mT8yNwA3pllQXbKK5RCdq/DGgJQdA63bsoBiQ2hGqB7tGyh2W
+IeKqiMseCYEMNnH1NKD7EGWC/YhItld91wL6tFopUhJC4LfLZhlsS3INJPfB
+6JhIYWqPZiQR+T6EUETO1F1DlUm09WhJ0RET3UJ9TQ0XLck1kDwkDBFB5z07
+cknuuoIh1DgCOFoaACHsMJSUcPwSMESEan7MSAEaDqkowRO7PO/8AblYDFAH
+WJnYLnghTkAsoPWGmnNLcg0knzEtpwiwdepEA2zbOJQLyhLQNgSOzlpqvqO3
+9HjpOWtaeq5gFjreU5S2lGbp0liBC21FvG7OI/LSoXWFxEWpQwmNzOaTLavz
+YPUc4WJWRcYUe/FHGjOCFJQTxe58KNNUT23i7IfctjEB4bw7Wk0Fbajc0iCp
+wVVlMNU6VLGLSmwKq9XbZUtZacou6Aizk6cdP+CeBg6dSQaa5yAEqtjli7sB
+5ZSFOHqrgoWr4CJEo7QFbNyiLBC7V/6Dk1hy00tK5I4VOYpa7qkxwGwTBlFk
+RdT6z5XMKtsRt+FEK2/7SGz2LzSLej5Wjb0xht2yv0j2L5kWtSY4ILUMNOi2
+AyXB/pjBYUAUbwIynRpDQ0uPl57LJIQ4EKlnTbEvFCUM2cnnA6Ey+YuAKNsO
+d2Bl0kp9smV1HqxeAWjQAxL1Sb7YXWLyHFRsEblk6EYgcjG/Mqr356saYE7d
+BFv+8pLYixN3LIqrkcsgzyxqqUUZbh0W1bJVhq1rbJTZ8U/BykjYPpwlzxb7
+0AYMgYr7qCHLjld3+Tm5Y0tZacquk0wo6WIzRlHeJlO2SBxQ4x26zsqu5wn6
+Ps1V5WY3TEsfgPPHABEwkLLsfFsUXfzHJBGK6lH+Kst+s1hO2yEeTG4GknLK
+ndmf2SzE8FeegFs0BiXjanWUI7SnPjuZmUnhI6l42ysBklRq6asi522au7w5
+hR4w1GIvziYmHeoxRaVW3Dd3Z7jjVa+KYUiCqQ6uUtYjbRdFoUItzWY4qyz7
+XZq7516pj9RDU+bQR0miDVWY5279LQvmc8e0cHEGHYxL7eCipsNmHLvgWFh/
+WXhqI7/vCqFWrPxHETvBMHACFPv9OVBVWlwpYR8AO0NHS1GLRAcQhNXerL5Q
+O5tRLjH0Ry5gNLc/pxGvQXAhwVM1mbMlPXbJ5e8LBbgSciCUT5S6ecuNilMr
+678V7AmtzObUpyuxeea2ZcUx+DQj6tHCZCuwuGXH/9S0DDWEPDeq6auP5/x+
+Lr6qM7XpLDH0Z7T8BoSex8D7CT9cVzdm3oGqMpPnNKZkdc8BsgGsOZ2JyKbi
+egHYFlm4eBPMLj+kNvSQtgI9NhXXiEajDKhLulCPbSzEOulWHNKn0eNr1yjE
+68Zq2S3gXXhOGiugb0lg7tJofuAkrE99t0csz3vs1LptFpq3psXzsp3P7vFr
+w4pacVI/s26XHf871wZUSCno4HScI9U0NnAAJOCyuzUyznc2Zpe57vUONZ2q
+p1tUc+dz8+lpiW4MkE80mf8LUvw3XMRDGjXjKamazwREfW9T3XvFl5BlXluO
+kcYA+UJTqEYvap6Rdl+QBupe7yuNEevlYmt+FVQZPvFcshzRjQHyzXKnMSsO
+VSLmh/P+3SskqvEUVAvLCbng5X/ARfNt/i/kcDgM531xK/8UjLnTispEQLbD
+2js6q4Vg+GXR6mrPtwmPlI8Cyql9ccvP8U8O2nucv3a49g8BWvJM\
+\>"]], ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJRIGZEAUA+A0yQgRHMgYkjKYFJg1Sg6ITwkcyECqGo
+RLWFctFRd466c9i4E85mwOJMdFGYKShuZ4SKwK1igPod7CIoE2Ii1FUQNtxJ
+CBbMYgaYfxgYAHKSBN0=
+     "], {{0, 0}, {21, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic},
+    ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJztmzFrwzAQheXGARVs8JBAOwTcIUOGDh269Ae0U/d2yGBCTTKUhDQ/tv9G
+9Ykic8YtSk3hybrBzp2l9xkUx+854OfqtH17r067TVU+HavDdrf5KB/3x+bQ
+JFFKrZvts1RUm6b83q2VMVRN6NPUdU2beqV90h2y/Qvtk5/HH6jRdDylqqDq
+ImDNjJqp06SuyqiaO6KmSmC2X7jp1xym+QmEM4yz5JpLri6i56w4x17e2R/W
+eaycW6eZUlU4zoiEd/wKKrxvYgEJ73uE6ciEyBlBckWAMDQzR+OgmTkaB83M
+0TgBZQQJF1BWL+FiqAbXdSOBoZk5GgfNzNE4aGaOxgkoI0i4gLJ6CRdDNbiu
+GwkMzczROGhmjsZBM3M0TkAZQcIFlNVLuBiqwXXdSGBoZo7GQTNzNA6amaNx
+AsoIEi6grF7CxVANrutGAkMzczTOTY9mzoltJTDbLz1hsXJWbmbuiNl5SzxC
+RMphqbuF6fPWdFycBed0HgcsZxYzp4PIOawdzakqvJddsP+JNf0/De04nWc5
+ryQj2Ka3ws4/BZqfqh298vm24iT+8k6dncNex0u+AKaJ/Vs=\
+\>"]], ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyVVttxwzAMI7tJZ+hdB+kIWaD7/9W1CAKSVYp14thRCAF8Ou+v76/Xm5l9
+XOfndZpfr3HxcZrfC7/399dhEevj/rYMG8Ov9xa44HDuNDE4QTZgA6UawBUy
+QmS+QxulrVwwiQWj4lDgBvqJCwKGK9gkFLilmpXL6YenbcK4sHCFONGcotTJ
+B5eLFmyRwj1zs3JxE5GKHGN5w8VASNgi7Ql/cpEoS82SVH3e4VwtBVhwOfxH
+xDMNq/sbnGvYs1ArLmwHRtyz7AogS0qarcY4kuoIT2086czCn3r9CINU17Zv
+0E29om4egOhzfnRhKrQpkvtPPb0z5NySBQ60PcxlCgLRkGamhfgQ8TebC9By
+EtQovFhPOnJKGGqJRXkALrBdf1YqTf1qlL88j+6vzfiHJ2w2a8OoT5L4D1gn
+9gmM51+PhmxSuG0sRxu7rDBlTrP8vahDTFp9QJufvZsabB7xpV8sITQm/0aU
+ZJy8nsE/jKgN7BTBFJnW+gA9wQZ2HoSNLG8mdmdSTROuPbBNcpSx7BxsrrD/
+AVEoCec=
+     "], {{0, 0}, {54, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic},
+    ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJztXFFrE0EQTrxw4Y47cnAQUAKGvgm++uCT4IP6oAhCoU9CLA0pRbS1+VM+
+6YO/L2ZXO19mmE2yl7RNb7fQsJ29ne9LZnZ2dnbTD5Pr2dnXyfX56WT89mry
+fXZ++mP85tvVUpR0O53On+Xvz3HHtBfL5s1L0lksf6bTqfnt/DavXSNadlKX
+/fuXee3eX/8j85pY+YK1Si7LqZWZVt+0UtOqTKs2rYxG9KiVUgsjUtdztrcX
+CR8G4Rs2KXEFLw1ZvDvb6isy0Tvin8eQeiPNO6eZcWe0lMrN5HJ6Ywl/O5ZS
+xqkL596Dq0bWd8d6YCS1dShCAZu+IiuJF/gL1uDQxGkjpW0oDQmgxkDuRohK
+tlXw51JObl8OFXm1g9djGrN+lao4cs2ngQ2FwwbuHTb8U8XEVi1WkEKJPIAv
+Yex9OkXk5cfriI/GGt7jTmF7sdan5FoZvaesgRuFDf+Mg1au2YwkDTNXLPMp
+zeY9OEXk5cfrOemuaXSf666U+Nx3sfZ0o7DhXxiJ2KOItAMzt+CuoC2YoncP
+7hEZhsDwJR9TKshDQh5Q+EkauHw7oV5xtYgPUFtz0N0M1na81xwPaaPYt2E9
+FMmnnW4jPyOGA/pOgUJGP6AWQEuFZhPDhoj8nvSguCBSv1zplWWLcKGOjWSI
+D50Hcpz1IHxvb5yHqvuEHFFLFnIuEynCUUS5NZTP3NIFBZKUo2D/tpIUhgHw
+hR63saFSpgCKsq3ROFNczY5+wj/ClTy/fWovjSTnA7UqiBYvPb2snVBzI8Gi
+IXYtntY4XGWXaz8pu3LWUZkrwRWbXO2wvEcTekOCS8+lkUhjIsiVRSVCnJsA
+SgsftiYR8Rb/E2tx86Mi2Wit2QMB+MRN8i/0KsoqbjCxLU4j6CZQYSHNakgI
+Ui6r+HM5hZbIwYPDsYLiPDLDc86Lg/a5wm8qR/j7gT9Z63WY3tsu7LaVRfgm
+lQItDCC2apFXyCKoowbhjKOiOOO8ThXxlq9nNMbOB5zINrxCHkEdJaOSTKdd
+6BXxf2UHFhrKBUcRMQKXuawsi7p31T3nNhIVO1iwbpVGFJm0M2TxvRqBEgjA
+nAYWLqhBC5Rhs5ZxZRnNN5yP2ZiHkkQgACgZ4txa7EltSBJnQc5pGkEZ6Eeu
+DNFdxHkUwDwrrRHAt/SIOSS+X4Gr4WJ/45nltB1vff0x4zJ5Xs45aNUTz01O
+ZLPBMzDa+eUJrTQi8vsKvRFZR7Y1k75iK+Rq+ApKwedrQrKAodbfQYERPVOc
+h6V2i4sojff2YWoUyYS4XbxbhG0TyoUYQzYQl4NF6Wz78vnDBxDFCqeyxuWP
+Q9N4i/9fyD7D/vVR9y+gter6\
+\>"]], ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJRIGaEAyCbAUEhi6Ioo0gUZDaczYCsBCaNbDsDgj/q
+zlF3jroTSRTCgorBnQdzLAOqg6AOhfgN7j0GhH/gJEwvzFswDkwdAHFkBNg=
+
+     "], {{0, 0}, {21, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic},
+    ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJztmzFPwzAQhR2aSImUSh3SgQEpDB0YGBhY+AEwscPQIaoatQMqKv2x/Jsj
+F+Ash1AFIVXP8Q1xz3beZ8ly8l6HPFaHzfqlOmxXVfmwr14329Vbeb/bN0OT
+yBizbK730nBNTfnVLA0RVxP+pbqu+TLP3Ebdqbb/xG30+/wVd1Iej7lKuMrd
+sZirs0A516JJuJoJZ0TCG+5ksi+tMFXhp/C2RxiPTHgnJ8cKfdYU3EncB72t
+cq7mQhx0AAKBXcjt5y7sjy/MsXIWriZz1bPgOWjGjcbxKA9oAtEgoUGCoO0a
+F4Zm3GgcNONG46AZNxrHI1vXIKFBQoMEQds1LgzNuNE4aMaNxkEzbjSOR7au
+QUKDhAYJgrZrXBiacaNx0IwbjYNm3Ggcj2xdg4QGCQ0SBG3XuDA040bjoBk3
+GgfNuNE4Htm6BgkNEhok6Ns8cjnGdkuKcautVRaiTmXMvvQGHfxAYJdyqjpG
+mrpVqJxO8prLAbW+2pfLBu29sk/Nph8PydQds/88kp4FOlpd77TrtbE+O8qZ
+urO5sv/BPvKlWnuP85Fb9AGGf7Gn\
+\>"]], ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVtl1gzAQ3EknqSFd5DMluIH0/xcbMYeMHSRhnrER7Ozs7CE+b78/t4+q
++rp/v+/fQgGPn+13+/e4eFy1c1vZVttj7W879muZ+LHtviA2mB2p3aBfQ1V7
+HpD7gvzq7m6OWE2Pz5yaiR6j251d8WM+0NWBk9zvvmEXxiVg5/HICTIuBiuh
+KZj80t8bTn3oe2Cm6hQgiL3mpHwxe5B0JZ2tA5V6ySkyyfpRorgmyQLwBadO
+Hz2RZacaU02940T2sra3OiCecOr1US5L0UE1hjNOCC2tG1hqT5L9y0kUKmPd
+S0GNFw35D6dgEr3PeDw6BjhBalDhLAWHNcKJZr1uNvUgOudE8h5ZMbD6HJ5y
+gnWB7AXlhQFOUDMHsIeO2mGEEyIOwnpcqE5GONlZhKmORAzFIayoJWukY5yT
+Can9S+RSw1EspHWATXICNWb2VRJxfwYLWQJqzFlOdKttAT2tSaxuymllAQcs
+RDAF8wCJ5YHQzdQlKCDLqWpW8B4r5krKtgDGeerTFagM8kKA5tHNzlFj7zex
+4I1oHCpeCoSyGFZVNt6B7BwrBFhpCs8j8XCv5LYwDRVvPX59mcfq65qDZa3t
+lH1v54s1XhFfRLsE1fDYMFiogsCS5pc4NUqxw1zgBDLS+96lQewav4TkHXSv
+zz/80w0H
+     "], {{0, 0}, {74, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic},
+    ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJztXDtvE0EQts++nNZ2TpYhQmlQRINoEA0FDaKBNECHaBCSZSVKUHglQUI0
+UZQG8WugyO8z3g3MaD7NRHf2nX3nXJHLZPd2vnnt7OzeKq/Gpwd7H8enh5Px
+zu7x+MvB4eRk58Xn41lTp91qtS5nP2c7LU9PZ+S/x2VrOvVUx/+e7u/v+5/W
+H/9sY1f4+7d/tsvrj/wz8u3R9D8VeyohKpJURL2Bij2VUO9A4aKNiCRGN0gm
+KZAK2mJlLPR2Q29jgMYAWQxg6AmyBj07Ui7QuEtUSu85KWEiMToka09yjhS0
+DvEbUluj4pWKG8TMSWZadG16KpUGCCN6UrhUqtORhlpijK63dn1yOgQgyA/h
+FMs2fi9w2VLC3cxNsYJRQFA2itVNsfC6FtIM0Cf4oM5IgkKmDG0jyQWmV6yI
+XtJEW2/tRjSmL8OOk5+TQaSFJ0vjqBeSbr/wsKux6HesSIJFSpuwiey9PjKh
+fokVzryEQWopPfYaK/jntpTLXAxSwtPKj0hpMzMXS1hUQDdKVEWJu/R6Iilt
+P8mgUMM6OUKrVQZEmYoVNUXWUad75GAOE7PeM/FYOzO9MQavhouFWI1Fvy9F
+AkrbyrPAsDuEEV1JgYrFx0+jSfU0eWChQCbigAdZtezE7w3l2LknQU3EfCiF
+Yyjz6CyRPhtQhMDCDFm/0Biop9SPpNOdlEtD1ranZiHDnG8vFBKNmEWK+VgJ
+QScDSgst7SiJg5GrAeBcVKjWU+onvoVP/7XlCSgoVxMFmSWcx/0VFOkpsU2l
+tSGNJkTB8fz1n8rm9l4jVz65nskxZhIL38k2CDmVc5SriZxhtGL454rtwLJO
+mWIM76QgRXmlqnLtKq7h8mgoXQhxOqA27s3prhXDv5SgA7IdiOSkz9jacGLF
+J6OLeaWRK59cr2l0Kkdrx0vm+QhLnTOMVgz/xreYNRZMHe00R1u7uLcA/1Rf
+wrc0xpRhKJ0JaSq7u9YT6p3iEmDL9e5wcYctG++9EnwQzD0572EpDwG+lc+o
+KwGdKFCw6vIxMW8Btcma08Y3EXmPRvcUGTg18hdydixvPKoGdeRbhgoAf8SD
+A8/sFiuT9yfyoHnEai472zcS5UTycRRAcMgNJ63ZQ6l0gG9kncC2T8zgIuhG
+ZpsUz/GH4rdA3VLmQXbV68X23LfAwTx869ByGlxOqhrUBUHxnkq70Lp8ZueW
+cpxoN1fDbKIw48WXs4OZ7mC5hoOnbiPI3IJwkaFdI+gqwmnnhFeXdqqIdyRN
+Gag+UVxqa3v9agB8kBYzg4bvTEO+g6t/DagBap5XaGkQZudAjggpPXu5UAUZ
+jjLimfevtYLV5ZtGq4P/6ltGVuhpu3R478ahQJ1v5jj4GmKuatUF/S7Zmlet
+rg/c7JvaZeNx+R/qDi5CteU3e2KtF9szacxIMbp2YJfT1MtBuaAxJsfeHCYq
+ie1PaRPttg98U8y5Lyod4Jdv0eoRt1bMeLMKxZZ5xzH7alIS7xL/x0F4R/x7
+hfZfIo6+pA==\
+\>"]], ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkusNwjAMhO9YBDEDmzBCF2D/f5T4/GhiJAZI1CpNPtfPexzv13ED8Dzf
++/ky1vcTY42DtsTjCoZkVLA4ZWKu2HHFmnAEkBk4YTt74BW7Z6W9YKqsNfCf
+3JJmk3n8aE+PkxpHOvTCsir3o4tsatk8JBkDiS5Nc1BZ12nGOMNXsUgNhN9r
+U7datlq2WqYG/FZDGWBroYFyxamVXiy1nU3mroyipSbxPm+XlKYDfABqHgZA
+
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic},
+    ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJztnMFOg0AQhsHSBBKalKQcSDTh6sGDRw8ePFTjwYtvQBqb9mA0tU+gh76i
+b4Od1ex018VAa8MMzAE6y9LvJ7DMbPdP+lCsF0/PxXo5K/K7VfG6WM7e8tuX
+1fbQwPc8b7PdPnMP4nIb/uw2XllCNIDPcj6fw+Z9wN63u1T7HfZ+k/7A6N9u
+59AOoCuGKNOROhZAFEI00sdOBFoHGpqAQANCiIb62ERLRoI/HH/hwIcaPzSF
+8MEngj8cf1mFVw90YuJHAq0DvXJAh1VC2Fs3VQm+Pfy1PjmBKNbvWywoG3Wj
+T071zcY6HQlqBzXVJ+OsJTCjWPcK7xfvviYvEp6T96i/i4lRDeW6Na8DAByT
+6v7hjNY18607vxLoLnTkQKWC+kYpyljzcBqK4/kMotihgalAhI4pFJvfTRx5
+17qWyl9ozScJIt6euIWyUqS18hSYkioBZCJJQHLskKwcKqnjMsZNsoWo8VQ7
+hXZk1o/AoRaZGq6obvEXySNJ5tAemunftZKaOYQalQkR2luImU3EB8rWEuKN
+520J8cbzsYn4QHl7NrzxNL0dmiia3g5NFHVHp2886g4RdV77/lH7ALa+EB8o
+Ea+IJkpROuX3dE+ofStFxMXBEklxsPql1g+3pR+SObQ75cCI0N5CzCwhPlC2
+9g9vPG/7hzeejyXEB8rb/uGNp2kT0UTRtIlooqibOdR5ltOAUdj4UfQDZS27
+Jj0DYJqzRl3kKBO4tilkMuSpg4fJF6NGJUugv1by1ZPJ+gPAom5VJrU4mtYc
+nd2jWBNrpKCpZy2QuN54EfpHoUP/h+mPv3jyvwDoOiWM\
+\>"]], ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJxIGZkYAQCBhgLTEKE0MTBCEkQzGVA0TFqyKgho4aM
+cEMQGAKgiqAGQpWC+VASbBYD3EwQBgD+KwSM
+     "], {{0, 0}, {23, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytVltSI0EMs/YmnIGb7BEo/rn/H4FuPTyhMq8mSRWZaSzJsjW8fXz9//hX
+Ve+Pz2fNH+DxHp/Hl8fr9w1f47c47nPz3V8/J/gL/Pfz5m8VVqt+oOYvwYjY
+TyDzHk9KwLg075NK0J/0pJekgJc6ZlWSyTITD8FotqWhE/uVDlJmObd8MhEt
+qrReHd42a6sjvSUjNdv2Rp2pQu7QvFc6YmjCVmmrwCs3CBtSOzpA4nY0fWBT
+en88jkX3dnTQ5rRIxqvliO88ZFK7Op4dbYZV71zBPEX8gA7Y75gqMSvRFUTP
+hUM6Zo/ifqGfp5CJbDbbHXmhQ9eqTa3BQ423L9bziI7swCaO2gR7xrpdx3SM
+stFvrhzJ9+bL/ebIrg4R6yPswbY0xFQ3R/Z1yBDiKLZMmq1ix9qOHNEBlZ4t
+ryzO5FEfxeicDt7l+Du2wi5fTS7HdYxi2XJnryO0oqu5I0d1iHIxWUxLiF7J
+4HJGB5zzbJ2szgzNzp3XgdZiz2isR64kj5/TgQiwUMaawTeZnNUBBZb2QUPE
+a7ImoE7pmJVi16JAhrM35oKOgcJYQTKsJ6zLOtB80JxtstIbc00Hwk37A67O
+YCFrLuoQ7VndIag59kZe1hHsI2fZHcf0LR2jtp5abf0V/2W113Sw4Pzzcu+Y
+KtsZv/jjfBWkRyrm64YOuP9QZYH4wi0dUDwGpKNfkXBPB6IrBHQ0a7rv6TDB
+aJqSDPE4u4kSu2Ev9FqhY4C4cqx49+o+CrJuwCzTAbrMmdUgx/01KMjBVaCt
+0wFGlh8uTcoylPZ80pWlCH+D6PGyEMXhG0+ZtRj5NOS0YXG34H8jYgxWQyC1
+5LNwOYpgMJR8A1piEDM=
+     "], {{0, 0}, {100, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytVtthgzAQO3WTztBN2g2yQPf/KwHrYZJQsEOaFGyjk3W6g8/b7/fto6q+
+lu/P8i3g/lfLr8/zutpxP+XkNrrO8rNer8eGArQbDNxm2mIjalaDuoknK1x1
+gaq/JjeyawRM/ZHlhrKdaU+lQNusN9nGguwzlgorXbk9RS7fUCTQqfnAUmIS
+tvHVCmcF3L4lfs4SQmpyVWJB0hUZtiCHLHlREBMtk9QezdAvWUozyaV1IE25
+0ek/ZilCjU3kxwHs/Ah9wNJZZg1QwqirlKjqf5a9PDZL2DKdz+WHLBFFH7wJ
+EWwy8D8soSKXD5VejknWQD5i2WmopbZ+eHXfEF6z5MZcg9Fj9tBnWfYaygG7
+dmKnnmKJEN7agpZt6qjaTrEUqUoZmpNU5FH8Z1gGt+g83Kob1xWWbXesnq6o
+1P/KeznFkve31WUhWJp7s5073HEUwcmOzJ9nCWsHAQnTA1dYQh0kIrj3qdAu
+sURskfhuVrLZJZYOHwqo+hHd+hpoeNI66jPA0hTVfEp0U+fLoEiYQB1lCSaE
+5pGjYn4IFOkgNYFhliSiZxp6oqOgXfvVyAwg6GwwXxNICep21HX9OUwgbVk1
+nJ0eNNpbSjuDyo7vn3lIPYaVsbdgdk+1N0BGac77STn3S8NUSdaeFZv7MMF4
+38DusTkOGm9cfvOYKx69J6G35xswd8/gucPGceeYBy28s7wNCnl9+fcHLTsO
+UA==
+     "], {{0, 0}, {83, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVNsRwzAIgy7S6wzdpCNkgez/1zhGssD02lwetXgILPw6zs/xMLP3dT+v
+292vh42vcY2/43Wvy+u+poHZdJsQccEiHn/j22CDWGIxs1jEUApqAJdp6Tk+
+wtNI4MAzS+9wlJNhJjCpJOPTKGJvMCJLU3c8urJhtDDXFlWC0ZWGmhDvwks7
+G+ZQxmp/R/wnb9kv721YWJc65e+Yo+ltZNnT4g3FE2j3u6q9RLZUnmVnQ3YW
+ZmWKEIDRYwAhtBilOkYBdmKBCjElnrtGbx1TEOaa0CZXyN7REo4SVMVyfbEu
+ZwtXVK177lXIjq6llrkv/0U/DUWpERqAhFO/u1NRu94wF36iPBKWfUmCcfEV
+rtndq4r/4WsXXepNBjzPPLU/GdB/3F8mWAX/
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJRIGaEAyCbAUEhi6Ioo0gUZDaczYCsBCaNbDsDgj/q
+zlF3jroTSRTCgorBnQdzLAOqg6AOhfiNAaKQAUkSKgCByJoZYEIMEBsZAHIJ
+BNs=
+     "], {{0, 0}, {21, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyVVu1VAzEMs9mEGXiPQRihC7D/P46LZSm54Ji2115TK5I/0/fX99frzcw+
+ruvzusyv5/jwcZnfC7/399dhEevj/rYMG8Ov9xb4wMO508TgBNmADZRqAFfI
+CJH5Cm2UtnLBJBaMikOBG+gnLggYrmCTUOCWalYupx+etgnjwsIV4kRzilIn
+H1wuWrBFCvfMzcrFTUQqcozlDRcDIWGLtCf8yUWiLDVLUvV5h3O1FGDB5fAf
+Ec80rO5vcK5hz0KtuLAdGHHPsiuALClpthrjSKojPLXxpDMLf+r1IwxSXdu+
+QTf1irp5AKLP+daFqdCmSO4/9fTOkHNLFjjQ9jCXKQhEQ5qZFuJDxN9sLkDL
+SVCj8GQ96cgpYaglFuUBuMB2/VmpNPWrUf5yHt1fm/EPT9hs1oZRnyTxH7BO
+7BMY51+PhmxSuG0sRxu7rDBlTrP8vahDTFo9oM3P3k0NNo/40i+WEBqTfyNK
+Mk5ez+AfRtQGdopgikxrPUBPsIGdB2Ejy5uJ3ZlU04RrD+wJ1j5UXDoSdfED
+UAkJ4g==
+     "], {{0, 0}, {54, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwjAMs9iEYwQ2YYQuwP4/2jqS5YS++cBdStookiLlvr1f2y0invt4
+7AM4Bo5Z5BSa5GNMc+n8O19ym6Hz48FzPpNTy7VdGAk4YEgOPVlLo2GAIBma
+YBhL+gQBg9aEMCC0lHgH8Oz8KrmCdQ7w/I3lKwbmKD+HzunRcwNYUXsrQthS
+y4D5/pv+N/3Tphko2DOBfhWCnav7uemQojLpGImstbampcNjx4QI6NjhZleW
+MmUss926yV5A3UjL5TLcKNprIXkohGIopSZUGBiVGp3jJbbKvMyFES5E7RrP
+VRNjg+YmTEkoHyy/KE+p9AGxCQX9
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyVVttxwzAMI7tJZ+hdB+kIWaD7/9W1CAKSVYpN4thRCAF82u+v76/Xm5l9
+XMfndZhf73HycZjfC7/X989hEevj+rYMG8O/9xY44eXcaWJwgmzABko1gCtk
+hMj8hDZKW7lgEgtGxaHADfQTFwQMV7BJKHBLNSuX0w9P24RxYeEKcaI5RamT
+Dy4XLdgihXvmZuXiJiIVOcbyhouBkLBF2hP+5CJRlpolqfq8w7laCrDgcviP
+iGcaVvc3ONewZ6FWXNgOjLhm2RVAlpQ0W41xJNURntp40pmFP/X6EQaprm3f
+oJt6Rd08ANHn/OrCVGhTJPefenpnyLklCxxoe5jLFASiIc1MC/Eh4m82F6Dl
+JKhReLOedOSUMNQSi/IAXGC7/qxUmvrVKH+5H90/m/EPT9hs1oZRnyTxH7BO
+7BMY978eDdmkcNtYjjZ2WWHKnGb5e1GHmLR6gzY/ezc12DziS79YQmhMPkaU
+ZJy8nsE/jKgN7BTBFJnWegM9wQZ2HoSNLG8mdmdSTROuPbBNcrQ8CxyAMqtu
+yh9RFgnk
+     "], {{0, 0}, {54, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzdlttBwzAMRXXZhBmYgQUYoQt0/z/axPeRhtSJ/QcFEnB1fCzLSj9v95/b
+R1V9PX6+a/0CUHhcni9dUaXhNlDQX8vt811YghnF93PESLI2k5Ui1wBelu/V
+AC3I2PaLuFcTWBBaiQUhGEJnZ7JZld0YFDPmVDuTdtPSiYjlAlsyKoZ3Jptc
+aLCo5PQ00oEJdRXoOWoHOzbZ5kK7VVqOawdvTBApc47AEnpJz5GJJq5cXNtn
+li1L79gk5ocZXAB4i/cm3KdSneU+ex0dE0Zsc+QoVkzHhLYq4VJ6tZjqm8A5
+gEJF8T/em0BnMZjuFCrujglCnEQfdBVBx8RTxLp0qhD9q4eJGnE+9DplYg0d
+3JJS5usEBhkYnPMmYCq5tdrvGD+JQe6vDtcFE06mbo2tzHmMW0l0yWsmK0VV
+HB3zmglUsFkzVxF/UGx3DUMKspoHKEpFNPQRDJUGEUmJJ9IcZSQlwsRDeRTS
+Si8fHIMyajaTGB7GKcq8yWC5/nuKW+8MYfjsGMLPGhMEdtwJSLS3KYJb0xjE
+n02HCfqEsmB+AeWYDMY=
+     "], {{0, 0}, {69, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJBIGaEAgYwQgEgWQbGURWjKkZVIKtgALMhBFQlVAIs
+A1EHUQwWBwAzSQSP
+     "], {{0, 0}, {17, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUtsNhDAMc1jkdDOwCSOwwO3/dxWJ4xTycdL9IVAfonacxs17/2z7AmAd
+8zWmTd/4z3FsdsKdhFjPcBw4blfYHIBdEv+IG6jeEDzQRw8LdRwSZGGqijpx
+AFZUN6b0YApJm1wKTfeSx0WrMMIMGZl6lcAQpO1Fn/JJqrbwmestrcPT+Kdb
+nm65bbf8h3eWNNFzYapFfk+wDI036TxHzCa/PG8My05L7SaawQflC5MABkM=
+
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzdVst1wzAMI7pJZ+ixW3SELND9b00sAYRcuRZ1rF+cOBYhgB9Ren98fz3e
+IuLjeX9Gu/C68frV1/Nv+xx3M2lDxyDA0ZB5fwDsHafog2FWep2WzfqwQaNt
+wk6sYosgSjqlgM6cWEUSMPnRBATHIl12VuNCIikRfMSMFfKIYemzMv7h0T6x
+0m70PW27H3NW6ulhpUwF1yL9m3VIHQHC5osZa9eaM6ZGd3zOCpPGeeQHlL4p
+a05nylXdAP5izQhZUHuNjCvkCpsAK6QxDpdguLmh71jBwDApytQ5JFdgeGZU
+5LesnJjcfM5qvUPLNVt0C6xdKCvMes4KK1RMnuM14ASbSlbAxMIrbRmbLXBc
+XWtg0peAjrUOvYNdd1Vg23xq0F4g3lJLxFrMW2AuhQ3sLmuplP4BNltWHVes
+4YRy1yzi1E+3OHdK4nTIqWJtEyheeayoIrX9VQKVXFGKcFhk81C3COUOrTZR
+k9s3y3pedY6h3h8NJAtL
+     "], {{0, 0}, {59, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1Vlly21AMI3qTniE36REy/e/9/+pGxEI5Y2t5je2ZWHohAIKE8vPzz6/P
+H1X18fj8rv4BHu/t8/jyeH294Wv8Fsd9rt/z9e8Ef4H/vm9+VWG1mgeqfwlG
+xH4C6Xs8KQHbpb5PKkG/6UkvSQEvdXRVkskyjYdg1G0Z6MR+pYOUWc4tbyai
+RZXWq8P7Zu11pLdkpGbb3qjTKuQOzXulI4YmbJW2Crxyg7Aj9UYHSNyOpg9s
+yuyPx7Ho3hsdtDktkvFqOeI7D5nUWx3Pjg7DanauYJ4ifkAH7HdMlZiV6Api
+5sIhHd2juF+Y5ymkkc1mvyMvdOhajak1eKjx9sV6HtGRHdjF0Zhgz9i065iO
+rWz0mytH8rP5cn848laHiM0R9mBbGmKqhyPvdcgQ4ii2TJqtYsfGjhzRAZXu
+llcWZ/Koj2J0TgfvcvwdW2GXryaX4zq2YtlyZ68jtKKruSNHdYhyMVlMS4he
+yeByRgec82ydrM4Mzc6d14HRYs9orEeuJI+f04EIsFDGmsE3mZzVAQWW9kFD
+xGuyJqBO6ehKsWtRIMPZG3NBx4bCWEEyrCesyzowfNCc7bLSG3NNB8JN+wOu
+zsZC1lzUIdpd3SGoOfZGXtYR7CNn2R3H9C0dW209tcb6K/7Laq/pYMH+83Lv
+mCr7Gb/443wVpEcq5uuGDrj/UGWB+MItHVA8BqSjX5FwTweiKwR0NGu67+kw
+wWiakgzxOLuJErthL/RaoWMDceVY8enVfRRk3YBZpgN0mTOrQY77a1CQg6tA
+W6cDjCw/XIaUZSjj+aQrSxG+B9HjZSGKwzeeMmsx8mnIacPibsFJaSGrEQA/
+gQPvP6Hkf2L1F1niEDE=
+     "], {{0, 0}, {100, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJx1VNl1AkEMk9JIHjWkk5RAA+n/D9i15GMcYB8wlmX5msfz7/f5BeDn/Xy/
+H84X+Dm9Pgg77o+wsuvfhWQcINDt63rfAJOSyS2siJou3LHRuAoCIZpWxPxt
+gFxuJDu/6A2qZYHIi0pudqUzi6pylkxGxSkvLGYxl6Ke9qjKYTMiGrgioqE8
+zWoczrQNUDkX5ZqMMkuL8H91l35xxzixLXSLvylX0Vfm0tPhrYm3Ye33nPbB
+jJYeujMUPbdsbJEIcimpRM2AlnbMcKz3MqUserWrzew98ZpKsM+K7LwjYJ0Q
+XjDKre5WrmDeLT6p03rGzkROax6typn+Kb8txchRtHXOGlhdGsOCI4oLXJuy
+NJQp0ilq/M+7pQySL+h2r2VPvSZjJGoZPpgXH4YF7g==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIhIGaEIEYEAguAACMjIyOcHFUzqmZUDTXUQFQxQuQY
+YAoQGRFEAAA9NwO5
+     "], {{0, 0}, {18, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztVMsVwjAMk9mExwhswghdgP1v9GPJctIe4UR44aWJIjlS2vvyfi03AM+1
+P9Ye1ZC/fYytby0IOYY5tyPb8jUmp4+lfczZ3I38zw0HNsF6KsKwJelyz6Hf
+p0IDl+Nu8IHbfVvkUSDOMKERIwEHyBdVkHDyEQCSRROEseTZu8Utgp4AvYre
+/kl/N2kaGsyZQL8KYObKfkwaUpQnHSOROdaWtHR4bAwIhI4NL3ZmqaKMZSy3
+brIHUDfSfLk0F0V7LaQaCiEbSqkJFSaMSomO9hJbYV76QgsnonaNx6iJsc7i
+JoxVOZbyY4zuLk9+zlLv+9lnKKgg385Ywt5DVOJnWp7HvB4tiA+9agYw
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztks0RhCAMhRMbcbaG7cQSbMD+b0Zf8hIEZ/ayNxwYwC888vfZj21fRORr
+c7Wp/Gx/DdvYClKxc3UTVWluF34fbq7aG4SZ6APjHA/3OJTF5Z8YTsH7jv3C
+4bQOPOdFjDFOCi4pGIFlVKHjPzKpZYkncTmEUrvUwcNqq8lyUqtYeDIykdSr
+BmwEpr3oz26Z3dIYzG75FxfSYVrYhq9peYlasrMGneoFBbjWE3KJBjk=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVNsRwzAIgy7S6wzdpCNkgez/1zhGssD02lwetXgILPw6zs/xMLP3dT+v
+292vh42vcY2/43Wvy+u+poHZdJsQccEiHn/j22CDWGIxs1jEUApqAJdp6Tk+
+wtNI4MAzS+9wlJNhJjCpJOPTKGJvMCJLU3c8urJhtDDXFlWC0ZWGmhDvwks7
+G+ZQxmp/R/wnb9kv721YWJc65e+Yo+ltZNnT4g3FE2j3u6q9RLZUnmVnQ3YW
+ZmWKEIDRYwAhtBilOkYBdmKBCjElnrtGbx1TEOaa0CZXyN7REo4SVMVyfbEu
+ZwtXVK177lXIjq6llrkv/0U/DUWpERqAhFO/u1NRu94wF36iPBKWfUmCcfEV
+rtndq4r/4bqsVasF95UnWxuAB+wXJncGAQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytVdmx20AMI9JJakgnKeFN/tP/X5wn4qA8Y11ryTOWdk0ABMn9+fX399eP
+qvr1+v6p/gCve/u+Hl7X9w2/41Ns976+5/V/B3/A/+/F7yiMVnND9Y9gROw3
+kF7jTgnYXvU6qQT9pie9JAV81NFRSSbDNB6CUadloBP7kw5SZjinvJmIFlVa
+rzbvk7XXkd6SkZJteyNOq5A7NO+TjiiasFXaKvDKCcKO1IEOkLgdTR+YlJkf
+l2PRvQMdtDktkvFKOeKZm0zqUMe7o8OwmpkrmKeIn9AB+x1VJWYluoKYc+GU
+js5RrBfmfgppZLPZ98gHHXpXo2oNHmrcfdGeZ3RkBnbjaFSwa2zadU7HFjby
+zZYj+Zl8uT8cOdQhYrOEXdiWhqjq4cixDhlCHI0tk2aqmLHRI2d0QKE75ZXB
+OXmURzG6poOrLH+PrbDLb5PLeR1bsEy5Z69HaEVWs0fO6hDl4mQxLSG6JYPL
+FR3wnGfqZHXO0MzcdR0YKXaNRntkS3L7NR2IARbKGDP4JpOrOqCBpX5QEfGd
+rAmoSzo6UvRaBMjh7I65oWND4VhBMqw3rNs6MHxQne1mpTvmng6Em/YHbJ2N
+hay5qUO0O7qHoOrYHXlbR7CPOcvseEw/0rHF1qk12l/jv6z2ng4G7L+Xc8ep
+sq/xmx/PV0G6pKK+HuiA8w9FFohfPNIBjceA9OjXSHimA5EVAno0q7qf6TDB
+SJomGeI4e4gSvWEvdK3QsYE4crT49Oo5CjJuwCzTAbrMmlUhx/oaFGThaqCt
+0wGOLB8uQ8oyFB8dceQu1bGBqPfj+MVKHVCbZ68sRsA4DRFH/XKUXYOv9UMo
+ccCPc30piPqlBf0DUHkQKg==
+     "], {{0, 0}, {100, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVt2ZwjAMs26Tm4EteLwRWID93442saTQQvNDPwpNY1lWbCe/j+ff4yci
+bq/v/fUNBLD97L/7v+1heyr3MrKPlmnlb7nqM000bX9PiB2mIpUX6VdQUeYD
+dB+gX76t5rBR9/jOqZhwWrqt7CI/4gM+HTjRffUNuRBuAjYej5xA48hgKXQK
+Rr/p7wOnNvQamKhqCWDEzjlxvXL1QOmCOkuHVOqUk61k5g8XKscomQGecGr0
+4QxPO+YYc+oTp2RPa3mLA+IFp1YfrmUwOjDHcMUJpqV0Q6bam2RfOZFCeKw1
+FVh4VpBfOBkTq/2MR62jgxOoRirsqaCwejilWaubTNWIrjklebUsa1jtGl5y
+gnQB7QmlgQ5OYDEbsJoOy6GHEyyOhFW7YJ70cJIzC5MVCWuKXViWS9KIVz8n
+EWL5B8m5hr1YcGsDG+SE1DhXnylh70ew4CnAwhzllG65LaClNYjVdDmOTOAg
+ExG5BOMAjqWG0PTUKSjA0yliVPAWy/qKyzYBlv1UtxUoD3IhQPFoemevsfYb
+G9BG1A9lhwKiTIYV4YV3IDvGCgYW7MLjSHmpVnxbGIayU4+OL4tQZz1vEMs6
+u05I07TUEWZzoSqjZhVLUIrNkmwRajYPCFbPZPN0nJXt60ttk5lUgP4B+i8N
+Bg==
+     "], {{0, 0}, {74, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytlklWwzAQRLu4CWfgJixZ5gLcf0eIuwYZnHiQeeTZslz6KpXafr99f97e
+qurj/v9VPnA/ll8s19H8uNOXcad+7zx+9dcdFiX2X86qqM/r7tmn4OBQ31Ha
+TzcqG0gFxG+Ti3ONssHcD5XPNKyu1w7ALlQ9YYYsq+aIB3huU+FOjb7N3C5E
+a2HsRegezwyayBazztpH6XPIIC+uOtTzGXPOMcIX1yQl67gMz5gVpjFvkAOj
+qVrLwekNZkGM4XMkPQ2mUOv+illGU52R9TLIDHoyZHqbGRJsKyslkel2CtPp
+J8xsY1xdPmIZ3JoEr5jlp6xUdxDa21FB2cUsvOJeN4LG8cYJgtfMcEWlOVq4
+rGDpzV7m0TqnK+KcG4fd9zAjCknMgkrBluPvY4YKh/KrILBNlscAO5j7+dgR
+8VgWRCd8NzNn6w0tmvozwkFmDP4qK6tK5YQfYUasjX0Ho96Wac8eYRZipTcd
+PRWOKCgHmIM0ahvn79J4grmnzD04bE0V2vLMjjBTph8qu8N9vk7nocM1TQM5
+FpGRw8ywr5CepN1wghkqTjGQi6y26xlmxLw5jMuhcnmG2TBhiyoK4iVxSjuy
+bI/1d57ZwCpvJfhcg7PaSLUQv8gMrhnTpgjG/SvayMipsFxlJpZesxixL2q7
+NMdLawLzIq19GS8wXGeGtmBme4ruP9KexwRtSiP35yxp2Rtv4mnahJ+pm9Lx
+JTJPO961c48aIzJNtlSX8vtpirI/nKYq+wOK5foHXzAPHA==
+     "], {{0, 0}, {90, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztk8EVwjAMQ2U24TECmzBCF+j+N5rWUmS3F668Ag1J+m3HsvNc1s/yAPDe
+ntf2xPiOYfzGOo7NGJNj3JkkkbBWGuQnrd12TNOfbYUmHo7W4ILmbraflQeO
+HCfZGAVwIEMyVx6NCkwAdBYlIMxL5k6A6kSLpNfUKurHzRRuYtVHMP/i5ZIJ
+O9Fd6bvS/19pChqsM0FvBbDmqn2vNBRRmlRGQc5l/YFxTeB/HeA2eKrqhW9N
+3FPPqC3inFAvklQBOqK02JkdMY3VRB3hTeIduQoUvHCGd0TNC5hIPfHaGvgC
+g4oGAA==
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVt15wjAM1HWTztAt+tgRWKD7vxVi348JFNuQj4Cd6HQ6S7I/L78/l4+q
++rp+v6/fQgG3n+P3+Hcb3Ebt3maO2fZa+9uuPpaJXzueC+KA6UjtAf0aqtr7
+gNwX5FdPuzliNj3ec2omeo1uO7vix3yg0YmT3HffsAvjEnDweOYEGReDldAU
+TH7p7wmnMfQemKl6CRDEHnPSenH1IOlKOlsHKvWQU6wk80cLxTlJFoAPOA36
+6I1MO+WYcuoZJ7KXtb3VCfEFp1EfrWUpOijH8IoTQkvrBqbanWT/chKFylh7
+KqjwoiD/4RRMovYZj1vHBCdIDSqcqeCwZjjRbNTNpm5ErzmRvFtWNKxxDV9y
+gnWB7AXliQlOUDEHsJuOymGGEyIOwrpdKE9mONlZhKmKRDTFKazIJWuka56T
+Can8S+RSw1kspHWALXICNebqKyXi+QoWMgVUmKuc6FbbAkZai1hDl9PMBg6Y
+iOASrAMklhvC0FO3oIBMp6pVwUes6Csp2wYY+6lv70BlkG8EaB5D75w19n4T
+E96I5qHiUCCUzbCqsvBOZNdYIcBKXXgdiZdrJbeFZag49fj4so415jUby17Z
+afW9nW/meEV8Ee0WVMNjwWAjC5KXy+69pucNpg/3kFT9dwfbHaQKVuN5cxmr
+dMToo/oD/EwNBg==
+     "], {{0, 0}, {74, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmIJIGaEACADxEZGcGEGqDK44lH1o+pH1Y9s9UA+RAFE
+EVgIJgvVyAAzF2oggg2xBq4OIoXkEKh6BoipDHDlcIeBrYcaCVEBAJqdBOM=
+
+     "], {{0, 0}, {24, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVtl1gzAQ3EknqSFd5DMluIH0/xcbMYeMHSRhnrER7Ozs7CE+b78/t4+q
++rp/v+/fQgGPn+13+/e4eFy1c1vZVttj7W879muZ+LHtviA2mB2p3aBfQ1V7
+HpD7gvzq7m6OWE2Pz5yaiR6j251d8WM+0NWBk9zvvmEXxiVg5/HICTIuBiuh
+KZj80t8bTn3oe2Cm6hQgiL3mpHwxe5B0JZ2tA5V6ySkyyfpRorgmyQLwBadO
+Hz2RZacaU02940T2sra3OiCecOr1US5L0UE1hjNOCC2tG1hqT5L9y0kUKmPd
+S0GNFw35D6dgEr3PeDw6BjhBalDhLAWHNcKJZr1uNvUgOudE8h5ZMbD6HJ5y
+gnWB7AXlhQFOUDMHsIeO2mGEEyIOwnpcqE5GONlZhKmORAzFIayoJWukY5yT
+Can9S+RSw1EspHWATXICNWb2VRJxfwYLWQJqzFlOdKttAT2tSaxuymllAQcs
+RDAF8wCJ5YHQzdQlKCDLqWpW8B4r5krKtgDGeerTFagM8kKA5tHNzlFj7zex
+4I1oHCpeCoSyGFZVNt6B7BwrBFhpCs8j8XCv5LYwDRVvPX59mcfq65qDZa3t
+lH1v54s1XhFfRLsE1fDYMFiogsCS5pc4NUqxw1zgBDLS+941JJ5XOZXqoGu9
+P/4EDQw=
+     "], {{0, 0}, {74, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU9sRgzAMk7tIjxm6SUdgge7/x8ORLRNfr3/9gSNwRI6sKGJZP+/1AeC1
+j+c+rF7nt08fzys8Jhy3GTYHYDPzb/jJyu4zdiz0u4cTdRxJyI3lrsgzJsAd
+6YstfTGJkpu1JCq64L1RuKRimJFGBp8WcAnCduEnfRSpLSC5qLQOD+MvpiL9
+NjGu6LvTcqelNPhbWvQA24pxoDbDmZU+LGpno5zJkCw1wr+l2EJZr5wb61qX
+/p1ymt4yAzxLYeePYcy9W7MBnzAGUA==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERwyAMk7tIrzN0k46QBbr/rwlGtgC31z76SwKXAxkhhHLbno/tAuC+
+9+vebXp8os2DoxnH8a5Lv8IbaysqCnyhtxpO1HEkoXXSo3HkPH0CPJF+uKUv
+JlFys5ZEgy743hi4pKKbkUYGnxZwCcJ24Sd9FKktILmotAoP4ydTkX6bGDfo
+M268wmdaxKUzLf9Oi15gWdEv1FY4s1KHRe0slDMZkqVC+KcUWyirlfNglTQA
+aduv+BCKd8oisUqpv4w79wKZCwZU
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzdVslxw0AMI9JJakgDqSEluAH3/4tHIkAounbpX+zRWMMlAd7rz8fz5/ER
+EV+v5/v1BJZvYPnF+pZCIMCjyGMq8wWlv3xSlsCR0tJPseT+RMDMApQt0rBj
+50+ttJJ6OceYEmTPT/9kU8ixwznk38ZN9dWEuYn1g2N+WGYqH2mlICEvd/yi
+C48mixg8i0rDjt9YUeb0GHzFKT8rEWodL2I5fs5P5W0+yoCdcM5P99SQoSzK
++7jkR8ULWQmgBKf80CgZHLunknHBD/OUYDWiqvA5fwFbIJoMALf89HSTcu2F
+uOcvco1cyBHPzTUC3MYghvjBjLFuKqad3yPAi6cBGeMnhZYoti4MIdTo2xob
+5k+/tb9rpQ3zQ+3nvTBhfQBQPg0jEADem3MACtv27CQCHZm3dgC7GdoAk+EL
+wS7Chn12k2/xeRe0HPoInKUuwFv88833/wBqLTaNO/1f9rzQO8Za4X32dv/8
++YvWAWgun0LgCHdAdJ2/Fz+mC1i3R+2e+AVn8gwR
+     "], {{0, 0}, {64, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzdltt1wzAMQ4lu0hm6QUfoCFmg+/81rgQQahxFov/qxD46lgldPkT7/fb9
+dXuLiI/7+RnHgeOI3//9ctz4PY9xOzmF9nj0EZCW7V4bybD9pETZfJgD8KE2
+3xVkYWv5OiNDv7blA2ZIv5pp9+GMYfBfM0GYDEmXOWMgpaxSPR6UnjCM/is3
+IS86ZyisjwywGGVcup1chUhPGLRkuE+RCSdEPGewlZEC5AaHmDAwK6Fi8pQm
+/oyBj49xSRNWxoyBkCrSUDzlQ7xgQPoN2Ukib0wYoE1mgtqoCsqUAcZLudy+
+yveMIcXNHe0YAAsM5B3Cr74RKwwJoO0YgvEYvdKAW5nIIgMYO2ZRqbX5FQ14
+KrVxVhm4jNotRoxFjWwN1uw2GDq9un02vg0GqCS9NrbsTySSa0ODEvB63ZWQ
++9aRtzUIU7F3CXuTXJDYDoM07AVaUuj15T2/gqHmcUWDu6wucZGhUpD/VSLb
+Z9m8ti9SgZ8DNXM1/CsEFyrqz+deUcJeXbUjP6lK68OzsPPG6fZjW4j4AfMt
+DGM=
+     "], {{0, 0}, {66, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJxTTMoPSmJiYGAwBmJxIGZEAyAhEEQVZEQXGVU9qnpU9ahqsEJwMQIpSxgQ
+olBFDFB5RmQ2A0wfxDC4eogGBgDvmQW9
+     "], {{0, 0}, {23, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkskRgCAMRX9sxLEGO7EEGrD/m0BWloPjxQsKCrzwE0KOdF9pA3DmvudO
+/JRB7uVbWn3huKzWJR7xxMZmoFvYssEweTMKWLirRt8NF18dNgcIJ2k5G4n2
+gFVZwh6wJmB0/JJz0DSJ3DZym2OnzOGCejA/lerIgic1/NQlUbxo1w73oMUQ
+AlrVomlY1bKq5e9q+cwBDzvkv7t3ix8PWDUGOQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwzAIE92k1xG6SUfIAt3/1yRGisB9tH/7zgnGAozEfXu/thuA574f
++46xdgPH9/Ccdpph6ysm3ePqtOnNaOQ3AwY2wTpdCcOuVJcxo351hQwvx2jw
+wHAPi2wFyhlWqGNUwAHiRS9IOPMRACaLUhCWJXuvFBcJqgLkKuryMJW7YEvp
+pfRS+ielSWhQZwJ9FEDNpX1XGqooTipGRWZZ/8A4J/BfB9ANvqpm4a2RO82M
+xiLmhrpIYgXoELXFyewQ41hD1CHWqFiak2gUOVYfX6AF8w==
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwjAMk1mEYwY2YYQuwP4/2jqKlUTH8eHXtrleYltWZD2292u7AXju
+676vmJ48OM/B3RzH8a6lP8VP1DPJJGRhfj5c0YyjAKOBHh93idMOwBvpjy2z
+mECFzVwCDbyQvTFgSUYTo4TseJrAEnTZBZ/wPUllAcGFZbh4F34SFaV3iHAD
+v2DjNXy5RVS63PJvt+gAbUYbaKzh8oo3i8ppmNMZ4iVD/JuLozPzzHkx13ro
+75hTdIssM10HCoieq1kme34AmJgGVg==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1ltlhwyAQRHfSSWpIG/lKCW4g/f/FFpqD2LKRkOP4kEDDY9hd+Lz8/lw+
+qurr+v6+vgvLB27/t9/Lr+V7+Ws92vXyxdbiq9y33YX0UKVH2aF0t3VbRTmI
+R5NE69ikKdLACK9m0t5x8bOgsdW+CiDu5pj3XPJFlqgDCFaVbujqAZcQ1vHD
+fCtTshvzEZfXrjhlWU7jOjeqnnD1FnjtabI0EXBbXFo7rqSjquS43aBjG1zr
+9eo4QoKzVvC4eYur80l9HLsRc86ITS7OwWmjEetO8yVX75PWtTRHKObwmgvh
+qv0DQ++fdS+4hFE542IhUJa6yjzjCpqoC5yVy8oQF+QKvc7A8OTGuPhg758f
+dpka4eIUXNKioPXrOcAF+wMpSMw3hrigNA9plySlyBgXYjYUdilR1IxxecCY
+rDIVUTYH1SK27JVee7gMpdJQAkwvx9WQz4fcbi7QbcaCAiTa96khA0IJu5+L
+Q2sDQY+2W82lK0r1Ia4mplyIsn2ICwr7jLWDSg/EzHpIjWLInDguJptij5lQ
+I+CcUorFznmK2IRdUouDxaTWGrm5s82hqbido8Y8P0PsNK65oH+vmHa4E4Tq
+FL/qrEX0OXMyH33emcOKo5hOsvgDu/QNpg==
+     "], {{0, 0}, {76, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztksEVhCAMRIdtxGcN28mWYAP2fxNMJhPEg8/LXlBQ4IdJIFm3/bd9AHxr
+X2ov9rRB7e3b2vlCuK2eSzaySYzDgFvMssMI+TBK2LlUs++Ou68LDgdIJ+m5
+Gbn2gKnsYQ+YFzA6fsgt6HITeWy0do9FjUOCPJhORR1f0KWmH12WkhMt7ZQH
+FkMKaFYLr2FWy6yWf1fLaw4FHREKRHqZNhxYXAY5
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztU8ERwzAIE12k1xm6SUfIAtn/1zQgI2yuj/abJL5cIhBGyI9tf203AM9j
+3Y9ly4VzHXcHRsAJdQGe6E8PJ+o4ktCC9PPwy3niByK6vFjSk0mU3IwlUdkX
+vDYKl0SEGMGhW9AApiCEKfykH0EqC0guu7QOH8JPoiL1NhGu7M9YeIXJLKKu
++Dc3XG653DL194dbfsXTYBRvAAjD0BjQxsR56RtpDMNs7HwpzEnSU9PExBON
+XqbjaA+BjnQZiRgh7dtm66FpuFHaj37zCNDxb1WkBjc=
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztUsERwzAIE12klxm6SUfIAt3/F9cgAzaXdx6OzeUcCYEVjvP3PV8APi3e
+LWR50KOtCjRChyqCJuquYUcVhwuKif43T6pjH2Ds9GJJTaaQa5NLodQXtDaS
+VmCYGaYRW4gEpsCMSfqUH6RoCygeupQKH8ZPpsL9lmBc6k9YeIWpHExd8btp
+2NOyp2W6356WUeDR06ImQ8psOuk/uh0uQBAGHQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1VN15w0AIE1mkX2bIJhkhC3T/t1x9CMRB26c4sWNb/AgQub++n68bgMc6
+v9Zpcaz7n++6Wb8bUdhxcxMzFG/Br4cLN+sGNIMd8H5m4g4zMjz8CW9Sm33D
+wmKnHryZFZlKHYX4FB7Bywbm28mdu7t7/cqb+I70Z2FT6pJ/Ys6mj5Flpoc3
+yJnAOO/QSuspZBbSvxLc8SgM/EDctDAYC40IKGW7huEa6yo14etZUODYEzAE
+Ccc7oR1cKXtjS2KVqKoo15I1L5ygLEAW1nJnIR3NVyNzS/+kX5biqJEaoIRL
+v5M5GNO06wNz4SfKC8IylyIYE1/hWt3tVPF/eJGDdEsNpKistOA60E5Z/1qs
+HZ/Ccw2Mu5DU+JiXy+gNYdMGDw==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJytlu15wyAMhKVu0hm6SbtBFsj+/+rYug+cxMGGpOljAz5eDkn4+3b/vX1F
+xM/y+1t+kfn4i+W/rv0+6vO4ROfWuvbiu96vn00lsx6QcPXUYCmyl418CBer
+XDQTRXsPNtAVgNCfKTeV7YprCk609WqR1Wawryg5LX3F8jhz6IEAQOPmEyXN
+hGzxcoR2JbF8WfyaMqlUdoVrJa0LENYkh5S4iSQJh9FqtfrUbynpGe3iuAQm
+o1Hbf0xJoKKx/dEEinyb+oBSu4wcgIWWV25RxGfK1h4Fi4WlRz6GH1KmJb1x
+Q8JofOIPlMkkZxxye9FGW035iLLxkEMV+har+4LwnhILUw5ajdlL91K2HjIC
+duVEkdpFmWa8vE2EbLnDbOuiJFS4DRVJTHJL/h5KY7PKg6WqcJ2hrNUhe5qk
+Yv0LraWLEs/X6JARSM19sPV9VHE4gzbbdr6fMuVdUoiaajhDmawgNoNqHxPt
+FGXaEqGvYsUwO0Wp6c0BZn9atT4najEpH/m9QClEFp8grvt8WjRdxlSvUiY2
+BMHDiLL+S6LpEcQicJkSIDzTsgW9KqpSaefFCOWmyYyys2OEMpk8HqNjgi80
+RT4iCs30zBrWpIV27I2LAneKoGvaCT9Tc9xKitrL0RzJCnw/emdoJovpVFGU
+kImSOWnDTdQO4kmKOVHSU3FYkS+09i73D3reDoY=
+     "], {{0, 0}, {83, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztVMERAiEQy9qJYwl2YgnXgP3/PIFksyAzFnDOoAcbkiXBux/v13ED8DzH
+4xzRPucPvpP2FW2xP8YA9JXAqPV6dDRJGgAk6wxCGkubjULfImJXUnngHdCb
+yG2SS1jlCEQt7zFhHfVl6JygGKcgdoA1S8KwUvGA/ppJw0o+uBx3gxPFY9sy
+RXKGCV1JX0n/SpqGBnMm0K8CmLmyn5OGFOVJxUhkjbUkLR0eGxMCoWPDm11Z
+siljmdvNm+wB5I00X7bmImn3QuohEbIhlYpQYsKolOhsL7EZ5tYXWrgQlWs8
+R02MDTa3YKzLuZX/MQOkf+sixJXyCqnFdDnfVx+iAgYL
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyFVNsRwzAIgy7S6wzdpCNkgez/1zhGssD02lwetXgILPw6zs/xMLP3dT+v
+292vh42vcY2/43Wvy+u+poHZdJsQccEiHn/j22CDWGIxs1jEUApqAJdp6Tk+
+wtNI4MAzS+9wlJNhJjCpJOPTKGJvMCJLU3c8urJhtDDXFlWC0ZWGmhDvwks7
+G+ZQxmp/R/wnb9kv721YWJc65e+Yo+ltZNnT4g3FE2j3u6q9RLZUnmVnQ3YW
+ZmWKEIDRYwAhtBilOkYBdmKBCjElnrtGbx1TEOaa0CZXyN7REo4SVMVyfbEu
+ZwtXVK177lXIjq6llrkv/0U/DUWpERqAhFO/u1NRu94wF36iPBKWfUmCcfEV
+rtndq4r/4bqsVasBDk3hJ+WzQQ65fgEmWAX/
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkNENwCAIRKFz9KczdJOO4ALu/1eRQ6mhXaBoiIbjgedR6lU2Ijpb7C04
+WpKXHSgcppNLLrnfcg4XgLrAPfSqNYybkh0GiFKghL7utHGaY4dZwRi5ijzf
+8iZOt58inoCGZF4W0Tw+uiJt/2OfBWk4Ui83ZUUGaQ==
+     "], {{0, 0}, {28, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJy1VEESAjEIC37E8Q3+xCfsB/z/zXVoIBTUk+vsjG0aCJDu7Xg+jguA+/le
+z9fkOVfvDd97/6kwD/AYbIN97SwMMCNjhd9hcwA9sZ7w1AObWZGplCjCp/AI
+XTYod9Iid/pifdRN3CN9LWxKXfJPytn0MbLMdGODmgmM8zbmbz2FzEL6V4Iv
+PAoDfxCaFuZwGM1DaG4nODiZhS5EzrLQLbKv2DmY3BPZoZW2N7ZkKeVliW5a
+LJmbWDoA6taeOwvpaG6Nyi35Kb9ciq1GeoAWLv1O5WBM064PykWfOC8Ey1yK
+YUy4orXSbXfxL7zYQbqlB6SorLTgOtAuWT8t1p7/4Fo3J9caAxG74WLduH6t
+5/T1iv8CdMsGEQ==
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzdVtl1wzAMI7pJZ+gA3aEjZIHu/1cfAgi5ViKxf3Wi92xZIMBDlN8f31+P
+t4j42MbnNgLYxv47rv15fzrnos22JXG8Qtj88T9HBAwV4NwxG/bazLVFDaTV
+lIFzUkt+s1OcIG73auaOvffZPQrFJc4Lt+ywoGQsGkgeQhqv7CILdyXAYIs+
+BuzGiURTLniLETtzEMFQefZS9ZCda/tY5HpWwJCd2lSGoQBKejxjR/oKgYTP
+iRF7052WU68HYswOk0lb8glK7ZA9zZoX2g0AXrFTZhfsVkf9rnqGT5AVXB+X
+pwbgELMwww4GiwlTFu39SwPwrGlTTLGTgBp4n5U9Y8F6nBXjFHsTzUq0/jXL
+DhWd18A8+AafimYNEA+vyCW8XLaWumaAMpbBjrcToIpfc10G7LBbh7ci8na9
+LEDNoGyA26eI/wv7csn9M3y2wBq2UPMJ54ldwKpXl7mrZXP5+Krg7bApXPmZ
+U0Hr2K0Gj7z10K3Duw/mlr0fooYL+Q==
+     "], {{0, 0}, {63, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztks0VhCAMhIdtxGcN28mWYAP2fxNMJhPEg8/LXlDQwBfyR9Zt/20fAN86
+lzqLPU2os33bOF8It91zyyRbhBwKPGKaHUaYD6WEnctq9t1x93XB4QApk56b
+ktseMC172ANmAUbHD7kFXW4ij4M27rGoccggE1NWtOMbKmr60WUp+aJlO90D
+myEFNLuFZZjdMrvl393ylqvBWDwRQBm5CBxYTwY2
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJylVtthgzAM1HWTztAp+tsRskD3/2sKvocTEmwTQgIYnU5nSfbn7ffn9lFV
+X/fz+34WUKj/7/3q/xLY/rGNbB/sPxxud9uxW9Fi/y/iabBZI56mw2q+2sVu
+obfotHErfswGuntkJOfNM+QAhiVe5/CJEWSrSOlaYskr3R0z6sNuUZmo1UfQ
+OmSkmeK8IcSlxBaBKh0xajdNYoQ9g1WeePiQUaeNXihSy9xSLr1gROoyzgx5
+BHzPqNdGs1gKDcotnDBCyGjNwBR7kOsdIxGoDLTlgIotivA1o+AB46i8eYlz
+RpASFDdzwDENMKJVr5kt3XlOGZG5W1Q0qH72zhjBmkDmQvKDc0ZQ/Qauu4yK
+YIARIgiiukEoQQYY2VXEqCpE9MARqMgh66NjmJHpqOBL1FK/QSikcWDNMQLl
+5bQrF2J8Ago59yrGSUZ0qhUAPak5qK6p6ck8DJh/oPrT9gnlFtB10BUkINOo
+alLrHioaSUo2j8Xu6Z8LSBnhenRm0XXKQVuvLPHAS84wUiz8AlmLqSqL7Ynq
+FCcEVqnlTgPxcIHkCjCLFNsab1CuIR21uDmo6OLeAq2Scg9YTIKmiptTXUFy
+YJFc15AWE4BQ/ap9oeuWpp4L1SIOtCXYb1emP3YPZlZ/MFgM8Q==
+     "], {{0, 0}, {73, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztVMERAiEQy9qJYwl2YgnXgP3/PFmSDSAzFnDOoAcbkiXhvB/v13ED8DzH
+4xzRPucPvpP2FW0xH6MDciXQa1mPRJOkAUCyZBDSWNqsF3KLiF1J5Y53QDZR
+2yRXsJEjEGN5jwnrKJehc4JinILYDtasCMNKgwf010zqVvLB5bgbnCge21Yp
+kjNM6Er6SvpX0jQ0mDOBfhXAzJX9nDSkKE9GjETWWIekpcNjY0IgdGx4sytL
+NWUsc7t1kz2AupHmy9ZcFO1eSD0UQjaU0iBUmDAqJTrbS2yFufWFFi5EwzWe
+oybGBptbMNbl3Mr/mA7S27oI1Z+Ucppe/Qq2zMMHobYGCQ==
+     "], {{0, 0}, {35, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztktERgCAMQ1MX8ZzBTRyBBdz/T6QNtMD57Qcq52nCa4090n2lDcCZ156X
+DAfKyudMNEORZgbdqNdcbqrqaEAx6HvxSTn2AuYON5bUzQQ1Nr0Ehb6gtRFY
+zmFhGMO34A3cAgsm8ImvJh8LCHddykyvwXehouUtLrjQn7DwKJPsQh31r2lY
+07Kmpfu+NS21wK+nxU0D0+h+hBEYHh4/8QYc
+     "], {{0, 0}, {31, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJyNVdGVwyAMk7vJLXA/t0lHyALd/+/aBEmmGEjz2kdBFkLYzs/xeh4PAH/v
+7y8+nwicz+dz/dU0x9fiOfNGnpAQRnBPNFREI3Z8Q2qzjjvSngwNDXGtmdvE
+SVJbV2iG6YAB+Kihp+c2cVto9M2PkTvMDHvnwC9uuiMrZWda/8ZHto/Dkpvh
+3IFjAgu8bxt2FhNs8DJ07BrUH5dCyMo8q+GUJOnLPcw5HGOmnxegnx08C9qI
+MV9XQxkgM5AmaMtwOGWTqnAlAciJMmw6sqeipTGolLBfEKJCn92OocoUGnkD
+XtVFpQZZ9yIdRe9MXPnYlDrZsYVbR7qEG/CVhwpATHpJzZ4SahuDHFPfjivR
+YoYk69hcNA4tlXQJ3rfAUrevmgWhV1PthDtVyMRJyRfwmSMSI1R+YczgEWMj
+WdxO0dlWld91im1j6+DbJqviZfXv8hCqgo2HGc7EufFOyQ3oFrG6yspvSIDa
+1T+5awiV
+     "], {{0, 0}, {46, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   GraphicsBox[RasterBox[CompressedData["
+1:eJztkN0VgCAIhS/N0UsztEkjuED7v4X8BFY2ARw5opdPkK2dR1sA7OwrO70N
+smbWGXwmFFdcccWNXMI7ABFIXEPNIYuUFNhASzUU9m7avZzeUcI84S75FCl6
+mYnx2x/R+OhqHA28UZXTPAHXnebTBXjgBm4=
+     "], {{0, 0}, {28, 51}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}]}],
+   "}"}]], "Output",
+ CellChangeTimes->{
+  3.6763936348793917`*^9, 3.67639367874018*^9, {3.6764107744249153`*^9, 
+   3.6764108093429103`*^9}, 3.6764109473697987`*^9}]
+}, Closed]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.676395294179736*^9, 3.6763953346038427`*^9}, 
+   3.6763953719012556`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ftrRat", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "b_Integer"}], "]"}], ":=", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"FindTransientRepeat", "[", 
+       RowBox[{
+        RowBox[{"NestList", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"FromDigits", "[", 
+             RowBox[{"Sort", "[", 
+              RowBox[{"IntegerDigits", "[", 
+               RowBox[{
+                RowBox[{"IntegerReverse", "[", 
+                 RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], 
+             "]"}], ")"}], "&"}], ",", "i", ",", "m"}], "]"}], ",", "2"}], 
+       "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "=!=", 
+     RowBox[{"{", "}"}]}], ",", 
+    RowBox[{"NestGraph", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"FromDigits", "[", 
+         RowBox[{"Sort", "[", 
+          RowBox[{"IntegerDigits", "[", 
+           RowBox[{
+            RowBox[{"IntegerReverse", "[", 
+             RowBox[{"#", ",", "b"}], "]"}], "+", "#"}], "]"}], "]"}], "]"}], 
+        ")"}], "&"}], ",", "i", ",", "m", ",", 
+      RowBox[{"VertexLabels", "->", "\"\<Name\>\""}]}], "]"}], ",", 
+    "\"\<No repeating patten detected\>\""}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6763953827237787`*^9, 3.676395424034562*^9}, {
+  3.676410104791891*^9, 3.6764101383618975`*^9}, {3.6764888294220552`*^9, 
+  3.676488844746087*^9}, {3.6764889549004908`*^9, 3.676489025624157*^9}, {
+  3.676489932223242*^9, 3.6764901231096897`*^9}, {3.676490172537555*^9, 
+  3.6764901726206017`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ftrRat", "[", 
+  RowBox[{"196", ",", " ", "50", ",", "10"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6763954306170387`*^9, 3.676395434419868*^9}, {
+  3.676395512503893*^9, 3.676395540397539*^9}, {3.6764101595084157`*^9, 
+  3.676410179504553*^9}, {3.676488855865222*^9, 3.6764888562788363`*^9}, {
+  3.6764891319859595`*^9, 3.6764891329331045`*^9}, {3.6764898905634785`*^9, 
+  3.6764899005986185`*^9}, {3.6764899638257494`*^9, 3.67648996484591*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[
+  NamespaceBox["NetworkGraphics",
+   DynamicModuleBox[{Typeset`graph = HoldComplete[
+     Graph[{196, 788, 1567, 1111, 2222, 1223, 4444, 1289, 8888, 16777, 11119, 
+      11999, 34589, 112333, 444455, 889999, 1788899, 1177777, 4558889, 
+      13444447, 77888888, 156667777, 233444489, 
+      1112278888}, {{{1, 2}, {2, 3}, {4, 5}, {6, 7}, {8, 4}, {3, 8}, {5, 7}, {
+       7, 9}, {9, 10}, {11, 6}, {12, 11}, {10, 13}, {13, 14}, {14, 15}, {15, 
+       16}, {16, 17}, {18, 19}, {17, 18}, {19, 20}, {20, 21}, {21, 22}, {22, 
+       23}, {23, 24}, {24, 12}}, Null}, {VertexLabels -> {"Name"}}]]}, 
+    TagBox[GraphicsGroupBox[{
+       {Hue[0.6, 0.7, 0.5], Opacity[0.7], Arrowheads[0.01457074957541742], 
+        ArrowBox[CompressedData["
+1:eJxTTMoPSmVmYGCQAGImKIaBnNMvcj2WMjus+KzKGt7/xH7rw6eMO0Qx+S/u
+x2r5Fn63197AdfPfCiYMfsiDa3+f2TE7VK7pOCEVwuQgELbhx8E6bocCW4ej
+teJMDofO2RW76As5SPJfSM1lw+RLnzBLeflZzOGsZH2IvSCTw7pPF0OvXZR0
+mP5HKjluAweGPDq/wqFwfdNLSQd9s/akUyrf7Qm5B139sztvj04KkHX4dJ+n
+P3fhCwx+28GEuYr9Cg4OaozLPyRdsm+9YBTVrSzrsClmifZhbz4M9/72K9W2
+LlBwkHHOSthnJOiArh7dvDDJlzHXJyo5MKiEfO97OBODn33XS/3vdBUHWLyh
+81NXfbB+X6fmcGGJ4fW4hHP26PwOxdyznpIaDh/8HveaPHmOwe9T6E0N09N0
+UDq+9//+h98x+M+83Tge92g6PKjL+DSLldkBnZ903PeIsqKmQ/yxyrpNAlwY
+/D6mwsnJjBoOs9/MsQ56xI/Bt/jsK20Vr+ZgJ9idFH5bEIN/JPqA0rpiFYff
+wktW8y8TwuDPyLduW5Wn5OBlsXveniRMPnp8AACYXkMO
+         "], 0.07445751892170886]}, 
+       {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+        0.7]}], {DiskBox[{0., 2.4557045542400626}, 0.07445751892170886], 
+         InsetBox["196", 
+          Offset[{2, 2}, {0.07445751892170886, 2.5301620731617716}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{0.642497549109625, 2.385604872539455}, 0.07445751892170886],
+          InsetBox["788", 
+          Offset[{2, 2}, {0.7169550680313338, 2.460062391461164}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{1.4651614813756115, 2.33251733363979}, 0.07445751892170886],
+          InsetBox["1567", 
+          Offset[{2, 2}, {1.5396190002973205, 2.406974852561499}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{3.436893408662179, 2.261470356963109}, 0.07445751892170886],
+          InsetBox["1111", 
+          Offset[{2, 2}, {3.511350927583888, 2.335927875884818}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{4.546159554203486, 2.25313834706493}, 0.07445751892170886], 
+         InsetBox["2222", 
+          Offset[{2, 2}, {4.620617073125195, 2.327595865986639}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{6.454919186534125, 3.086117529164379}, 0.07445751892170886],
+          InsetBox["1223", 
+          Offset[{2, 2}, {6.529376705455834, 3.160575048086088}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{5.738195005267722, 2.258421573761757}, 0.07445751892170886],
+          InsetBox["4444", 
+          Offset[{2, 2}, {5.812652524189431, 2.332879092683466}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{2.4057140189361608, 2.2910667101583013}, 
+          0.07445751892170886], 
+         InsetBox["1289", 
+          Offset[{2, 2}, {2.4801715378578697, 2.3655242290800103}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{6.478037587439864, 1.4464820717579518}, 
+          0.07445751892170886], 
+         InsetBox["8888", 
+          Offset[{2, 2}, {6.552495106361573, 1.5209395906796608}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{7.328684895174979, 0.7697055620146769}, 
+          0.07445751892170886], 
+         InsetBox["16777", 
+          Offset[{2, 2}, {7.4031424140966875, 0.8441630809363857}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{7.284711274482224, 3.7869933518919305}, 
+          0.07445751892170886], 
+         InsetBox["11119", 
+          Offset[{2, 2}, {7.359168793403933, 3.8614508708136395}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{8.219201429433715, 4.299554354177214}, 0.07445751892170886],
+          InsetBox["11999", 
+          Offset[{2, 2}, {8.293658948355423, 4.374011873098923}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{8.279553335248021, 0.2872888213065359}, 
+          0.07445751892170886], 
+         InsetBox["34589", 
+          Offset[{2, 2}, {8.35401085416973, 0.36174634022824476}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{9.28484621377417, 0.02527449974607876}, 
+          0.07445751892170886], 
+         InsetBox["112333", 
+          Offset[{2, 2}, {9.359303732695878, 0.09973201866778762}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{10.296853282822402, 0.}, 0.07445751892170886], 
+         InsetBox["444455", 
+          Offset[{2, 2}, {10.37131080174411, 0.07445751892170886}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{11.247918961647153, 0.2373159933806961}, 
+          0.07445751892170886], 
+         InsetBox["889999", 
+          Offset[{2, 2}, {11.322376480568861, 0.31177351230240496}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{12.049391192981389, 0.7466070910690785}, 
+          0.07445751892170886], 
+         InsetBox["1788899", 
+          Offset[{2, 2}, {12.123848711903097, 0.8210646099907873}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{12.590502904393613, 1.492614745130091}, 
+          0.07445751892170886], 
+         InsetBox["1177777", 
+          Offset[{2, 2}, {12.664960423315321, 1.5670722640518}], ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{12.77516961916076, 2.37773694402118}, 0.07445751892170886], 
+         InsetBox["4558889", 
+          Offset[{2, 2}, {12.849627138082468, 2.452194462942889}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{12.56472600411843, 3.2581529503739115}, 
+          0.07445751892170886], 
+         InsetBox["13444447", 
+          Offset[{2, 2}, {12.639183523040138, 3.3326104692956204}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{12.002712829156078, 3.9855084092392423}, 
+          0.07445751892170886], 
+         InsetBox["77888888", 
+          Offset[{2, 2}, {12.077170348077786, 4.059965928160951}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{11.1859901936201, 4.464200534570692}, 0.07445751892170886], 
+         InsetBox["156667777", 
+          Offset[{2, 2}, {11.260447712541808, 4.538658053492401}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{10.22593792532087, 4.662169153108148}, 0.07445751892170886],
+          InsetBox["233444489", 
+          Offset[{2, 2}, {10.300395444242579, 4.736626672029857}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}, {
+         DiskBox[{9.216144747500763, 4.596422653367037}, 0.07445751892170886],
+          InsetBox["1112278888", 
+          Offset[{2, 2}, {9.290602266422471, 4.670880172288746}], 
+          ImageScaled[{0, 0}],
+          BaseStyle->"Graphics"]}}}],
+     MouseAppearanceTag["NetworkGraphics"]],
+    AllowKernelInitialization->False]],
+  DefaultBaseStyle->{
+   "NetworkGraphics", FrontEnd`GraphicsHighlightColor -> Hue[0.8, 1., 0.6]},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->{488., Automatic}]], "Output",
+ CellChangeTimes->{
+  3.6764889628817835`*^9, {3.676489012130726*^9, 3.676489029668507*^9}, 
+   3.6764891337288527`*^9, {3.676489893841357*^9, 3.676489902966511*^9}, {
+   3.676489952866148*^9, 3.676490003740754*^9}, 3.676490092045493*^9, 
+   3.6764901271381464`*^9, 3.6764901759176235`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (June 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 103, 1, 70, "Section"],
+Cell[686, 25, 4837, 131, 145, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5560, 161, 96, 1, 70, "Section"],
+Cell[CellGroupData[{
+Cell[5681, 166, 2186, 50, 107, "Input"],
+Cell[7870, 218, 3433, 66, 1179, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11340, 289, 3521, 52, 221, "Input"],
+Cell[14864, 343, 151861, 3477, 6875, "Output"]
+}, Closed]],
+Cell[166740, 3823, 122, 2, 24, "Input"],
+Cell[166865, 3827, 1618, 41, 50, "Input"],
+Cell[CellGroupData[{
+Cell[168508, 3872, 470, 7, 30, "Input"],
+Cell[168981, 3881, 8001, 167, 200, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,129 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3874,        121]
+NotebookOptionsPosition[      3380,         99]
+NotebookOutlinePosition[      3722,        114]
+CellTagsIndexPosition[      3679,        111]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"196", "+", 
+   RowBox[{"FromDigits", "[", 
+    RowBox[{"Sort", "[", 
+     RowBox[{"IntegerDigits", "[", "196", "]"}], "]"}], "]"}]}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.6764936743044195`*^9, 3.6764937163248034`*^9}, {
+  3.676493931498087*^9, 3.676493934198835*^9}, {3.6764939949833975`*^9, 
+  3.676494147108714*^9}, {3.676494435189706*^9, 3.6764944376642485`*^9}, {
+  3.676494518322686*^9, 3.676494578635103*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"sta", "[", 
+   RowBox[{"i_Integer", ",", "m_Integer", ",", "v_Integer"}], "]"}], ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestWhileList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"#", "+", 
+           RowBox[{"FromDigits", "[", 
+            RowBox[{"Sort", "[", 
+             RowBox[{"IntegerDigits", "[", "#", "]"}], "]"}], "]"}]}], ")"}], 
+         "&"}], ",", "i", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"FromDigits", "[", 
+           RowBox[{"Sort", "[", 
+            RowBox[{"IntegerDigits", "[", "#", "]"}], "]"}], "]"}], "=!=", 
+          "#"}], " ", "&"}], ",", "1", ",", "m"}], "]"}], ",", "v"}], "]"}], 
+    "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6764946110441303`*^9, 3.6764946593959737`*^9}, {
+  3.6764947405302963`*^9, 3.676494743273163*^9}, {3.6764949204901876`*^9, 
+  3.676494952608565*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sta", "[", 
+  RowBox[{"123", ",", " ", "500", ",", " ", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.676494648164472*^9, 3.6764946898330693`*^9}, {
+  3.6764949667339497`*^9, 3.6764949682256317`*^9}, {3.6764952616661544`*^9, 
+  3.6764952619876184`*^9}, {3.6764953476734447`*^9, 3.6764953700032253`*^9}, {
+  3.6765755232638435`*^9, 3.6765755257038774`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[RasterBox[{{0, 0, 0, 0, 1, 0, 0}}, {{0, 0}, {7, 1}}, {0, 1}],
+  Frame->Automatic,
+  FrameLabel->{None, None},
+  FrameTicks->{{None, None}, {None, None}},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> 
+    Automatic}]], "Output",
+ CellChangeTimes->{{3.676494670892007*^9, 3.67649469087983*^9}, {
+   3.6764949611568127`*^9, 3.6764949687976637`*^9}, 3.676495263137495*^9, {
+   3.676495349155455*^9, 3.6764953710497885`*^9}, {3.676575526377884*^9, 
+   3.676575531117586*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"IntegerDigits", "[", 
+  RowBox[{"16", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6764939571973414`*^9, 3.676493963755662*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}]], "Output",
+ CellChangeTimes->{3.6764939646793337`*^9}]
+}, Open  ]]
+},
+WindowSize->{1350, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (June 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 473, 10, 50, "Input"],
+Cell[1034, 32, 996, 26, 50, "Input"],
+Cell[CellGroupData[{
+Cell[2055, 62, 380, 6, 30, "Input"],
+Cell[2438, 70, 581, 13, 113, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3056, 88, 158, 3, 30, "Input"],
+Cell[3217, 93, 147, 3, 30, "Output"]
+}, Open  ]]
+}
+]
+*)
+
