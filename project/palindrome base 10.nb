@@ -1,0 +1,987 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     33407,        979]
+NotebookOptionsPosition[     31205,        898]
+NotebookOutlinePosition[     31547,        913]
+CellTagsIndexPosition[     31504,        910]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"palindrome3", "[", "x_Integer", "]"}], ":=", " ", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"PalindromeQ", "[", 
+     RowBox[{"palindrome3", "[", "x", "]"}], "]"}], ",", " ", 
+    RowBox[{"Print", "[", "x", "]"}], ",", 
+    RowBox[{
+     RowBox[{"palindrome3", "[", "x", "]"}], "+", 
+     RowBox[{"IntegerReverse", "[", 
+      RowBox[{"palindrome3", "[", "x", "]"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.676185309458446*^9, 3.6761853437838163`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"palindrome3", "[", "19", "]"}]], "Input",
+ CellChangeTimes->{{3.6761544075348225`*^9, 3.676154424140741*^9}}],
+
+Cell[BoxData["110"], "Output",
+ CellChangeTimes->{3.6761854344722953`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Module", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"llrev", ",", 
+     RowBox[{"ll", "=", 
+      RowBox[{"NestWhileList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"FromDigits", "@", 
+            RowBox[{"Reverse", "[", 
+             RowBox[{"IntegerDigits", "[", "#", "]"}], "]"}]}], "+", "#"}], 
+          ")"}], "&"}], ",", "19", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Reverse", "@", 
+           RowBox[{"IntegerDigits", "[", "#", "]"}]}], "=!=", 
+          RowBox[{"IntegerDigits", "[", "#", "]"}]}], "&"}], ",", "1", ",", 
+        "50"}], "]"}]}]}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"llrev", "=", 
+     RowBox[{"Riffle", "[", 
+      RowBox[{"ll", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Style", "[", 
+          RowBox[{"FromDigits", "[", 
+           RowBox[{"Reverse", "[", 
+            RowBox[{"IntegerDigits", "[", "#", "]"}], "]"}], "]"}], "]"}], 
+         "&"}], "/@", "ll"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Reverse", "@", 
+        RowBox[{"IntegerDigits", "[", 
+         RowBox[{"ll", "[", 
+          RowBox[{"[", 
+           RowBox[{"-", "1"}], "]"}], "]"}], "]"}]}], "==", 
+       RowBox[{"IntegerDigits", "[", 
+        RowBox[{"ll", "[", 
+         RowBox[{"[", 
+          RowBox[{"-", "1"}], "]"}], "]"}], "]"}]}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"ll", "[", 
+         RowBox[{"[", 
+          RowBox[{"-", "1"}], "]"}], "]"}], "=", 
+        RowBox[{"Style", "[", 
+         RowBox[{
+          RowBox[{"ll", "[", 
+           RowBox[{"[", 
+            RowBox[{"-", "1"}], "]"}], "]"}], ",", "\"\<Label\>\""}], "]"}]}],
+        ";", 
+       RowBox[{
+        RowBox[{"llrev", "[", 
+         RowBox[{"[", 
+          RowBox[{"-", "1"}], "]"}], "]"}], "=", 
+        RowBox[{"Style", "[", 
+         RowBox[{
+          RowBox[{"llrev", "[", 
+           RowBox[{"[", 
+            RowBox[{"-", "1"}], "]"}], "]"}], ",", "\"\<Label\>\""}], 
+         "]"}]}]}]}], "]"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.676186004083908*^9, 3.676186026190463*^9}, {
+  3.6761861094482355`*^9, 3.6761861783807564`*^9}}],
+
+Cell[BoxData[
+ StyleBox["121", "Label",
+  StripOnInput->False]], "Output",
+ CellChangeTimes->{{3.676186006188571*^9, 3.6761860297649155`*^9}, 
+   3.6761861112510076`*^9, 3.6761861796405315`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"palindrome4", "[", "x_Integer", "]"}], ":=", 
+  RowBox[{"NestWhileList", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], "&"}], 
+    ",", "x", ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Reverse", "@", 
+       RowBox[{"IntegerDigits", "[", "#", "]"}]}], "=!=", 
+      RowBox[{"IntegerDigits", "[", "#", "]"}]}], "&"}], ",", "1", ",", 
+    "50"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.676186335998866*^9, 3.6761863804818172`*^9}, {
+  3.6761879733008575`*^9, 3.6761879766278996`*^9}, {3.6761882216534557`*^9, 
+  3.676188221761562*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"palindrome4", "[", "39", "]"}]], "Input",
+ CellChangeTimes->{{3.676188227510335*^9, 3.676188234697421*^9}, {
+  3.676188377262531*^9, 3.676188384618656*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"39", ",", "132", ",", "363"}], "}"}]], "Output",
+ CellChangeTimes->{3.6761883851667604`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"palindrome5", "[", "x_Integer", "]"}], ":=", 
+  RowBox[{"BaseForm", "[", 
+   RowBox[{
+    RowBox[{"NestWhileList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], "&"}], 
+      ",", "x", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Reverse", "@", 
+         RowBox[{"IntegerDigits", "[", "#", "]"}]}], "=!=", 
+        RowBox[{"IntegerDigits", "[", "#", "]"}]}], "&"}], ",", "1", ",", 
+      "50"}], "]"}], ",", "2"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.676188439696065*^9, 3.676188467063553*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"palindrome5", "[", "39", "]"}]], "Input",
+ CellChangeTimes->{{3.6761884700736713`*^9, 3.676188477719261*^9}, {
+  3.6761886549783764`*^9, 3.6761886629520397`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"{", 
+   RowBox[{
+    InterpretationBox[
+     SubscriptBox["\<\"100111\"\>", "\<\"2\"\>"],
+     39,
+     Editable->False], ",", 
+    InterpretationBox[
+     SubscriptBox["\<\"10000100\"\>", "\<\"2\"\>"],
+     132,
+     Editable->False], ",", 
+    InterpretationBox[
+     SubscriptBox["\<\"101101011\"\>", "\<\"2\"\>"],
+     363,
+     Editable->False]}], "}"}],
+  BaseForm[#, 2]& ]], "Output",
+ CellChangeTimes->{3.676188478320903*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"IntegerDigits", "[", 
+  RowBox[{
+   RowBox[{"palindrome5", "[", "39", "]"}], ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.67618899029029*^9, 3.676189011135089*^9}}],
+
+Cell[BoxData[
+ RowBox[{"IntegerDigits", "[", 
+  RowBox[{
+   TagBox[
+    RowBox[{"{", 
+     RowBox[{
+      InterpretationBox[
+       SubscriptBox["\<\"100111\"\>", "\<\"2\"\>"],
+       39,
+       Editable->False], ",", 
+      InterpretationBox[
+       SubscriptBox["\<\"10000100\"\>", "\<\"2\"\>"],
+       132,
+       Editable->False], ",", 
+      InterpretationBox[
+       SubscriptBox["\<\"101101011\"\>", "\<\"2\"\>"],
+       363,
+       Editable->False]}], "}"}],
+    BaseForm[#, 2]& ], ",", "2"}], "]"}]], "Output",
+ CellChangeTimes->{3.676189012426114*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BaseForm", "[", 
+  RowBox[{"780", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.676188697864894*^9, 3.6761887276242275`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  InterpretationBox[
+   SubscriptBox["\<\"1100001100\"\>", "\<\"2\"\>"],
+   780,
+   Editable->False],
+  BaseForm[#, 2]& ]], "Output",
+ CellChangeTimes->{3.676188730844161*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"IntegerDigits", "[", 
+  RowBox[{"%65", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6761887356537423`*^9, 3.6761887420881367`*^9}, {
+  3.6761888183472147`*^9, 3.676188822118059*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "1", ",", "1", 
+   ",", "0", ",", "0"}], "}"}]], "Output",
+ CellChangeTimes->{3.6761887430150785`*^9, 3.676188823329035*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"IntegerDigits", "[", 
+  RowBox[{
+   TagBox[
+    RowBox[{"{", 
+     RowBox[{
+      InterpretationBox[
+       SubscriptBox["\"\<100111\>\"", "\"\<2\>\""],
+       39,
+       Editable->False], ",", 
+      InterpretationBox[
+       SubscriptBox["\"\<10000100\>\"", "\"\<2\>\""],
+       132,
+       Editable->False], ",", 
+      InterpretationBox[
+       SubscriptBox["\"\<101101011\>\"", "\"\<2\>\""],
+       363,
+       Editable->False]}], "}"}],
+    BaseForm[#, 2]& ], ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6761888695848627`*^9, 3.676188878679435*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "0", ",", "1", ",", "1", ",", "1"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "1", ",", "0", ",", 
+     "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "0", ",", "1", ",", "1", ",", "0", ",", "1", ",", "0", ",", "1",
+      ",", "1"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.6761888802813015`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"palindrome6", "[", "x_Integer", "]"}], ":=", 
+  RowBox[{"IntegerDigits", "[", 
+   RowBox[{
+    RowBox[{"NestWhileList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], "&"}], 
+      ",", "x", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Reverse", "@", 
+         RowBox[{"IntegerDigits", "[", "#", "]"}]}], "=!=", 
+        RowBox[{"IntegerDigits", "[", "#", "]"}]}], "&"}], ",", "1", ",", 
+      "50"}], "]"}], ",", "2"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6761890992308908`*^9, 3.6761891432435727`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"palindrome6", "[", "39", "]"}]], "Input",
+ CellChangeTimes->{{3.676189150615095*^9, 3.676189157434952*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "0", ",", "1", ",", "1", ",", "1"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "1", ",", "0", ",", 
+     "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "0", ",", "1", ",", "1", ",", "0", ",", "1", ",", "0", ",", "1",
+      ",", "1"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.6761891580059605`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"palindrome7", "[", "x_Integer", "]"}], ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestWhileList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], 
+         "&"}], ",", "x", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Reverse", "@", 
+           RowBox[{"IntegerDigits", "[", "#", "]"}]}], "=!=", 
+          RowBox[{"IntegerDigits", "[", "#", "]"}]}], "&"}], ",", "1", ",", 
+        "50"}], "]"}], ",", "2"}], "]"}], ",", 
+    RowBox[{"Background", "\[Rule]", 
+     RowBox[{"GrayLevel", "[", "0.9", "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.676189188457407*^9, 3.676189209579122*^9}, {
+   3.6761892466265984`*^9, 3.676189256984804*^9}, 3.67618944662274*^9, {
+   3.6761895542739534`*^9, 3.6761896128871946`*^9}, {3.676189890467704*^9, 
+   3.6761899392351065`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"palindrome7", "[", "89", "]"}]], "Input",
+ CellChangeTimes->{{3.6761892119411736`*^9, 3.676189218366826*^9}, {
+  3.676189282343735*^9, 3.6761892827803917`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[RasterBox[CompressedData["
+1:eJztlMttxEAMQw0kTeSYe3pID1tCgJzTekrI3gOZxtI0NVoKMHR4o9FnLL5/
+/dy+X7Zte7t/H/fvdUP2+xl/xFc2hbv7Z/Or47t71J+au+e/en1sfjZ+en9s
+fatz9/u738fdn3v+LHftPzp3lKvqm7Lf6vpY7q7fnZ/l031lXfbDXb9aX1n9
+dc+n+/0onuXu/Gx97vl314/Vuft93Pq5uv6ieJZ396h+lrvrX92r+0P3s/nV
+8Sxn57Y6r6zL/7O6r2xKvLs+t0f1I+7Oz3L1XKfzytzz7/5/dNmv1T3qT83d
+80f3q7mqf3QufN/c79dFf9n7Ubyau/ufrt9q3tWjOsOP8cqeRX+719ddH1F+
+d33u/t3+0frQufBzeGVd9pOtj42fvp/d60f52frY+9352bmGe3llXfaH5W79
+QfHPzrvPz/3/RF9n88q66O/qHvWHuHv/1fGpbz8ufDav7Kr/360v6v1U88y3
+N3fvd3hvXtlV++3ez+jPPnf3534f936Gz+aVuXW3i76o71fPxz1ftj73fxce
+ruSVXbXfbn3qXt/0+x+NR+fCw1fglV21X93zu/Wte351X+Hhk3llV+0/G9+9
+PhTv5qr+0bnw8PDartIXtb6686s9yq+qD90THh6u19/u+sJyt1fVj86Fh4ev
+r7/q+1f3lZ11b3h4eF9e2VF9QNytTyhefb/7fcPDw/vyys7SL8Td+qzyqI7w
+8PDwys7SP5ar87vnHx4e/ry8Mrf+nZXfPd/w8PDw//wPP4e5Qw==
+   "], {{0, 0}, {44, 25}}, {0, 1}],
+  Background->GrayLevel[0.9],
+  Frame->Automatic,
+  FrameLabel->{None, None},
+  FrameTicks->{{None, None}, {None, None}},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> 
+    Automatic}]], "Output",
+ CellChangeTimes->{
+  3.676189218991392*^9, {3.676189264639969*^9, 3.6761892839217925`*^9}, 
+   3.6761894510111475`*^9, {3.6761895662750635`*^9, 3.6761896166582136`*^9}, {
+   3.6761898989756174`*^9, 3.676189942046751*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Initialization", "Subsection",
+ CellChangeTimes->{{3.6762002493123617`*^9, 3.676200261587449*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"palindrome8", "[", 
+   RowBox[{"x_Integer", ",", "y_Integer", ",", "z_Integer"}], "]"}], ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestWhileList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], 
+         "&"}], ",", "x", ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Reverse", "@", 
+           RowBox[{"IntegerDigits", "[", "#", "]"}]}], "=!=", 
+          RowBox[{"IntegerDigits", "[", "#", "]"}]}], "&"}], ",", "1", ",", 
+        "y"}], "]"}], ",", "z"}], "]"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"listPalindrome", "[", 
+   RowBox[{"x_Integer", ",", "y_Integer"}], "]"}], ":=", 
+  RowBox[{"Column", "[", 
+   RowBox[{"NestWhileList", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], "&"}], 
+     ",", "x", ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Reverse", "@", 
+        RowBox[{"IntegerDigits", "[", "#", "]"}]}], "=!=", 
+       RowBox[{"IntegerDigits", "[", "#", "]"}]}], "&"}], ",", "1", ",", 
+     "y"}], "]"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"countPalindrome", "[", 
+   RowBox[{"x_Integer", ",", "y_Integer"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Length", "[", 
+    RowBox[{"NestWhileList", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], "&"}], 
+      ",", "x", ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Reverse", "@", 
+         RowBox[{"IntegerDigits", "[", "#", "]"}]}], "=!=", 
+        RowBox[{"IntegerDigits", "[", "#", "]"}]}], "&"}], ",", "1", ",", 
+      "y"}], "]"}], "]"}], "-", "1"}]}], "\n", 
+ RowBox[{
+  RowBox[{"finalPalindrome", "[", 
+   RowBox[{"x_Integer", ",", "y_Integer", ",", "z_Integer"}], "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"palindrome8", "[", 
+     RowBox[{"x", ",", "y", ",", "z"}], "]"}], ",", 
+    RowBox[{"listPalindrome", "[", 
+     RowBox[{"x", ",", "y"}], "]"}], ",", 
+    RowBox[{"countPalindrome", "[", 
+     RowBox[{"x", ",", "y"}], "]"}]}], "}"}]}], "\n", 
+ RowBox[{
+  RowBox[{"repPalindrome", "[", 
+   RowBox[{"x_Integer", ",", "y_Integer", ",", "z_Integer"}], "]"}], ":=", 
+  RowBox[{"ArrayPlot", "[", 
+   RowBox[{"PadLeft", "[", 
+    RowBox[{"IntegerDigits", "[", 
+     RowBox[{
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], 
+         "&"}], ",", "x", ",", "y"}], "]"}], ",", "z"}], "]"}], "]"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6761896450657988`*^9, 3.6761897321695194`*^9}, {
+   3.6761897991762958`*^9, 3.67618980120932*^9}, {3.6761906791220446`*^9, 
+   3.676190682970812*^9}, {3.67619071835809*^9, 3.676190721638378*^9}, {
+   3.676200506955928*^9, 3.6762005152155066`*^9}, {3.6762049023547764`*^9, 
+   3.676204909242674*^9}, 3.676205103635725*^9, 3.6762272267719264`*^9, {
+   3.6762750786603785`*^9, 3.67627508733383*^9}, 3.67632606784517*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"listRepPalindrome", "[", 
+   RowBox[{"x_Integer", ",", "y_Integer"}], "]"}], ":=", 
+  RowBox[{"Column", "[", 
+   RowBox[{"NestList", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"IntegerReverse", "[", "#", "]"}], "+", "#"}], ")"}], "&"}], 
+     ",", "x", ",", "y"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.676326159385603*^9, 3.6763262404164696`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Program", "Subsection",
+ CellChangeTimes->{{3.676200270144369*^9, 3.6762002724038625`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"finalPalindrome", "[", 
+  RowBox[{"196", ",", "100", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.67619101889867*^9, 3.6761910280403013`*^9}, 
+   3.6761999635285325`*^9, {3.6762003056117797`*^9, 3.676200356765442*^9}, {
+   3.676200411192577*^9, 3.6762004510501394`*^9}, {3.6762005676200676`*^9, 
+   3.676200613432865*^9}, {3.6762006621833515`*^9, 3.6762007181830664`*^9}, {
+   3.6762007679374866`*^9, 3.676200780489772*^9}, {3.676201821788946*^9, 
+   3.6762018279401817`*^9}, {3.6762049539793453`*^9, 
+   3.6762049904828343`*^9}, {3.676325447508698*^9, 3.6763254528473988`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   GraphicsBox[RasterBox[CompressedData["
+1:eJzNmFuW2zYQRNHZSbaUJficfHtB2WwmI/at29QjM6MHBduUxAdQqK4qgP7z
+1++/fv2x1vr7498/a2v18efj+NnysV07ndq+963b3Z/fuoPPOxef2691eqa2
+x1Z+fd60uvvKo9v57dqGbDtsvRQnF7fVABO4lRlVJsS8Sug3XHS8NISP8MPE
+6AMq10rv46aeeo8F0asxipNKVwtaYHGDxCy7LIOR1GlUpgGWu8nMe7RUtacb
+zvia4arG/HkW1tURHHRtC1BrIoJuV7RvQVuoZGksDqqoagLTFj+6gKGMsVT/
+qKpSnK7nMg9SXoymSmCX8BDp38aGMCUkC4SpDxW49EUh03FsNoQrBMZmMtBA
+95+EcUFb3LFVeujbsE+TbqJhFxMF0xm24RUVxaJIWK34XLKDFpfOswzkZJ2x
+SbtXsYGDD00tM8yl4kRpHvY2pEULGSuSrTNs+8zYBCZSqF2kF5qYsFymh4ca
+kd0YF+A7sZVpR+Pmk1JIYUIWa4zcCKd8cH2YSTSfIRsTiAQklmg5Kk5ADCsA
+gG5gfZdHkWKse15RTsVlCREQDbuVWUnnUqmG70rpElgzItO5QBxTTOjYazKr
+TdMl9wmGOBdobk81EN9FYNexxSKojRxRjZqQESzTlWXs4dj+u4ZtSBMUS2hs
+rZ15MKeuxDUXykoQNM9h7xq2wFiayDQ96GT+2A+xLi4ODNJESL7B2MQmV6Es
+jSiboj5iBGUExVqagaqLhNTBDXAtLfWbh1OTiEfGyxkkGHfMjEgOkAf8voEt
+AhLbon4vd560HIcNu7e+V5PkkKv/R9ykWuobhVpkn0bGCX11ZliXFKXq4wvY
+UD3EeY6GPah22aXTULhsdrhfs7fb4NqoPcUUy4bMFOKA8jUYA+DKmRJAqv8t
+bHHPHH/g5RbyhwqIHsomk8vsXwdXqEF9K0nJGFUXPle8Xp7bqKgU3aN8GZtH
+Ql+lMcVC5BSPj3IBd9Zas/5yE2Wr7bNy1kXFlUq+sKj6cRcUYv6vuSDg5KrB
+005cYaPjA0Wgx0YeE23/xMP3sEHGEBafUhPREuWs3S1UD8kDkeR7CLaUeXGl
+MTpFYqVI07iKuX0TWxCmujMhEpzy5Wom5T3NpZmKq7+nNWFjKOsY6aItGGRY
+404PZ9jqu5z1aIrGBS54UGYkDpMXDUBFVrGjhZ+Ai/GTpBUSULscxyM8RnmR
+aWBj5h/wxvSho4dv6i7k156oFJib+0IpRu7DtlqA5EjgSo7Rm0JEkJtz9Pdj
+cNRtl13IZKUi/lYl+lTdflCx8VNwu2SP4kVDRlVWMfwwtOJRivtpU45q1KQW
+HsAQ8a7VTxelrKv70Ck9NwwJKyJTxTIgiO2gWL6x77inyfcDa9ho0PErBWxI
+6kuWvbOmSvSwFhuANYqDzcl0X1gi8E5k3btMn7EhCPoGF0wiGl155p74CDas
+bhFTxaRJkcUVurOADGyPANaoisUlEgsnBC6mtkJX/hIsPclHYMNp6bQBkvw9
+JG5kIillTj+qxQ7YANpiymXKHCSYIBcfw9qGjYKFLsWpY2GFzChsqu+hLQFP
+OjXiJGjrr61CqW2OFuYDsdE9BlA4ICjlf4XY7dHHl7PBiZa4Dc2NcDCATpRi
+sbp/pbqETVVNoAT0Vsdcjbhw+iPWgkvoFuA6orJaDQYHW9uzZNoz0K150AqQ
+AdcOoUhm2XhOS1gob23hWKT2rLZIH2+EYGsVlWQd7WPW6dvEx1NwncCBz1Fq
+d2qd92q1u/wcbDNblwIr2urVQOqXRp+MTeFWjVOhIkc0y1VPrWeD6xLKA2Rv
+AUhrE1H8xIKeBq4E6PixIYe7MplPx9XYVr63vk7AQNu8DtBPFdsGYPe3kvkx
+JL6MRZ4uN+XZ9jPBX21NnTL857csSFSzceZUJGfBvQLbkDea61PZDpTPvYK3
+rI9Ii0V2FFSAXoNrYovG5pqKKl8js1vYUFnWjS6yI+cl2LLH6N1IC7+Vpmq/
+TmsnbFnmkx368O7jNQY1uLEbkc6yVmS3+VrJtSGFwDZg30aivBiccaL9IK3I
+8cVth01LvbdGR7WVsGAlOAFUqL2+oDts7VZtK7MuHIBM2DpgvZs8vqgyQIzZ
+2/FXbCWvQtsAJuG0nzyaN7a12ddmJTu6pn3M7i3bpON80Oi8rmZreaTSLmBj
+sbI3DscWjnhxONQE3bRHim2PWN0vNL05k7+n8++A7WznfcBe8jK0z0NiLa+D
+xzftJPsdkJ3J0a1f9KpfA+s9pHZqXhpI4YMxpfVOst/l36nx/w55h3mb1nuk
+Q7dr15p09l6sVUX+7wbsv9b7y3cElx350UgutF7j/wVgIi+4
+     "], {{0, 0}, {155, 101}}, {0, 1}],
+    Frame->Automatic,
+    FrameLabel->{None, None},
+    FrameTicks->{{None, None}, {None, None}},
+    GridLinesStyle->Directive[
+      GrayLevel[0.5, 0.4]],
+    Method->{
+     "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic}], 
+   ",", 
+   TagBox[GridBox[{
+      {"196"},
+      {"887"},
+      {"1675"},
+      {"7436"},
+      {"13783"},
+      {"52514"},
+      {"94039"},
+      {"187088"},
+      {"1067869"},
+      {"10755470"},
+      {"18211171"},
+      {"35322452"},
+      {"60744805"},
+      {"111589511"},
+      {"227574622"},
+      {"454050344"},
+      {"897100798"},
+      {"1794102596"},
+      {"8746117567"},
+      {"16403234045"},
+      {"70446464506"},
+      {"130992928913"},
+      {"450822227944"},
+      {"900544455998"},
+      {"1800098901007"},
+      {"8801197801088"},
+      {"17602285712176"},
+      {"84724043932847"},
+      {"159547977975595"},
+      {"755127757721546"},
+      {"1400255515443103"},
+      {"4413700670963144"},
+      {"8827391431036288"},
+      {"17653692772973576"},
+      {"85191620502609247"},
+      {"159482241005228405"},
+      {"664304741147513356"},
+      {"1317620482294916822"},
+      {"3603815405135183953"},
+      {"7197630720180367016"},
+      {"13305261530450734933"},
+      {"47248966933966985264"},
+      {"93507933867933969538"},
+      {"177104867844767940077"},
+      {"947154635293536341848"},
+      {"1795298270686072793597"},
+      {"9749270977546801719568"},
+      {"18408442064004592449047"},
+      {"92502871604050616929528"},
+      {"175095833209091234750057"},
+      {"925153265399993573340628"},
+      {"1751196640799987135692157"},
+      {"9264161958699957602603728"},
+      {"17537224026299926194218357"},
+      {"92918473189299188236491928"},
+      {"175837936477498486373973857"},
+      {"934217310162393261013712428"},
+      {"1758434620324786522027424867"},
+      {"9442681822581660752291773438"},
+      {"17786453745152322604573635887"},
+      {"96640091285774647759309104658"},
+      {"182280281681549295517528109327"},
+      {"906182107397142240703710191608"},
+      {"1712373124704184482497411473217"},
+      {"8836114272647029296571625205388"},
+      {"17671139534403958504034349321776"},
+      {"85383533877444544434477942439447"},
+      {"159876958854887988978955775977805"},
+      {"668656536414767878767414635656756"},
+      {"1326313072829535757534829271313622"},
+      {"3589444802113893332894111974449853"},
+      {"7178889593228875666877224058899706"},
+      {"13258878097456662332665448018788423"},
+      {"45747659181913285659330927106673654"},
+      {"91385319354816681317562845302348408"},
+      {"171869639709643252636224690693706727"},
+      {"899477035806065888888571598630674898"},
+      {"1797953072701241777777132207161449896"},
+      {"8787394689723559555548553279865047867"},
+      {"16474800379447118011108106559729985745"},
+      {"71233793175007298122189281057030833206"},
+      {"131467596250025596244378551114170566423"},
+      {"456132667661181469687074071166866330554"},
+      {"911166336322351940474038252333632562208"},
+      {"1713431572655604770948087405557266223327"},
+      {"8946658200210652579438861471120017566498"},
+      {"17893315300422394267788614031240046132996"},
+      {"87816479304635435956564863353640397472867"},
+      {"164643958609270772803130816807280794934745"},
+      {"712083455691979390834439093880187654281206"},
+      {"1314265912473067781768877187859384208661423"},
+      {"4555933937312655599557549065463126404285554"},
+      {"9111757983526301209015109021025263797681108"},
+      {"17123625957151502418030218042061517695252227"},
+      {"89348885628667526499233299462576693647884398"},
+      {"178697760268335052998466598925153376306768796"},
+      {"876565363941686582894131498175687238374565667"},
+      {"1643130837774473154788262996461373387738131345"},
+      {"7074449215608204801780891870975118165118444806"},
+      {"13158897331226320592562872742059146230247889513"},
+      {"44757771534490515617290699271561508443627774644"}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{"Columns" -> {{Left}}},
+     GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+    "Column"], ",", "100"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6762007814391346`*^9, {3.676201823270961*^9, 3.6762018291611595`*^9}, {
+   3.6762049556440544`*^9, 3.6762050156541595`*^9}, 3.676205115576536*^9, 
+   3.6763254554066505`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"finalPalindrome", "[", 
+    RowBox[{"x", ",", "y", ",", "z"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "x", ",", "10", ",", "\"\<initial value(click enter after input)\>\""}],
+       "}"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", " ", "InputField"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"y", ",", "1", ",", "\"\<max number of iterations\>\""}], "}"}],
+      ",", "1", ",", "200", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"z", ",", "2", ",", "\"\<Base\>\""}], "}"}], ",", " ", "2", ",",
+      "10", ",", "1", ",", " ", 
+     RowBox[{"ControlType", "\[Rule]", " ", "PopupMenu"}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQAWIQvcOkXuVM8mtHhlMTwPSccgUtEC3S/EwXRC/jbzIB
+0ZYrNpqC6OrlWc4g+tsUdXcQ/SXIKAREn5Y7AKZzdXbFgei3p/4kgehz50LS
+QXRC9jEwfWBL9iYQfS/kI5i+pF23HUQfUWqD0Ayde0F0rTrLQRC9NNjnMoi+
+I7/yJojeUSVzD0RXLVj+GkRPVPH+CKIXLD77FURb5IWxnAXSH8/uZAXR7prd
+v0H0LfZapnNA2mF+Fy+I/hUmIQCi/YSeiIPoTb9tpEH0/7Nnb9wH0lHbLoLp
+zRIrnoLoVmujZyD6D4OC9AMgPWNjEpgGAI/hsGw=
+  "],
+ NumberMarks->False],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`x$$ = 794, $CellContext`y$$ = 
+    88, $CellContext`z$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`x$$], 10, 
+       "initial value(click enter after input)"}}, {{
+       Hold[$CellContext`y$$], 1, "max number of iterations"}, 1, 200, 1}, {{
+       Hold[$CellContext`z$$], 2, "Base"}, 2, 10, 1}}, Typeset`size$$ = {
+    259., {28., 35.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`y$31404$$ = 
+    0, $CellContext`z$31405$$ = 0}, 
+    DynamicBox[ToBoxes[
+      RawBoxes[
+       Manipulate`ManipulateBoxes[
+       1, StandardForm, 
+        "Variables" :> {$CellContext`x$$ = 10, $CellContext`y$$ = 
+          1, $CellContext`z$$ = 2}, "ControllerVariables" :> {
+          Hold[$CellContext`y$$, $CellContext`y$31404$$, 0], 
+          Hold[$CellContext`z$$, $CellContext`z$31405$$, 0]}, 
+        "OtherVariables" :> {
+         Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+          Typeset`initDone$$, Typeset`skipInitDone$$}, 
+        "Body" :> $CellContext`finalPalindrome[$CellContext`x$$, \
+$CellContext`y$$, $CellContext`z$$], 
+        "Specifications" :> {{{$CellContext`x$$, 10, 
+            "initial value(click enter after input)"}, ControlType -> 
+           InputField}, {{$CellContext`y$$, 1, "max number of iterations"}, 1,
+            200, 1, Appearance -> "Labeled"}, {{$CellContext`z$$, 2, "Base"}, 
+           2, 10, 1, ControlType -> PopupMenu}}, "Options" :> {}, 
+        "DefaultOptions" :> {}]], StandardForm],
+     ImageSizeCache->{475., {101., 108.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.67620526200873*^9, 3.676205274935729*^9}, 
+   3.676227162087891*^9, 3.6762414190169764`*^9, 3.676241608242571*^9, 
+   3.6762417170556765`*^9, 3.6762421404885144`*^9, 3.676275094199634*^9, 
+   3.6762770656352067`*^9, 3.6763250270841866`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"repPalindrome", "[", 
+  RowBox[{"794", ",", "50", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6763260096027384`*^9, 3.6763260470890255`*^9}, 
+   3.6763261419813743`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[RasterBox[CompressedData["
+1:eJzVldlVwzAQRWfohBqogx9KSAP0/4dBesscKbG8/OBDQmxLd/an98f31+Mt
+Ij62z+f2iYzc/qJ9/91sn+Tj35tMfxvtO7G2L+Wi7NBOav/D9nHx3/MESvb6
+9mowZbX9bNvDVifXaVcQJ1okF2S3OgYlTNB/GWK8MgYADHSG0ZQRepO892D4
+EuZbJEqW5a7YzwEfIiryxEamEwFaCHZZWQlhwcKCssCzOlhp8Ir5teqaJ1ym
+l1lQIy1kkV2NTeHOc/U+De2jiqkQSGVOaNYA2OflUHH4VLGCXoGaFTPtE2FO
+y5+Y05LZcE/C5oQvzf8xZwPNulHdCQnBGODn1DO0ltlWzXxkmRM4PL/wgpUs
+1nGrRpk12jMaMlbVxvu4Tv4QKFWIBZVoMDIhrf5PvJP4qCiYCQmJcvmKptln
+sARTKsOS+fpic6k36YxkwhO3Q1NcGv5U8k1C9y80u9oJWxmntGWFBt2qmsQW
+03Cs0zgLTLppOGLYp2HiZd51Ep295NndNCqFfpTAw2JedS4sWWwMDse6a9J8
+r26O8Z+gcRYpo8dYjQR/NLKmMMdpFVKE7rhzvtUG6lgBjGa1wwlz0jVpuddh
+WTimNBNrOxDPXcGeMLG8QLNBOJuwf0LzI+oqrhygp+bTYcnj/RLHaDwjrhKD
+kn6HdzfTIGd3pI2H0z04HQU/DTMNHQ==
+   "], {{0, 0}, {77, 51}}, {0, 1}],
+  Frame->Automatic,
+  FrameLabel->{None, None},
+  FrameTicks->{{None, None}, {None, None}},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> 
+    Automatic}]], "Output",
+ CellChangeTimes->{{3.6763260333469257`*^9, 3.676326048380838*^9}, 
+   3.676326143270007*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"listRepPalindrome", "[", 
+  RowBox[{"794", ",", "50"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6763262225370803`*^9, 3.676326249347128*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"794"},
+    {"1291"},
+    {"3212"},
+    {"5335"},
+    {"10670"},
+    {"18271"},
+    {"35552"},
+    {"61105"},
+    {"111221"},
+    {"233332"},
+    {"466664"},
+    {"933328"},
+    {"1756667"},
+    {"9423238"},
+    {"17746487"},
+    {"96211258"},
+    {"181422527"},
+    {"906646708"},
+    {"1714293317"},
+    {"8848217488"},
+    {"17695345976"},
+    {"85649705647"},
+    {"160300500305"},
+    {"663305503366"},
+    {"1326611006732"},
+    {"3702612172963"},
+    {"7395324335036"},
+    {"13700658570973"},
+    {"51608244171704"},
+    {"92325388452319"},
+    {"183650876804648"},
+    {"1030059554861029"},
+    {"10231744114361330"},
+    {"13548085259074531"},
+    {"27095180517159062"},
+    {"53190352025318134"},
+    {"96371704050627269"},
+    {"192644309091344638"},
+    {"1029087499994790929"},
+    {"10320062499942600130"},
+    {"13420687499368602431"},
+    {"26841373898847204862"},
+    {"53681648788684519724"},
+    {"96473197477469138359"},
+    {"191856393954948275828"},
+    {"1020429243414341934019"},
+    {"10124820677557771174220"},
+    {"12371938453135374016321"},
+    {"24732985806270857933642"},
+    {"49366961613531716857384"},
+    {"97742823327063333823778"}
+   },
+   DefaultBaseStyle->"Column",
+   GridBoxAlignment->{"Columns" -> {{Left}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Column"]], "Output",
+ CellChangeTimes->{3.676326250764044*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1350, 685},
+WindowMargins->{{-3, Automatic}, {Automatic, 4}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (June 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 504, 12, 30, "Input"],
+Cell[CellGroupData[{
+Cell[1087, 36, 133, 2, 30, "Input"],
+Cell[1223, 40, 74, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1334, 46, 2258, 66, 88, "Input"],
+Cell[3595, 114, 194, 4, 27, "Output"]
+}, Open  ]],
+Cell[3804, 121, 662, 18, 30, "Input"],
+Cell[CellGroupData[{
+Cell[4491, 143, 180, 3, 30, "Input"],
+Cell[4674, 148, 132, 3, 30, "Output"]
+}, Open  ]],
+Cell[4821, 154, 641, 18, 30, "Input"],
+Cell[CellGroupData[{
+Cell[5487, 176, 186, 3, 30, "Input"],
+Cell[5676, 181, 467, 17, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6180, 203, 194, 4, 30, "Input"],
+Cell[6377, 209, 561, 19, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6975, 233, 154, 3, 30, "Input"],
+Cell[7132, 238, 198, 7, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7367, 250, 212, 4, 30, "Input"],
+Cell[7582, 256, 226, 5, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7845, 266, 586, 19, 30, "Input"],
+Cell[8434, 287, 470, 14, 30, "Output"]
+}, Open  ]],
+Cell[8919, 304, 650, 18, 30, "Input"],
+Cell[CellGroupData[{
+Cell[9594, 326, 131, 2, 30, "Input"],
+Cell[9728, 330, 470, 14, 30, "Output"]
+}, Open  ]],
+Cell[10213, 347, 997, 25, 50, "Input"],
+Cell[CellGroupData[{
+Cell[11235, 376, 184, 3, 30, "Input"],
+Cell[11422, 381, 1379, 28, 226, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12838, 414, 104, 1, 49, "Subsection"],
+Cell[12945, 417, 3222, 87, 126, "Input"],
+Cell[16170, 506, 435, 12, 63, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16642, 523, 97, 1, 49, "Subsection"],
+Cell[CellGroupData[{
+Cell[16764, 528, 608, 9, 30, "Input"],
+Cell[17375, 539, 6886, 162, 1729, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24298, 706, 1291, 33, 50, "Input"],
+Cell[25592, 741, 2572, 50, 226, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28201, 796, 200, 4, 30, "Input"],
+Cell[28404, 802, 1139, 24, 258, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29580, 831, 164, 3, 30, "Input"],
+Cell[29747, 836, 1430, 58, 912, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
